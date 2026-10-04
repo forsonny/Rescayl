@@ -1,0 +1,4 @@
+resources/*/bin/LICENSE -text
+resources/*/bin/README.md -text
+resources/models/*.param text eol=lf
+*.sh text eol=lf
