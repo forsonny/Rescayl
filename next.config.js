@@ -7,9 +7,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    externalDir: true,
-  },
+  experimental: { externalDir: true },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },

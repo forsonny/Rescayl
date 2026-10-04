@@ -1,0 +1,61 @@
+{
+  "source": "https://github.com/upscayl/upscayl-ncnn",
+  "tag": "20251207-174704",
+  "commit": "d02fa88e078e7109fd689932453362430144014d",
+  "assets": {
+    "win": {
+      "url": "https://github.com/upscayl/upscayl-ncnn/releases/download/20251207-174704/upscayl-bin-20251207-174704-windows.zip",
+      "sha256": "1f0f65c5d2ade866555e2ac467d35952c35a47080a4060fe56a1ab028f67258a",
+      "directory": "upscayl-bin-20251207-174704-windows"
+    },
+    "linux": {
+      "url": "https://github.com/upscayl/upscayl-ncnn/releases/download/20251207-174704/upscayl-bin-20251207-174704-linux.zip",
+      "sha256": "a9fab3c770b62f2b7a35d8d6d61eb4e8b3aef79128b665c919d080b85a2292f2",
+      "directory": "upscayl-bin-20251207-174704-linux"
+    },
+    "mac": {
+      "url": "https://github.com/upscayl/upscayl-ncnn/releases/download/20251207-174704/upscayl-bin-20251207-174704-macos.zip",
+      "sha256": "277419791281a56eae0c739c70120b974d7267cf7c2de8e86dc09798d4b314db",
+      "directory": "upscayl-bin-20251207-174704-macos"
+    }
+  },
+  "files": {
+    "resources/win/bin/upscayl-bin.exe": "294d31be8f29d047c0d91a8dcd5e739616ece56bce3188ac688f9a52d70abe60",
+    "resources/win/bin/LICENSE": "392150e5ad83609ea48366e700c378fb8e97bf2eec5039bc35685039080f7a85",
+    "resources/win/bin/README.md": "f95843ab5a4b223f82f9e8440eb35245c9faf6ed38c7c4356f83e97e903c2f67",
+    "resources/linux/bin/upscayl-bin": "8b0980197d5bdb6fc4fbc0cc50dae721f3df18d91d0d912ec0a3aeea6495367e",
+    "resources/linux/bin/LICENSE": "db1a87ba81e885b6bb82971964ab4e202463cde2ac4003571bc5a857d577e4a3",
+    "resources/linux/bin/README.md": "ca6031ea3cdac8d576cdf9fe40993ac72c9e512fbb7693fc5ce9a0bf1a84daf8",
+    "resources/mac/bin/upscayl-bin": "b7f54f362fc10d5f334e587fb90917e95a5557ec1cfefbddce78657dd3fee055",
+    "resources/mac/bin/LICENSE": "db1a87ba81e885b6bb82971964ab4e202463cde2ac4003571bc5a857d577e4a3",
+    "resources/mac/bin/README.md": "ca6031ea3cdac8d576cdf9fe40993ac72c9e512fbb7693fc5ce9a0bf1a84daf8"
+  },
+  "models": {
+    "repository": "https://github.com/upscayl/upscayl",
+    "commit": "a00d55fee90e0f9435d5eaa86e76700df8199af8",
+    "files": {
+      "resources/models/digital-art-4x.bin": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+      "resources/models/digital-art-4x.param": "d63c7e93c58ec5d0048ca1f0a995f40b2af17c2816a2e0a3b7172046d98795ec",
+      "resources/models/high-fidelity-4x.bin": "8a135402b4f39286121b76abb47601a6b7b7e8d4f3e999a5aaa45ed277824fb4",
+      "resources/models/high-fidelity-4x.param": "3de789bcc71b28530393e224413857b5f82e6c35902298dced1c05d12aad6343",
+      "resources/models/remacri-4x.bin": "a43be595c0d743314c30b50fe7ef188be0c61cc55c46ce81adb79ba4b3c3fb7a",
+      "resources/models/remacri-4x.param": "1f070a52c642a378f695217fea559cc0cf3b2355afb769f13e34026c20ea277d",
+      "resources/models/ultramix-balanced-4x.bin": "171cae5968485d366b4fb575d232f98d117d94b766b15f22849cfccde40d2050",
+      "resources/models/ultramix-balanced-4x.param": "1f070a52c642a378f695217fea559cc0cf3b2355afb769f13e34026c20ea277d",
+      "resources/models/ultrasharp-4x.bin": "fb3e279d40d4cddb44db4e684d59e68d0aa39852c8cc14dc3f23ccc7e6eee9c1",
+      "resources/models/ultrasharp-4x.param": "54a77aec5e346f503d69dd0f5efabf7539339bd8052ef26bb763875b0e490e5f",
+      "resources/models/upscayl-lite-4x.bin": "85ee266b632a765a725425ba6a5620c088c8aa2939a03063b2d83b3462724cc1",
+      "resources/models/upscayl-lite-4x.param": "46ffabec2494ec8fb2b4bd45622ea0d54ac2022fa9db3666e013d3f6b44d1ba3",
+      "resources/models/upscayl-standard-4x.bin": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "resources/models/upscayl-standard-4x.param": "c8a066c12541a1ef01ba90fddd90688278bdc11536847699239be29225015bc8"
+    }
+  },
+  "inherited": {
+    "repository": "https://github.com/upscayl/upscayl",
+    "commit": "a00d55fee90e0f9435d5eaa86e76700df8199af8",
+    "files": {
+      "resources/win/bin/vcomp140.dll": "d49b394de1154176b39611c37c669ebff50aa5a818dbd5ff3d2214a299368ddd",
+      "resources/win/bin/vcomp140d.dll": "879ff638ac1c12a436ad794fb4bbbaf06ac4b43a980ebe5509f56acde2f3e5ab"
+    }
+  }
+}

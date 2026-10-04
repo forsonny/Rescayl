@@ -1,68 +1,33 @@
-# name of your github action
-name: Deploy Release
-# this will help you specify where to run
+name: Build release candidates
+
 on:
   push:
-    tags:
-      - "v*" # this will run the action when you push a tag that starts with v
+    tags: ['v*']
   workflow_dispatch:
-# this is where the magic happens, each job happens in parallel btw
+
+permissions:
+  contents: read
+
 jobs:
-  linux:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3.5.0
-        with:
-          node-version: 18
-
-      - name: Install Modules and Publish build
-        run: |
-          sudo apt-get install elfutils -y
-          sudo apt install rpm
-          npm install -g node-gyp
-          npm install
-          rm -rf node_modules/sharp
-          SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install --arch=x64 --platform=linux --libc=glibc --build-from-source sharp
-          GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run publish-linux-app
-
-  macos:
-    runs-on: macos-13
-    env:
-      CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-      CSC_LINK: ${{ secrets.CSC_LINK }}
-      APPLEID: ${{ secrets.APPLEID }}
-      APPLEIDPASS: ${{ secrets.APPLEIDPASS }}
-      TEAMID: ${{ secrets.TEAMID }}
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      PROVISION_PROFILE: ${{ secrets.PROVISION_PROFILE }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3.5.0
-        with:
-          node-version: 18
-      - name: Install Modules and Publish build
-        run: |
-          npm install
-          rm -rf node_modules/sharp
-          echo -n "$PROVISION_PROFILE" | base64 --decode > embedded.provisionprofile
-          npm install --platform=darwin --arch=x64 sharp
-          npm rebuild --platform=darwin --arch=arm64 sharp
-          npm run publish-mac-universal-app
-
   windows:
-    runs-on: windows-latest
+    runs-on: windows-2025
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3.5.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
-          node-version: 18
-
-      - name: Install Modules and Publish build
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm install
-          npm run publish-win-app
+          node-version: '24.21.0'
+          cache: npm
+      - run: npm ci
+      - run: npm run verify-native
+      - run: npm test
+      - run: npm run build
+      - run: npx --no-install electron-builder --win --x64 --publish never
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: windows-release-candidates
+          path: |
+            dist/*.exe
+            dist/*.zip
+            dist/*.blockmap
+            dist/*.yml
+          if-no-files-found: error

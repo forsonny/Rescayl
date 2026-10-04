@@ -88,9 +88,9 @@ export const NewsModal = () => {
 
         <div>
           {news && (
-            <Markdown remarkPlugins={[remarkGfm]} className="prose">
-              {news.content}
-            </Markdown>
+            <div className="prose">
+              <Markdown remarkPlugins={[remarkGfm]}>{news.content}</Markdown>
+            </div>
           )}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import prepareNext from "electron-next";
+import { createServer } from "http";
 import { autoUpdater } from "electron-updater";
 import log from "electron-log/node";
 import { app } from "electron";
@@ -31,7 +31,16 @@ import path from "path";
 log.transports.file.resolvePathFn = () => path.join(app.getPath("userData"), "logs", "main.log");
 
 app.on("ready", async () => {
-  if (electronIsDev) await prepareNext("./renderer");
+  if (electronIsDev) {
+    const next = require("next")({ dev: true, dir: path.join(app.getAppPath(), "renderer"), webpack: true });
+    await next.prepare();
+    const server = createServer(next.getRequestHandler());
+    await new Promise<void>((resolve, reject) => {
+      server.once("error", reject);
+      server.listen(8000, "localhost", resolve);
+    });
+    app.once("before-quit", () => { server.close(); void next.close(); });
+  }
   registerProtocols();
 
   createMainWindow();
