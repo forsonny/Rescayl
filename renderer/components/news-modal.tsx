@@ -16,7 +16,7 @@ export const NewsModal = () => {
     // TODO: ADD AN ABOUT TAB
     if (window && window.navigator.onLine === false) return;
     const controller = new AbortController();
-      fetch("https://raw.githubusercontent.com/upscayl/upscayl/main/news.md", {
+      fetch("https://raw.githubusercontent.com/forsonny/upscayl/main/news.md", {
         cache: "no-cache",
         signal: controller.signal,
       })

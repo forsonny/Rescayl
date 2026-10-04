@@ -28,6 +28,7 @@ function Footer() {
           {t("TITLE")}
         </a>
       </p>
+      <p>Revival maintained by <a href="https://github.com/forsonny/upscayl" target="_blank" className="font-bold">forsonny</a></p>
       <p>
         {t("FOOTER.TITLE")}
         <a

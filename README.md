@@ -1,6 +1,12 @@
+# Upscayl Revival
+
+This is an independently maintained fork under [forsonny/upscayl](https://github.com/forsonny/upscayl), with Windows x64 as the first release target. Original Upscayl authorship and AGPL licensing are retained. Upstream cloud waitlist and telemetry integrations are removed. Automatic updates remain gated until owned signing and an update transaction are verified.
+
+Use Node 24.21.0, `npm ci`, `npm test`, and `npm run build`. `npm run dist:win:signed` requires a trusted signing certificate and fails without one. `docker build -f Dockerfile.validation -t upscayl-revival-validation:local .` validates Linux builds and a software Vulkan native upscale. Release candidates are under validation; the upstream project's documentation follows.
+
 <div align="center">
 
-  # v2.15 is out! 🥳 [Download Now ⬇️](https://github.com/upscayl/upscayl/releases/latest)
+  ## Original upstream project
 
 <h3>Special thanks to our sponsors:</h3>
 <a href="https://www.warp.dev/upscayl">

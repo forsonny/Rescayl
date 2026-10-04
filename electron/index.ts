@@ -130,6 +130,6 @@ handleIPC("use-dropped-file", (_event, value) => {
 handleIPC("get-system-info", getDeviceSpecs);
 handleIPC("get-app-version", getAppVersion);
 
-if (!FEATURE_FLAGS.APP_STORE_BUILD) {
+if (!FEATURE_FLAGS.APP_STORE_BUILD && FEATURE_FLAGS.AUTO_UPDATES_ENABLED) {
   autoUpdater.on("update-downloaded", autoUpdate);
 }

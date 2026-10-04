@@ -64,7 +64,7 @@ export const contentSecurityPolicy = (development: boolean) => [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' upscayl: data: blob:",
   "font-src 'self' data:",
-  "connect-src 'self' https://raw.githubusercontent.com https://us.i.posthog.com https://us-assets.i.posthog.com https://firestore.googleapis.com" + (development ? " ws://localhost:8000" : ""),
+  "connect-src 'self' https://raw.githubusercontent.com" + (development ? " ws://localhost:8000" : ""),
   "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
   "object-src 'none'",
   "base-uri 'none'",

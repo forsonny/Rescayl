@@ -4,7 +4,6 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import {
   batchModeAtom,
   compressionAtom,
-  dontShowCloudModalAtom,
   noImageProcessingAtom,
   savedOutputPathAtom,
   overwriteAtom,
@@ -75,7 +74,6 @@ const Sidebar = ({
   const [saveImageAs, setSaveImageAs] = useAtom(saveImageAsAtom);
 
   const [selectedTab, setSelectedTab] = useState(0);
-  const [showCloudModal, setShowCloudModal] = useState(false);
 
   // ATOMIC STATES
   const overwrite = useAtomValue(overwriteAtom);
@@ -85,7 +83,6 @@ const Sidebar = ({
   const [batchMode, setBatchMode] = useAtom(batchModeAtom);
   const logData = useAtomValue(logAtom);
   const [scale] = useAtom(scaleAtom);
-  const setDontShowCloudModal = useSetAtom(dontShowCloudModalAtom);
   const noImageProcessing = useAtomValue(noImageProcessingAtom);
   const customWidth = useAtomValue(customWidthAtom);
   const useCustomWidth = useAtomValue(useCustomWidthAtom);
@@ -243,9 +240,6 @@ const Sidebar = ({
             saveImageAs={saveImageAs}
             setSaveImageAs={setSaveImageAs}
             logData={logData}
-            show={showCloudModal}
-            setShow={setShowCloudModal}
-            setDontShowCloudModal={setDontShowCloudModal}
           />
         )}
         <Footer />

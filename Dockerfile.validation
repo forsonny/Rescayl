@@ -1,0 +1,12 @@
+FROM node:24.21.0-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends libvulkan1 mesa-vulkan-drivers libgomp1 unzip && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run verify-native && npm test && npm run build
+RUN chmod +x resources/linux/bin/upscayl-bin && \
+    node -e "require('sharp')('scripts/baboon.png').resize(16,16).png().toFile('/tmp/upscayl-input.png')" && \
+    resources/linux/bin/upscayl-bin -i /tmp/upscayl-input.png -o /tmp/upscayl-output.png -m resources/models -n upscayl-standard-4x -f png && \
+    node -e "const b=require('fs').readFileSync('/tmp/upscayl-output.png');if(b.readUInt32BE(16)!==64||b.readUInt32BE(20)!==64)throw Error('Linux native dimensions failed');console.log('Linux Vulkan native upscale: 16x16 to 64x64 passed')"
+RUN npx --no-install electron-builder --linux zip --x64 --publish never

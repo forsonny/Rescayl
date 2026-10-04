@@ -2,6 +2,7 @@ import { app, BrowserWindow, shell, session } from "electron";
 import { getPlatform } from "./utils/get-device-specs";
 import { join } from "path";
 import { ELECTRON_COMMANDS } from "../common/electron-commands";
+import { FEATURE_FLAGS } from "../common/feature-flags";
 import { fetchLocalStorage } from "./utils/config-variables";
 import electronIsDev from "electron-is-dev";
 import { autoUpdater } from "electron-updater";
@@ -68,7 +69,7 @@ const createMainWindow = () => {
     if (!mainWindow) return;
     fetchLocalStorage();
 
-  if (!electronIsDev) {
+  if (!electronIsDev && FEATURE_FLAGS.AUTO_UPDATES_ENABLED) {
     console.log("🚀 Checking for updates");
     mainWindow.webContents
       .executeJavaScript('localStorage.getItem("autoUpdate");', true)

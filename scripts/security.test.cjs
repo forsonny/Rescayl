@@ -31,36 +31,6 @@ test('news is data only, including executable-language and YAML-tag fixtures', (
   assert.equal(parseNews('---\nversion: ["array"]\n---\nHello').data.version, '["array"]');
 });
 
-test('analytics initializes only with persisted consent and stops pending captures on opt-out', async () => {
-  const calls = [];
-  let consent = 'false';
-  let optedOut = true;
-  let releaseInfo;
-  const client = {
-    init: () => calls.push('init'), opt_in_capturing: () => { optedOut = false; }, opt_out_capturing: () => { optedOut = true; },
-    has_opted_out_capturing: () => optedOut, register: () => calls.push('register'), capture: event => calls.push(event),
-  };
-  const window = { localStorage: { getItem: () => consent }, electron: { getSystemInfo: () => new Promise(resolve => { releaseInfo = resolve; }), getAppVersion: async () => 'test' } };
-  const analytics = load('renderer/lib/analytics.ts', { 'posthog-js': client }, { window });
-  analytics.configureAnalytics(false);
-  analytics.captureAnalytics('model_selected', {});
-  assert.equal(calls.length, 0);
-  consent = 'true';
-  const stop = analytics.configureAnalytics(true);
-  assert.deepEqual(calls, ['init']);
-  analytics.captureAnalytics('model_selected', {});
-  assert.equal(calls.at(-1), 'model_selected');
-  consent = 'false';
-  stop();
-  analytics.configureAnalytics(false);
-  releaseInfo({ platform: 'win' });
-  await new Promise(resolve => setImmediate(resolve));
-  analytics.captureAnalytics('after_opt_out', {});
-  assert.equal(calls.includes('app_launched'), false);
-  assert.equal(calls.includes('register'), false);
-  assert.equal(calls.includes('after_opt_out'), false);
-});
-
 test('bundled sandbox preload exposes specific operations and strips IPC events', () => {
   let api;
   const calls = [];

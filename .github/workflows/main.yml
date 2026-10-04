@@ -4,6 +4,12 @@ on:
   push:
     tags: ['v*']
   workflow_dispatch:
+    inputs:
+      sign_windows:
+        description: Require trusted Windows code signing
+        type: boolean
+        required: true
+        default: true
 
 permissions:
   contents: read
@@ -11,6 +17,9 @@ permissions:
 jobs:
   windows:
     runs-on: windows-2025
+    env:
+      CSC_LINK: ${{ secrets.WIN_CSC_LINK }}
+      CSC_KEY_PASSWORD: ${{ secrets.WIN_CSC_KEY_PASSWORD }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
@@ -21,7 +30,14 @@ jobs:
       - run: npm run verify-native
       - run: npm test
       - run: npm run build
-      - run: npx --no-install electron-builder --win --x64 --publish never
+      - name: Build candidates with the requested signing gate
+        shell: pwsh
+        run: |
+          if ('${{ github.event_name }}' -ne 'workflow_dispatch' -or '${{ inputs.sign_windows }}' -eq 'true') {
+            npm run dist:win:signed
+          } else {
+            npx --no-install electron-builder --win --x64 --publish never
+          }
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: windows-release-candidates

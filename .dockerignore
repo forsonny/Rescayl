@@ -1,0 +1,12 @@
+node_modules
+dist
+export
+renderer/.next
+renderer/out
+.git
+.lab
+graft
+.ignore
+.researcher-session
+backlog.md
+.lavish

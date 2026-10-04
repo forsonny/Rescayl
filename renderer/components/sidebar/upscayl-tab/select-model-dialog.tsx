@@ -16,7 +16,6 @@ import { useAtom, useAtomValue } from "jotai";
 import { selectedModelIdAtom } from "@/atoms/user-settings-atom";
 import { customModelIdsAtom } from "@/atoms/models-list-atom";
 import useTranslation from "@/components/hooks/use-translation";
-import { captureAnalytics } from "@/lib/analytics";
 
 const SelectModelDialog = () => {
   const t = useTranslation();
@@ -30,11 +29,6 @@ const SelectModelDialog = () => {
     setSelectedModelId(model);
     setOpen(false);
 
-    captureAnalytics("model_selected", {
-      $ip: "0.0.0.0",
-      $geoip_disable: true,
-      model,
-    });
   };
 
   const handleZoom = (event: React.MouseEvent, model: ModelId) => {

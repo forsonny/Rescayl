@@ -1,14 +1,13 @@
 {
-  "name": "upscayl",
+  "name": "upscayl-revival",
   "private": true,
-  "version": "2.15.0",
-  "productName": "Upscayl",
+  "version": "2.16.0-preview.1",
+  "productName": "Upscayl Revival",
   "author": {
-    "name": "Nayam Amarshe",
-    "email": "nayam.emikx@aleeas.com",
-    "url": "https://github.com/NayamAmarshe"
+    "name": "forsonny",
+    "url": "https://github.com/forsonny"
   },
-  "homepage": "https://github.com/TGS963/upscayl",
+  "homepage": "https://github.com/forsonny/upscayl",
   "contributors": [
     {
       "name": "Nayam Amarshe",
@@ -21,9 +20,8 @@
       "url": "https://github.com/TGS963"
     }
   ],
-  "email": "nayam.emikx@aleeas.com",
   "license": "AGPL-3.0",
-  "description": "Upscayl - Free and Open Source AI Image Upscaler",
+  "description": "Independently maintained revival of the Upscayl desktop image upscaler",
   "keywords": [
     "AI",
     "Upscaler",
@@ -73,11 +71,12 @@
     "test:security": "npm run tsc && node --test scripts/security.test.cjs",
     "test": "npm run test:security",
     "verify-native": "node scripts/verify-native.cjs",
-    "update-native": "node scripts/update-native.cjs"
+    "update-native": "node scripts/update-native.cjs",
+    "dist:win:signed": "npm run build && electron-builder --win --x64 --publish never -c.forceCodeSigning=true"
   },
   "build": {
-    "productName": "Upscayl",
-    "appId": "org.upscayl.Upscayl",
+    "productName": "Upscayl Revival",
+    "appId": "io.github.forsonny.upscayl",
     "artifactName": "${name}-${version}-${os}.${ext}",
     "afterSign": "./notarize.js",
     "asar": true,
@@ -178,19 +177,26 @@
         "deb",
         "rpm"
       ],
-      "maintainer": "Nayam Amarshe <simplelogin-newsletter.j1zez@aleeas.com>",
+      "maintainer": "forsonny",
       "category": "Graphics;2DGraphics;RasterGraphics;ImageProcessing;",
       "synopsis": "AI Image Upscaler",
       "description": "Free and Open Source AI Image Upscaler",
       "icon": "resources/icons/"
     },
     "win": {
-      "signtoolOptions": {
-        "publisherName": "Upscayl Team"
-      },
       "target": [
-        "nsis",
-        "zip"
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
       "icon": "build/icon.png"
     },
@@ -198,7 +204,7 @@
       "allowToChangeInstallationDirectory": true,
       "oneClick": false,
       "allowElevation": true,
-      "perMachine": true
+      "perMachine": false
     },
     "files": [
       "export",
@@ -206,8 +212,9 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "upscayl",
-      "repo": "upscayl"
+      "owner": "forsonny",
+      "repo": "upscayl",
+      "releaseType": "draft"
     }
   },
   "devDependencies": {
@@ -230,7 +237,9 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "tailwindcss": "3.4.19",
-    "typescript": "npm:@typescript/typescript6@6.0.2"
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "tailwind-scrollbar": "3.1.0",
+    "tailwindcss-animate": "1.0.7"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.23",
@@ -247,10 +256,8 @@
     "electron-settings": "4.0.4",
     "electron-updater": "6.8.9",
     "exiftool-vendored": "38.3.0",
-    "firebase": "12.19.0",
     "jotai": "3.0.1",
     "lucide-react": "1.52.0",
-    "posthog-js": "1.435.8",
     "react-compare-slider": "4.0.0",
     "react-markdown": "10.1.0",
     "react-resizable-panels": "2.1.9",
@@ -258,8 +265,6 @@
     "react-tooltip": "6.0.8",
     "remark-gfm": "4.0.1",
     "tailwind-merge": "2.6.1",
-    "tailwind-scrollbar": "3.1.0",
-    "tailwindcss-animate": "1.0.7",
     "theme-change": "3.0.4"
   },
   "volta": {
@@ -270,9 +275,10 @@
   },
   "allowScripts": {
     "esbuild@0.28.2": true,
-    "electron-winstaller@5.4.0": true,
-    "@firebase/util": false,
-    "protobufjs": false,
-    "core-js": false
+    "electron-winstaller@5.4.0": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forsonny/upscayl.git"
   }
 }
