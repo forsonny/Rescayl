@@ -1,7 +1,8 @@
 "use strict";
 
-import { ipcRenderer } from "electron";
+import { app } from "electron";
 import os from "os";
+import { FEATURE_FLAGS } from "../../common/feature-flags";
 
 export const getPlatform = () => {
   switch (os.platform()) {
@@ -33,20 +34,13 @@ export const getArch = () => {
 };
 
 export const getAppVersion = async () => {
-  let appVersion = process.env.npm_package_version;
-  try {
-    appVersion = await ipcRenderer.invoke("get-app-version");
-  } catch (error) {
-    console.error("Failed to get app version:", error);
-  }
-
-  return appVersion;
+  return `${app.getVersion()} ${FEATURE_FLAGS.APP_STORE_BUILD ? "MAC-APP-STORE" : "FOSS"}`;
 };
 
 export const getDeviceSpecs = async () => {
   let gpuInfo;
   try {
-    gpuInfo = await ipcRenderer.invoke("get-gpu-info");
+    gpuInfo = await app.getGPUInfo("complete");
   } catch (error) {
     console.error("Failed to get GPU info:", error);
     gpuInfo = null;

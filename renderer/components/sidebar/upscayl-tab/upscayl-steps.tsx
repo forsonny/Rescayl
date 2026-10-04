@@ -12,7 +12,6 @@ import {
   useCustomWidthAtom,
 } from "../../../atoms/user-settings-atom";
 import { FEATURE_FLAGS } from "@common/feature-flags";
-import { ELECTRON_COMMANDS } from "@common/electron-commands";
 import { useToast } from "@/components/ui/use-toast";
 import { translationAtom } from "@/atoms/translations-atom";
 import { SelectImageScale } from "../settings-tab/select-image-scale";
@@ -59,7 +58,7 @@ function UpscaylSteps({
   const t = useAtomValue(translationAtom);
 
   const outputHandler = async () => {
-    const path = await window.electron.invoke(ELECTRON_COMMANDS.SELECT_FOLDER);
+    const path = await window.electron.selectFolder();
     if (path !== null) {
       logit("🗂 Setting Output Path: ", path);
       setOutputPath(path);

@@ -16,6 +16,7 @@ import { BatchUpscaylPayload } from "../../common/types/types";
 import showNotification from "../utils/show-notification";
 import { MODELS } from "../../common/models-list";
 import { copyMetadata } from "../utils/copy-metadata";
+import { assertOutputAccess } from "../path-access";
 
 const batchUpscayl = async (event, payload: BatchUpscaylPayload) => {
   const mainWindow = getMainWindow();
@@ -31,13 +32,14 @@ const batchUpscayl = async (event, payload: BatchUpscaylPayload) => {
   const gpuId = payload.gpuId;
   const saveImageAs = payload.saveImageAs;
   // GET THE IMAGE DIRECTORY
-  let inputDir = decodeURIComponent(payload.batchFolderPath);
+  let inputDir = payload.batchFolderPath;
   // GET THE OUTPUT DIRECTORY
-  let outputFolderPath = decodeURIComponent(payload.outputPath);
+  let outputFolderPath = payload.outputPath;
   const outputFolderName = `upscayl_${saveImageAs}_${model}_${
     useCustomWidth ? `${customWidth}px` : `${scale}x`
   }`;
   outputFolderPath += slash + outputFolderName;
+  assertOutputAccess(outputFolderPath);
   // CREATE THE OUTPUT DIRECTORY
   if (!fs.existsSync(outputFolderPath)) {
     fs.mkdirSync(outputFolderPath, { recursive: true });

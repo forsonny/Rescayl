@@ -6,6 +6,7 @@ import {
 import logit from "../utils/logit";
 import settings from "electron-settings";
 import { FEATURE_FLAGS } from "../../common/feature-flags";
+import { allowDirectory } from "../path-access";
 
 const selectFolder = async (event, message) => {
   let closeAccess;
@@ -42,6 +43,7 @@ const selectFolder = async (event, message) => {
   } else {
     setSavedBatchUpscaylFolderPath(folderPaths[0]);
     logit("📁 Selected Folder Path: ", savedBatchUpscaylFolderPath);
+    allowDirectory(folderPaths[0]);
     return folderPaths[0];
   }
 };

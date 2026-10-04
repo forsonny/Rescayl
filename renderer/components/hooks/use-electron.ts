@@ -1,17 +1,11 @@
 import { useEffect } from "react";
-import { ELECTRON_COMMANDS } from "@common/electron-commands";
 
 const useElectron = ({
-  command,
+  subscribe,
   func,
 }: {
-  command: (typeof ELECTRON_COMMANDS)[keyof typeof ELECTRON_COMMANDS];
-  func: (...args: any[]) => void;
+  subscribe: (listener: (data: any) => void) => () => void;
+  func: (data: any) => void;
 }) => {
-  useEffect(() => {
-    window.electron.on(command, func);
-    return () => {
-      window.electron.off(command, func);
-    };
-  }, []);
+  useEffect(() => subscribe(func), [subscribe, func]);
 };

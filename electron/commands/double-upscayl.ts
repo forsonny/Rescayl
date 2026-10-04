@@ -23,6 +23,7 @@ import decodePath from "../../common/decode-path";
 import getDirectoryFromPath from "../../common/get-directory-from-path";
 import { MODELS } from "../../common/models-list";
 import { copyMetadata } from "../utils/copy-metadata";
+import { assertOutputAccess } from "../path-access";
 
 const doubleUpscayl = async (event, payload: DoubleUpscaylPayload) => {
   const mainWindow = getMainWindow();
@@ -58,10 +59,11 @@ const doubleUpscayl = async (event, payload: DoubleUpscaylPayload) => {
     saveImageAs;
 
   // UPSCALE
+  assertOutputAccess(outFile);
   let upscayl = spawnUpscayl(
     getDoubleUpscaleArguments({
       inputDir,
-      fullfileName: decodeURIComponent(fullfileName),
+      fullfileName,
       outFile,
       modelsPath: isDefaultModel
         ? modelsPath

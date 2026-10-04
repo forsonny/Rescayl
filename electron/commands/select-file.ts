@@ -4,6 +4,7 @@ import { savedImagePath, setSavedImagePath } from "../utils/config-variables";
 import logit from "../utils/logit";
 import settings from "electron-settings";
 import { FEATURE_FLAGS } from "../../common/feature-flags";
+import { allowFile } from "../path-access";
 
 const selectFile = async () => {
   const mainWindow = getMainWindow();
@@ -79,6 +80,7 @@ const selectFile = async () => {
 
     logit("📄 Selected File Path: ", filePaths[0]);
     // CREATE input AND upscaled FOLDER
+    allowFile(filePaths[0]);
     return filePaths[0];
   }
 };

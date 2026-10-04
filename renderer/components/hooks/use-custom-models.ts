@@ -1,4 +1,3 @@
-import { ELECTRON_COMMANDS } from "@common/electron-commands";
 import { useEffect } from "react";
 import useLogger from "./use-logger";
 
@@ -10,7 +9,7 @@ export const initCustomModels = () => {
       localStorage.getItem("customModelsPath"),
     );
     if (customModelsPath !== null) {
-      window.electron.send(ELECTRON_COMMANDS.GET_MODELS_LIST, customModelsPath);
+      window.electron.loadModels(customModelsPath);
       logit("🎯 GET_MODELS_LIST: ", customModelsPath);
     }
   }, []);

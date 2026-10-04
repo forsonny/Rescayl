@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import UpscaylSVGLogo from "@/components/icons/upscayl-logo-svg";
 import { useAtomValue } from "jotai";
 import { translationAtom } from "@/atoms/translations-atom";
-import { ELECTRON_COMMANDS } from "@common/electron-commands";
 import useLogger from "../hooks/use-logger";
 
 function ProgressBar({
@@ -29,7 +28,7 @@ function ProgressBar({
   }, [progress]);
 
   const stopHandler = () => {
-    window.electron.send(ELECTRON_COMMANDS.STOP);
+    window.electron.stop();
     logit("🛑 Stopping Upscayl");
   };
 

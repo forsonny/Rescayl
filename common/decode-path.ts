@@ -1,5 +1,6 @@
 import path from "path";
 
 export default function decodePath(filePath: string): string {
-  return path.normalize(decodeURIComponent(filePath));
+  // Jobs receive filesystem paths, not URLs. Preserve literal percent escapes.
+  return path.normalize(filePath);
 }

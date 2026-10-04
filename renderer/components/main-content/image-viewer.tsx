@@ -9,7 +9,7 @@ const ImageViewer = ({
 }) => {
   return (
     <img
-      src={"file:///" + sanitizePath(imagePath)}
+      src={sanitizePath(imagePath)}
       onLoad={(e: React.SyntheticEvent<HTMLImageElement>) => {
         setDimensions({
           width: e.currentTarget.naturalWidth,

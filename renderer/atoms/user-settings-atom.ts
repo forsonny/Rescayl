@@ -83,7 +83,9 @@ export const autoUpdateAtom = atomWithStorage("autoUpdate", true);
 
 export const enableContributionAtom = atomWithStorage(
   "enableContribution",
-  true,
+  false,
+  undefined,
+  { getOnInit: true },
 );
 
 export const userStatsAtom = atomWithStorage("userStats", {

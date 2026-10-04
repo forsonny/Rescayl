@@ -110,10 +110,7 @@ const MainContent = ({
   const openFolderHandler = (e) => {
     const logit = useLogger();
     logit("📂 OPEN_FOLDER: ", upscaledBatchFolderPath);
-    window.electron.send(
-      ELECTRON_COMMANDS.OPEN_FOLDER,
-      upscaledBatchFolderPath,
-    );
+    window.electron.openFolder(upscaledBatchFolderPath);
   };
 
   const sanitizedImagePath = useMemo(
@@ -121,7 +118,7 @@ const MainContent = ({
     [imagePath],
   );
 
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     resetImagePaths();
     if (
@@ -136,9 +133,9 @@ const MainContent = ({
       return;
     }
     const type = e.dataTransfer.items[0].type;
-    const filePath = e.dataTransfer.files[0].path;
+    const droppedFile = e.dataTransfer.files[0];
     const extension = e.dataTransfer.files[0].name.split(".").at(-1);
-    logit("⤵️ Dropped file: ", JSON.stringify({ type, filePath, extension }));
+    logit("⤵️ Dropped file: ", JSON.stringify({ type, name: droppedFile.name, extension }));
     if (
       !type.includes("image") ||
       !VALID_IMAGE_FORMATS.includes(extension.toLowerCase())
@@ -149,6 +146,12 @@ const MainContent = ({
         description: t("ERRORS.INVALID_IMAGE_ERROR.ADDITIONAL_DESCRIPTION"),
       });
     } else {
+      let filePath: string;
+      try { filePath = await window.electron.loadDroppedFile(droppedFile); }
+      catch (error) {
+        toast({ title: t("ERRORS.INVALID_IMAGE_ERROR.TITLE"), description: error instanceof Error ? error.message : t("ERRORS.INVALID_IMAGE_ERROR.DESCRIPTION") });
+        return;
+      }
       logit("🖼 Setting image path: ", filePath);
       setImagePath(filePath);
       const dirname = getDirectoryFromPath(filePath);
@@ -197,13 +200,7 @@ const MainContent = ({
           reader.onload = async (event) => {
             const result = event.target?.result;
             if (typeof result === "string") {
-              file.encodedBuffer = Buffer.from(result, "utf-8").toString(
-                "base64",
-              );
-            } else if (result instanceof ArrayBuffer) {
-              file.encodedBuffer = Buffer.from(new Uint8Array(result)).toString(
-                "base64",
-              );
+              file.encodedBuffer = result.slice(result.indexOf(",") + 1);
             } else {
               logit("🚫 Invalid file pasted");
               toast({
@@ -212,10 +209,11 @@ const MainContent = ({
                   "ERRORS.INVALID_IMAGE_ERROR.CLIPBOARD_DESCRIPTION",
                 ),
               });
+              return;
             }
-            window.electron.send(ELECTRON_COMMANDS.PASTE_IMAGE, file);
+            window.electron.pasteImage(file.encodedBuffer);
           };
-          reader.readAsArrayBuffer(fileObject);
+          reader.readAsDataURL(fileObject);
         } else {
           logit("🚫 Invalid file pasted");
           toast({
@@ -241,27 +239,23 @@ const MainContent = ({
   useEffect(() => {
     // Events
     const handlePasteEvent = (e) => handlePaste(e);
-    const handlePasteImageSaveSuccess = (_: any, imageFilePath: string) => {
+    const handlePasteImageSaveSuccess = (imageFilePath: string) => {
       setImagePath(imageFilePath);
       validateImagePath(imageFilePath);
     };
-    const handlePasteImageSaveError = (_: any, error: string) => {
+    const handlePasteImageSaveError = (error: string) => {
       toast({
         title: t("ERRORS.NO_IMAGE_ERROR.TITLE"),
         description: error,
       });
     };
     window.addEventListener("paste", handlePasteEvent);
-    window.electron.on(
-      ELECTRON_COMMANDS.PASTE_IMAGE_SAVE_SUCCESS,
-      handlePasteImageSaveSuccess,
-    );
-    window.electron.on(
-      ELECTRON_COMMANDS.PASTE_IMAGE_SAVE_ERROR,
-      handlePasteImageSaveError,
-    );
+    const unsubscribeSuccess = window.electron.onPasteSuccess(handlePasteImageSaveSuccess);
+    const unsubscribeError = window.electron.onPasteError(handlePasteImageSaveError);
     return () => {
       window.removeEventListener("paste", handlePasteEvent);
+      unsubscribeSuccess();
+      unsubscribeError();
     };
   }, [t, outputPath]);
 

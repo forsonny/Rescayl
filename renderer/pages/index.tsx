@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { ELECTRON_COMMANDS } from "@common/electron-commands";
 import { useAtomValue, useSetAtom } from "jotai";
 import { customModelIdsAtom } from "../atoms/models-list-atom";
 import {
@@ -51,7 +50,7 @@ const Home = () => {
 
   const selectImageHandler = async () => {
     resetImagePaths();
-    const path = await window.electron.invoke(ELECTRON_COMMANDS.SELECT_FILE);
+    const path = await window.electron.selectImage();
     if (path === null) return;
     logit("🖼 Selected Image Path: ", path);
     setImagePath(path);
@@ -67,7 +66,7 @@ const Home = () => {
 
   const selectFolderHandler = async () => {
     resetImagePaths();
-    const path = await window.electron.invoke(ELECTRON_COMMANDS.SELECT_FOLDER);
+    const path = await window.electron.selectFolder();
     if (path !== null) {
       logit("🖼 Selected Folder Path: ", path);
       setBatchFolderPath(path);
@@ -102,6 +101,7 @@ const Home = () => {
 
   // ELECTRON EVENT LISTENERS
   useEffect(() => {
+    const subscriptions: Array<() => void> = [];
     const handleErrors = (data: string) => {
       if (data.includes("Invalid GPU")) {
         toast({
@@ -165,42 +165,37 @@ const Home = () => {
       }
     };
     // LOG
-    window.electron.on(ELECTRON_COMMANDS.LOG, (_, data: string) => {
+    subscriptions.push(window.electron.onLog((data: string) => {
       logit(`🎒 BACKEND REPORTED: `, data);
-    });
+    }));
     // SCALING AND CONVERTING
-    window.electron.on(
-      ELECTRON_COMMANDS.SCALING_AND_CONVERTING,
-      (_, data: string) => {
+    subscriptions.push(window.electron.onFinishing((data: string) => {
         setProgress(t("APP.PROGRESS.PROCESSING_TITLE"));
-      },
-    );
+      }));
     // UPSCAYL WARNING
-    window.electron.on(ELECTRON_COMMANDS.UPSCAYL_WARNING, (_, data: string) => {
+    subscriptions.push(window.electron.onWarning((data: string) => {
       toast({
         title: t("WARNING.GENERIC_WARNING.TITLE"),
         description: data,
       });
-    });
+    }));
     // METADATA ERROR
-    window.electron.on(ELECTRON_COMMANDS.METADATA_ERROR, (_, data: string) => {
+    subscriptions.push(window.electron.onMetadataError((data: string) => {
       toast({
         title: t("ERRORS.METADATA_ERROR.TITLE"),
         description: data,
       });
-    });
+    }));
     // UPSCAYL ERROR
-    window.electron.on(ELECTRON_COMMANDS.UPSCAYL_ERROR, (_, data: string) => {
+    subscriptions.push(window.electron.onError((data: string) => {
       toast({
         title: t("ERRORS.GENERIC_ERROR.TITLE"),
         description: data,
       });
       resetImagePaths();
-    });
+    }));
     // UPSCAYL PROGRESS
-    window.electron.on(
-      ELECTRON_COMMANDS.UPSCAYL_PROGRESS,
-      (_, data: string) => {
+    subscriptions.push(window.electron.onProgress((data: string) => {
         if (data.length > 0 && data.length < 10) {
           setProgress(data);
         } else if (data.includes("converting")) {
@@ -210,12 +205,9 @@ const Home = () => {
         }
         handleErrors(data);
         logit(`🚧 UPSCAYL_PROGRESS: `, data);
-      },
-    );
+      }));
     // FOLDER UPSCAYL PROGRESS
-    window.electron.on(
-      ELECTRON_COMMANDS.FOLDER_UPSCAYL_PROGRESS,
-      (_, data: string) => {
+    subscriptions.push(window.electron.onBatchProgress((data: string) => {
         if (data.includes("Successful")) {
           setProgress(t("APP.PROGRESS.SUCCESS_TITLE"));
         }
@@ -224,12 +216,9 @@ const Home = () => {
         }
         handleErrors(data);
         logit(`🚧 FOLDER_UPSCAYL_PROGRESS: `, data);
-      },
-    );
+      }));
     // DOUBLE UPSCAYL PROGRESS
-    window.electron.on(
-      ELECTRON_COMMANDS.DOUBLE_UPSCAYL_PROGRESS,
-      (_, data: string) => {
+    subscriptions.push(window.electron.onDoubleProgress((data: string) => {
         if (data.length > 0 && data.length < 10) {
           if (data === "0.00%") {
             setDoubleUpscaylCounter(doubleUpscaylCounter + 1);
@@ -238,10 +227,9 @@ const Home = () => {
         }
         handleErrors(data);
         logit(`🚧 DOUBLE_UPSCAYL_PROGRESS: `, data);
-      },
-    );
+      }));
     // UPSCAYL DONE
-    window.electron.on(ELECTRON_COMMANDS.UPSCAYL_DONE, (_, data: string) => {
+    subscriptions.push(window.electron.onDone((data: string) => {
       setProgress("");
       setUpscaledImagePath(data);
       setUserStats((prev) => ({
@@ -254,11 +242,9 @@ const Home = () => {
       }));
       logit("upscaledImagePath: ", data);
       logit(`💯 UPSCAYL_DONE: `, data);
-    });
+    }));
     // FOLDER UPSCAYL DONE
-    window.electron.on(
-      ELECTRON_COMMANDS.FOLDER_UPSCAYL_DONE,
-      (_, data: string) => {
+    subscriptions.push(window.electron.onBatchDone((data: string) => {
         setProgress("");
         setUpscaledBatchFolderPath(data);
         logit(`💯 FOLDER_UPSCAYL_DONE: `, data);
@@ -270,12 +256,9 @@ const Home = () => {
               (new Date().getTime() - prev.lastUsedAt)) /
             (prev.totalUpscayls + 1),
         }));
-      },
-    );
+      }));
     // DOUBLE UPSCAYL DONE
-    window.electron.on(
-      ELECTRON_COMMANDS.DOUBLE_UPSCAYL_DONE,
-      (_, data: string) => {
+    subscriptions.push(window.electron.onDoubleDone((data: string) => {
         setProgress("");
         setTimeout(() => setUpscaledImagePath(data), 500);
         setDoubleUpscaylCounter(0);
@@ -288,17 +271,15 @@ const Home = () => {
               (new Date().getTime() - prev.lastUsedAt)) /
             (prev.totalUpscayls + 1),
         }));
-      },
-    );
+      }));
     // CUSTOM FOLDER LISTENER
-    window.electron.on(
-      ELECTRON_COMMANDS.CUSTOM_MODEL_FILES_LIST,
-      (_, data: string[]) => {
+    subscriptions.push(window.electron.onModels((data: string[]) => {
         logit(`📜 CUSTOM_MODEL_FILES_LIST: `, data);
         console.log("🚀 => data:", data);
         setModelIds(data);
-      },
-    );
+      }));
+
+    return () => subscriptions.forEach(unsubscribe => unsubscribe());
   }, []);
 
   // LOADING STATE

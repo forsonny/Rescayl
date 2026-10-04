@@ -1,7 +1,7 @@
 import prepareNext from "electron-next";
 import { autoUpdater } from "electron-updater";
-import log from "electron-log";
-import { app, ipcMain, protocol } from "electron";
+import log from "electron-log/node";
+import { app } from "electron";
 import { ELECTRON_COMMANDS } from "../common/electron-commands";
 import logit from "./utils/logit";
 import openFolder from "./commands/open-folder";
@@ -20,31 +20,19 @@ import autoUpdate from "./commands/auto-update";
 import { FEATURE_FLAGS } from "../common/feature-flags";
 import settings from "electron-settings";
 import pasteImage from "./commands/paste-image";
+import { registerProtocols } from "./protocols";
+import { handleIPC, onIPC } from "./ipc";
+import { allowFile, hasDirectoryAccess, hasModelAccess } from "./path-access";
+import { validateJobPayload } from "./security";
+import { getAppVersion, getDeviceSpecs } from "./utils/get-device-specs";
 import path from "path";
 
 // INITIALIZATION
-log.initialize({ preload: true });
+log.transports.file.resolvePathFn = () => path.join(app.getPath("userData"), "logs", "main.log");
 
 app.on("ready", async () => {
-  await prepareNext("./renderer");
-
-  app.whenReady().then(() => {
-    protocol.registerFileProtocol("file", (request, callback) => {
-      const pathname = decodeURI(request.url.replace("file:///", ""));
-      callback(pathname);
-    });
-    protocol.registerFileProtocol("public", (request, callback) => {
-      const filePath = decodeURI(request.url.replace("public:///", ""));
-      const asarPath = path.join(
-        app.getAppPath(),
-        "renderer",
-        process.env.NODE_ENV === "development" ? "public" : "out",
-        filePath,
-      );
-      callback(asarPath);
-    });
-    logit("🚃 App Path: ", app.getAppPath());
-  });
+  if (electronIsDev) await prepareNext("./renderer");
+  registerProtocols();
 
   createMainWindow();
 
@@ -81,43 +69,57 @@ if (FEATURE_FLAGS.APP_STORE_BUILD) {
   app.commandLine.appendSwitch("in-process-gpu");
 }
 
-ipcMain.on(ELECTRON_COMMANDS.STOP, stop);
+onIPC(ELECTRON_COMMANDS.STOP, stop);
 
-ipcMain.on(ELECTRON_COMMANDS.OPEN_FOLDER, openFolder);
+onIPC("renderer-log", (_event, message) => {
+  if (typeof message !== "string") throw new Error("Invalid log message.");
+  log.info(message);
+});
 
-ipcMain.handle(ELECTRON_COMMANDS.SELECT_FOLDER, selectFolder);
+onIPC(ELECTRON_COMMANDS.OPEN_FOLDER, (event, value) => {
+  if (!hasDirectoryAccess(value)) throw new Error("Select the folder first.");
+  return openFolder(event, value);
+});
 
-ipcMain.handle(ELECTRON_COMMANDS.SELECT_FILE, selectFile);
+handleIPC(ELECTRON_COMMANDS.SELECT_FOLDER, selectFolder);
 
-ipcMain.on(ELECTRON_COMMANDS.GET_MODELS_LIST, getModelsList);
+handleIPC(ELECTRON_COMMANDS.SELECT_FILE, selectFile);
 
-ipcMain.handle(
+onIPC(ELECTRON_COMMANDS.GET_MODELS_LIST, (event, value) => {
+  if (!hasModelAccess(value)) throw new Error("Select the custom models folder first.");
+  return getModelsList(event, value);
+});
+
+handleIPC(
   ELECTRON_COMMANDS.SELECT_CUSTOM_MODEL_FOLDER,
   customModelsSelect,
 );
 
-ipcMain.on(ELECTRON_COMMANDS.UPSCAYL, imageUpscayl);
-
-ipcMain.on(ELECTRON_COMMANDS.FOLDER_UPSCAYL, batchUpscayl);
-
-ipcMain.on(ELECTRON_COMMANDS.DOUBLE_UPSCAYL, doubleUpscayl);
-
-ipcMain.on(ELECTRON_COMMANDS.PASTE_IMAGE, pasteImage);
-
-ipcMain.handle("get-gpu-info", async () => {
-  try {
-    return await app.getGPUInfo("complete");
-  } catch (error) {
-    console.error("Failed to get GPU info:", error);
-    return null;
-  }
+onIPC(ELECTRON_COMMANDS.UPSCAYL, (event, payload) => {
+  validateJobPayload(payload);
+  return imageUpscayl(event, payload);
 });
 
-ipcMain.handle("get-app-version", () => {
-  return `${app.getVersion()} ${
-    FEATURE_FLAGS.APP_STORE_BUILD ? "MAC-APP-STORE" : "FOSS"
-  }`;
+onIPC(ELECTRON_COMMANDS.FOLDER_UPSCAYL, (event, payload) => {
+  validateJobPayload(payload, true);
+  return batchUpscayl(event, payload);
 });
+
+onIPC(ELECTRON_COMMANDS.DOUBLE_UPSCAYL, (event, payload) => {
+  validateJobPayload(payload);
+  return doubleUpscayl(event, payload);
+});
+
+onIPC(ELECTRON_COMMANDS.PASTE_IMAGE, pasteImage);
+
+handleIPC("use-dropped-file", (_event, value) => {
+  if (typeof value !== "string" || !/\.(png|jpe?g|jfif|webp)$/i.test(value)) throw new Error("Drop a local image file.");
+  allowFile(value);
+  return value;
+});
+
+handleIPC("get-system-info", getDeviceSpecs);
+handleIPC("get-app-version", getAppVersion);
 
 if (!FEATURE_FLAGS.APP_STORE_BUILD) {
   autoUpdater.on("update-downloaded", autoUpdate);

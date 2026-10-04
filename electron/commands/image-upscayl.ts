@@ -22,6 +22,7 @@ import getDirectoryFromPath from "../../common/get-directory-from-path";
 import { MODELS } from "../../common/models-list";
 import { getPlatform } from "../utils/get-device-specs";
 import { copyMetadata } from "../utils/copy-metadata";
+import { assertOutputAccess } from "../path-access";
 
 const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
   const mainWindow = getMainWindow();
@@ -58,6 +59,7 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
     "." +
     saveImageAs;
 
+  assertOutputAccess(outFile);
   const isDefaultModel = model in MODELS;
 
   // Check if filename is too long
@@ -102,8 +104,8 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
     );
     const upscayl = spawnUpscayl(
       getSingleImageArguments({
-        inputDir: decodeURIComponent(inputDir),
-        fileNameWithExt: decodeURIComponent(fileNameWithExt),
+        inputDir,
+        fileNameWithExt,
         outFile,
         modelsPath: isDefaultModel
           ? modelsPath

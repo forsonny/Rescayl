@@ -10,6 +10,7 @@ import getModels from "../utils/get-models";
 import { getMainWindow } from "../main-window";
 import settings from "electron-settings";
 import { FEATURE_FLAGS } from "../../common/feature-flags";
+import { allowModelDirectory } from "../path-access";
 
 const customModelsSelect = async (event, message) => {
   const mainWindow = getMainWindow();
@@ -54,6 +55,7 @@ const customModelsSelect = async (event, message) => {
       return null;
     }
 
+    allowModelDirectory(folderPaths[0]);
     const models = await getModels(savedCustomModelsPath);
     mainWindow.webContents.send(
       ELECTRON_COMMANDS.CUSTOM_MODEL_FILES_LIST,

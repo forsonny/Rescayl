@@ -37,7 +37,6 @@ import Tabs from "../tabs";
 import Header from "../header";
 import { ChevronLeftIcon } from "lucide-react";
 import { logAtom } from "@/atoms/log-atom";
-import { ELECTRON_COMMANDS } from "@common/electron-commands";
 import useUpscaylVersion from "../hooks/use-upscayl-version";
 import useTranslation from "../hooks/use-translation";
 import UpscaylLogo from "./upscayl-logo";
@@ -104,9 +103,7 @@ const Sidebar = ({
       setProgress(t("APP.PROGRESS.WAIT_TITLE"));
       // Double Upscayl
       if (doubleUpscayl) {
-        window.electron.send<DoubleUpscaylPayload>(
-          ELECTRON_COMMANDS.DOUBLE_UPSCAYL,
-          {
+        window.electron.upscaleDouble({
             imagePath,
             outputPath,
             model: selectedModelId,
@@ -120,8 +117,7 @@ const Sidebar = ({
             tileSize,
             ttaMode,
             copyMetadata,
-          },
-        );
+          });
         setUserStats((prev) => ({
           ...prev,
           totalUpscayls: prev.totalUpscayls + 1,
@@ -133,9 +129,7 @@ const Sidebar = ({
       } else if (batchMode) {
         // Batch Upscayl
         setDoubleUpscayl(false);
-        window.electron.send<BatchUpscaylPayload>(
-          ELECTRON_COMMANDS.FOLDER_UPSCAYL,
-          {
+        window.electron.upscaleBatch({
             batchFolderPath,
             outputPath,
             model: selectedModelId,
@@ -149,8 +143,7 @@ const Sidebar = ({
             tileSize,
             ttaMode,
             copyMetadata,
-          },
-        );
+          });
         setUserStats((prev) => ({
           ...prev,
           totalUpscayls: prev.totalUpscayls + 1,
@@ -160,7 +153,7 @@ const Sidebar = ({
         logit("🏁 FOLDER_UPSCAYL");
       } else {
         // Single Image Upscayl
-        window.electron.send<ImageUpscaylPayload>(ELECTRON_COMMANDS.UPSCAYL, {
+        window.electron.upscale({
           imagePath,
           outputPath,
           model: selectedModelId,

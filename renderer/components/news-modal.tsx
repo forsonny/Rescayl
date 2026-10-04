@@ -1,6 +1,6 @@
 import { newsAtom, showNewsModalAtom } from "@/atoms/news-atom";
 import { translationAtom } from "@/atoms/translations-atom";
-import matter, { GrayMatterFile } from "gray-matter";
+import { parseNews } from "@/lib/parse-news";
 import { useAtom, useAtomValue } from "jotai";
 import React, { useEffect } from "react";
 import Markdown from "react-markdown";
@@ -15,11 +15,13 @@ export const NewsModal = () => {
   useEffect(() => {
     // TODO: ADD AN ABOUT TAB
     if (window && window.navigator.onLine === false) return;
-    try {
+    const controller = new AbortController();
       fetch("https://raw.githubusercontent.com/upscayl/upscayl/main/news.md", {
         cache: "no-cache",
+        signal: controller.signal,
       })
         .then((res) => {
+          if (!res.ok) throw new Error("Could not fetch news.");
           return res.text();
         })
         .then((result) => {
@@ -28,7 +30,7 @@ export const NewsModal = () => {
             console.log("📰 Could not fetch news data");
             return;
           }
-          const markdownData = matter(newsData);
+          const markdownData = parseNews(newsData);
           if (!markdownData) return;
           if (markdownData && markdownData.data.dontShow) {
             return;
@@ -43,14 +45,12 @@ export const NewsModal = () => {
               setShowNewsModal(false);
             }
           } else if (markdownData) {
-            setNews(matter(newsData));
+            setNews(markdownData);
             setShowNewsModal(true);
           }
-        });
-    } catch (error) {
-      console.log("Could not fetch Upscayl News");
-    }
-  }, [news]);
+        }).catch(error => { if (error.name !== "AbortError") console.log("Could not fetch Upscayl News"); });
+    return () => controller.abort();
+  }, []);
 
   return (
     <dialog className={`modal ${showNewsModal && "modal-open"}`}>

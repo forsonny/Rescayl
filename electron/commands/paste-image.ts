@@ -3,29 +3,28 @@ import logit from "../utils/logit";
 import fs from "fs";
 import path from "path";
 import { ELECTRON_COMMANDS } from "../../common/electron-commands";
-import { ImageFormat } from "../types/types";
-import { imageFormats } from "../../common/image-formats";
+import { app, nativeImage } from "electron";
+import { allowFile } from "../path-access";
 
 interface IClipboardFileParameters {
-  name: string;
-  path: string;
-  extension: ImageFormat;
-  size: number;
-  type: string;
   encodedBuffer: string;
 }
 
-const isImageFormatValid = (format: string): format is ImageFormat => {
-  return (imageFormats as readonly string[]).includes(format);
-};
-
-const createTempFileFromClipboard = async (
+export const createTempFileFromClipboard = async (
   inputFileParams: IClipboardFileParameters,
 ): Promise<string> => {
-  const tempFilePath = path.join(inputFileParams.path, inputFileParams.name);
+  if (typeof inputFileParams?.encodedBuffer !== "string" || !inputFileParams.encodedBuffer) throw new Error("Invalid clipboard image.");
   const buffer = Buffer.from(inputFileParams.encodedBuffer, "base64");
-
-  await fs.promises.writeFile(tempFilePath, buffer);
+  const image = nativeImage.createFromBuffer(buffer);
+  if (image.isEmpty()) throw new Error("Invalid clipboard image.");
+  const directory = await fs.promises.mkdtemp(path.join(app.getPath("temp"), "upscayl-clipboard-"));
+  const tempFilePath = path.join(directory, path.basename(directory) + ".png");
+  await fs.promises.writeFile(tempFilePath, image.toPNG(), { flag: "wx" });
+  allowFile(tempFilePath);
+  app.once("will-quit", () => {
+    try { fs.rmSync(directory, { recursive: true, force: true }); }
+    catch (error) { console.error("Could not remove the clipboard temporary file:", error); }
+  });
   return tempFilePath;
 };
 
@@ -35,8 +34,6 @@ const pasteImage = async (
 ) => {
   const mainWindow = getMainWindow();
   if (!mainWindow) return;
-  if (!file || !file.name || !file.encodedBuffer) return;
-  if (isImageFormatValid(file.extension)) {
     try {
       const imageFilePath = await createTempFileFromClipboard(file);
       mainWindow.webContents.send(
@@ -50,12 +47,6 @@ const pasteImage = async (
         error.message,
       );
     }
-  } else {
-    mainWindow.webContents.send(
-      ELECTRON_COMMANDS.PASTE_IMAGE_SAVE_ERROR,
-      "Unsupported Image Format",
-    );
-  }
 };
 
 export default pasteImage;

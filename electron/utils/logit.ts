@@ -1,4 +1,4 @@
-import log from "electron-log";
+import log from "electron-log/node";
 import { getMainWindow } from "../main-window";
 import { ELECTRON_COMMANDS } from "../../common/electron-commands";
 
