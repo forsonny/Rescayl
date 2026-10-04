@@ -102,6 +102,10 @@ const Home = () => {
   // ELECTRON EVENT LISTENERS
   useEffect(() => {
     const subscriptions: Array<() => void> = [];
+    subscriptions.push(window.electron.onCancelled(() => {
+      setProgress("");
+      setDoubleUpscaylCounter(0);
+    }));
     const handleErrors = (data: string) => {
       if (data.includes("Invalid GPU")) {
         toast({

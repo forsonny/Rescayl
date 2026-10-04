@@ -13,6 +13,13 @@ export const selectedModelIdAtom = atomWithStorage<ModelId | string>(
   "upscayl-standard-4x",
 );
 export const doubleUpscaylAtom = atomWithStorage("doubleUpscayl", false);
+// Older versions wrote GPU IDs as raw text instead of JSON strings.
+if (typeof window !== "undefined") {
+  const saved = window.localStorage.getItem("gpuId");
+  if (saved !== null && /^\d+(,\d+)*$/.test(saved)) {
+    window.localStorage.setItem("gpuId", JSON.stringify(saved));
+  }
+}
 export const gpuIdAtom = atomWithStorage("gpuId", "");
 export const saveImageAsAtom = atomWithStorage<ImageFormat>(
   "saveImageAs",
@@ -98,7 +105,4 @@ export const userStatsAtom = atomWithStorage("userStats", {
   lastUsedAt: 0,
 });
 
-export const copyMetadataAtom = atomWithStorage<boolean>(
-  "copyMetadata",
-  false,
-);
+export const copyMetadataAtom = atomWithStorage<boolean>("copyMetadata", false);

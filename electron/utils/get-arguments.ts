@@ -122,6 +122,7 @@ export const getDoubleUpscaleArguments = ({
 };
 
 export const getDoubleUpscaleSecondPassArguments = ({
+  inputFile,
   outFile,
   modelsPath,
   model,
@@ -133,6 +134,7 @@ export const getDoubleUpscaleSecondPassArguments = ({
   tileSize,
   ttaMode,
 }: {
+  inputFile: string;
   outFile: string;
   modelsPath: string;
   model: string;
@@ -149,7 +151,7 @@ export const getDoubleUpscaleSecondPassArguments = ({
   return [
     // INPUT IMAGE
     "-i",
-    outFile,
+    inputFile,
     // OUTPUT IMAGE
     "-o",
     outFile,

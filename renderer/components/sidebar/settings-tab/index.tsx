@@ -73,7 +73,6 @@ function SettingsTab({
 
   const handleGpuIdChange = (e) => {
     setGpuId(e.target.value);
-    localStorage.setItem("gpuId", e.target.value);
   };
 
   const copyOnClickHandler = () => {

@@ -32,4 +32,5 @@ export interface DesktopAPI {
   onModels: Subscription<string[]>;
   onPasteSuccess: Subscription<string>;
   onPasteError: Subscription<string>;
+  onCancelled: Subscription<void>;
 }

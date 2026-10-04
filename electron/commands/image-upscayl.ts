@@ -4,8 +4,7 @@ import { ELECTRON_COMMANDS } from "../../common/electron-commands";
 import {
   savedCustomModelsPath,
   setChildProcesses,
-  setStopped,
-  stopped,
+  removeChildProcess,
 } from "../utils/config-variables";
 import { getSingleImageArguments } from "../utils/get-arguments";
 import logit from "../utils/logit";
@@ -124,10 +123,10 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
 
     setChildProcesses(upscayl);
 
-    setStopped(false);
     let failed = false;
 
     const onData = (data: string) => {
+      if (failed || upscayl.isCancelled()) return;
       logit(data.toString());
       mainWindow.setProgressBar(parseFloat(data.slice(0, data.length)) / 100);
       data = data.toString();
@@ -136,15 +135,13 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
         data.toString(),
       );
       if (data.includes("Error") || data.includes("failed")) {
-        upscayl.kill();
-        failed = true;
         onError(data);
       } else if (data.includes("Resizing")) {
         mainWindow.webContents.send(ELECTRON_COMMANDS.SCALING_AND_CONVERTING);
       }
     };
     const onError = (data) => {
-      if (!mainWindow) return;
+      if (failed || upscayl.isCancelled()) return;
       mainWindow.setProgressBar(-1);
       mainWindow.webContents.send(
         ELECTRON_COMMANDS.UPSCAYL_ERROR,
@@ -154,27 +151,44 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
       upscayl.kill();
       return;
     };
-    const onClose = async () => {
-      if (!failed && !stopped) {
-        logit("💯 Done upscaling");
-        // Free up memory
-        upscayl.kill();
-        mainWindow.setProgressBar(-1);
-        if (payload.copyMetadata) {
-          logit("🏷️ Copying metadata...");
-          try {
-            await copyMetadata(imagePath, outFile);
-            logit("✅ Metadata copied to: ", outFile);
-          } catch (error) {
-            logit("❌ Error copying metadata: ", error);
-            mainWindow.webContents.send(
-              ELECTRON_COMMANDS.METADATA_ERROR,
-              error,
+    const onClose = async (code: number | null, signal: string | null) => {
+      try {
+        if (!failed && !upscayl.isCancelled()) {
+          if (
+            code !== 0 ||
+            signal ||
+            !fs.existsSync(outFile) ||
+            !fs.statSync(outFile).isFile() ||
+            fs.statSync(outFile).size === 0
+          ) {
+            onError(
+              `Upscaling failed (exit ${code}, signal ${signal ?? "none"}) or produced no image.`,
             );
+            return;
           }
+          logit("💯 Done upscaling");
+          // Free up memory
+          upscayl.kill();
+          mainWindow.setProgressBar(-1);
+          if (payload.copyMetadata) {
+            logit("🏷️ Copying metadata...");
+            try {
+              await copyMetadata(imagePath, outFile);
+              logit("✅ Metadata copied to: ", outFile);
+            } catch (error) {
+              logit("❌ Error copying metadata: ", error);
+              mainWindow.webContents.send(
+                ELECTRON_COMMANDS.METADATA_ERROR,
+                String(error),
+              );
+            }
+          }
+          if (upscayl.isCancelled()) return;
+          mainWindow.webContents.send(ELECTRON_COMMANDS.UPSCAYL_DONE, outFile);
+          showNotification("Upscayl", "Image upscayled successfully!");
         }
-        mainWindow.webContents.send(ELECTRON_COMMANDS.UPSCAYL_DONE, outFile);
-        showNotification("Upscayl", "Image upscayled successfully!");
+      } finally {
+        removeChildProcess(upscayl);
       }
     };
 

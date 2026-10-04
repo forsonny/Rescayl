@@ -3,9 +3,9 @@
  * Our goal is to send as many variables as possible from the renderer process to the main process to avoid using local storage variables.
  */
 
-import { ChildProcessWithoutNullStreams } from "child_process";
 import { getMainWindow } from "../main-window";
 import logit from "./logit";
+import type { spawnUpscayl } from "./spawn-upscayl";
 
 /**
  * The saved image path so that the select image dialog can open to the last used path.
@@ -37,17 +37,9 @@ export function setSavedCustomModelsPath(value: string | undefined): void {
 }
 
 /**
- * The stopped variable to stop the batch upscayl process.
- */
-export let stopped = false;
-
-/**
  * The child processes array to store the spawned upscayl processes.
  */
-export let childProcesses: {
-  process: ChildProcessWithoutNullStreams;
-  kill: () => boolean;
-}[] = [];
+export let childProcesses: ReturnType<typeof spawnUpscayl>[] = [];
 
 /**
  * The turn off notifications variable, so that we can load this value on startup.
@@ -59,15 +51,9 @@ export function setTurnOffNotifications(value: boolean): void {
 }
 
 // SETTERS
-export function setStopped(value: boolean): void {
-  stopped = value;
-  logit("🛑 Updating Stopped: ", stopped);
-}
-
-export function setChildProcesses(value: {
-  process: ChildProcessWithoutNullStreams;
-  kill: () => boolean;
-}): void {
+export function setChildProcesses(
+  value: ReturnType<typeof spawnUpscayl>,
+): void {
   childProcesses.push(value);
   logit(
     "👶 Updating Child Processes: ",
@@ -76,6 +62,16 @@ export function setChildProcesses(value: {
       args: childProcesses[0].process.spawnargs,
     }),
   );
+}
+
+export function removeChildProcess(
+  value: ReturnType<typeof spawnUpscayl>,
+): void {
+  childProcesses = childProcesses.filter((child) => child !== value);
+}
+
+export function clearChildProcesses(): void {
+  childProcesses = [];
 }
 
 // LOCAL STORAGE

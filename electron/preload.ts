@@ -38,6 +38,7 @@ const api: DesktopAPI = {
   onModels: (listener) => subscribe(commands.CUSTOM_MODEL_FILES_LIST, listener),
   onPasteSuccess: (listener) => subscribe(commands.PASTE_IMAGE_SAVE_SUCCESS, listener),
   onPasteError: (listener) => subscribe(commands.PASTE_IMAGE_SAVE_ERROR, listener),
+  onCancelled: (listener) => subscribe(commands.CANCELLED, listener),
 };
 
 contextBridge.exposeInMainWorld("electron", api);

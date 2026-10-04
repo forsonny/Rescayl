@@ -194,13 +194,13 @@ test('all job modes pass the approved literal filesystem paths to native process
   const nested = path.join(selected, '%2e%2e');
   for (const directory of [selected, output, nested]) fs.mkdirSync(directory, { recursive: true });
   const access = load('export/electron/path-access.js', { 'electron-settings': { getSync: () => undefined, setSync() {} } });
-  const config = { savedCustomModelsPath: undefined, childProcesses: [], stopped: false, setChildProcesses() {}, setStopped() {} };
+  const config = { savedCustomModelsPath: undefined, childProcesses: [], setChildProcesses() {}, removeChildProcess() {} };
   const security = load('export/electron/security.js', { './path-access': access, './utils/config-variables': config });
   const captured = [];
   const spawn = args => {
     captured.push(args);
     const process = new EventEmitter(); process.stderr = new EventEmitter(); process.stdout = new EventEmitter();
-    return { process, kill() {} };
+    return { process, kill() {}, isCancelled: () => false };
   };
   const mocks = {
     '../main-window': { getMainWindow: () => ({ webContents: { send() {} } }) },
@@ -245,7 +245,7 @@ test('consecutive clipboard images produce separate native outputs with overwrit
   const output = path.join(fixture, 'output'); fs.mkdirSync(output);
   const access = load('export/electron/path-access.js', { 'electron-settings': { getSync: () => undefined, setSync() {} } });
   access.allowDirectory(output);
-  const config = { savedCustomModelsPath: undefined, stopped: false, setChildProcesses() {}, setStopped() {} };
+  const config = { savedCustomModelsPath: undefined, setChildProcesses() {}, removeChildProcess() {} };
   const jobs = [];
   const electron = { app: { getPath: () => fixture, once() {} }, nativeImage: { createFromBuffer: buffer => ({ isEmpty: () => false, toPNG: () => buffer }) } };
   const clipboard = load('export/electron/commands/paste-image.js', { electron, '../path-access': access, '../main-window': {}, '../utils/logit': () => {} });
@@ -273,4 +273,124 @@ test('consecutive clipboard images produce separate native outputs with overwrit
     assert.equal(path.basename(fixture).startsWith('upscayl-clipboard-test-'), true);
     fs.rmSync(fixture, { recursive: true, force: true });
   }
+});
+
+test('job completion, two-pass outputs, converted metadata, and cancellation use production handlers', async () => {
+  const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'upscayl-workflow-test-'));
+  const input = path.join(fixture, 'input'); const output = path.join(fixture, 'output');
+  fs.mkdirSync(input); fs.mkdirSync(output);
+  const imagePath = path.join(input, 'photo.png'); fs.writeFileSync(imagePath, 'input');
+  const messages = []; const jobs = []; const metadata = [];
+  const config = { savedCustomModelsPath: undefined, childProcesses: [],
+    setChildProcesses(child) { config.childProcesses.push(child); },
+    removeChildProcess(child) { config.childProcesses = config.childProcesses.filter(value => value !== child); },
+    clearChildProcesses() { config.childProcesses = []; },
+  };
+  const mocks = {
+    '../main-window': { getMainWindow: () => ({ setProgressBar() {}, webContents: { send: (...args) => messages.push(args) } }) },
+    '../utils/config-variables': config, '../utils/get-resource-paths': { modelsPath: fixture },
+    '../utils/logit': () => {}, '../utils/show-notification': () => {}, '../path-access': { assertOutputAccess() {} },
+    '../utils/copy-metadata': { copyMetadata: async (...args) => metadata.push(args) },
+    '../utils/spawn-upscayl': { spawnUpscayl: args => {
+      const process = new EventEmitter(); process.stderr = new EventEmitter();
+      let cancelled = false;
+      const child = { args, process, kill() {}, cancel() { cancelled = true; }, isCancelled: () => cancelled };
+      jobs.push(child); return child;
+    } },
+  };
+  const single = load('export/electron/commands/image-upscayl.js', mocks).default;
+  const double = load('export/electron/commands/double-upscayl.js', mocks).default;
+  const batch = load('export/electron/commands/batch-upscayl.js', mocks).default;
+  const stop = load('export/electron/commands/stop.js', mocks).default;
+  const commands = load('export/common/electron-commands.js').ELECTRON_COMMANDS;
+  const options = { imagePath, outputPath: output, batchFolderPath: input, model: 'upscayl-standard-4x', scale: '4', gpuId: '', compression: '0', tileSize: null, saveImageAs: 'jpg', ttaMode: false, copyMetadata: false, useCustomWidth: false, overwrite: true };
+  const destination = child => child.args[child.args.indexOf('-o') + 1];
+  const close = async (child, code = 0, signal = null) => { for (const listener of child.process.listeners('close')) await listener(code, signal); };
+  const done = () => messages.some(([channel]) => [commands.UPSCAYL_DONE, commands.DOUBLE_UPSCAYL_DONE, commands.FOLDER_UPSCAYL_DONE].includes(channel));
+  try {
+    for (const handler of [single, double, batch]) {
+      for (const [code, signal, contents] of [[1, null, 'output'], [null, 'SIGTERM', 'output'], [0, null, null], [0, null, '']]) {
+        messages.length = 0;
+        await handler({}, options); const child = jobs.at(-1);
+        const target = handler === batch ? path.join(destination(child), 'photo.jpg') : destination(child);
+        if (fs.existsSync(target)) fs.unlinkSync(target);
+        if (contents !== null) fs.writeFileSync(target, contents);
+        const count = jobs.length;
+        await close(child, code, signal);
+        assert.equal(done(), false); assert.equal(jobs.length, count);
+        assert.ok(messages.some(([channel]) => channel === commands.UPSCAYL_ERROR));
+      }
+    }
+    messages.length = 0;
+    await single({}, options); const singleJob = jobs.at(-1);
+    fs.writeFileSync(destination(singleJob), 'single');
+    await close(singleJob); assert.equal(done(), true);
+    const singleFile = destination(singleJob);
+    messages.length = 0;
+    await double({}, { ...options, overwrite: false }); const first = jobs.at(-1);
+    fs.writeFileSync(destination(first), 'first');
+    await close(first); const second = jobs.at(-1);
+    assert.notEqual(first, second);
+    assert.equal(second.args[second.args.indexOf('-i') + 1], destination(first));
+    assert.notEqual(destination(second), destination(first));
+    fs.writeFileSync(destination(second), 'double');
+    await close(second);
+    const doubleFile = messages.find(([channel]) => channel === commands.DOUBLE_UPSCAYL_DONE)[1];
+    assert.notEqual(doubleFile, singleFile); assert.equal(fs.readFileSync(singleFile, 'utf8'), 'single');
+    assert.equal(fs.readFileSync(doubleFile, 'utf8'), 'double');
+    messages.length = 0; const count = jobs.length;
+    await double({}, { ...options, overwrite: false }); assert.equal(jobs.length, count); assert.equal(done(), true);
+    await double({}, options); const failedFirst = jobs.at(-1);
+    fs.writeFileSync(destination(failedFirst), 'first'); await close(failedFirst);
+    const failedSecond = jobs.at(-1); fs.writeFileSync(destination(failedSecond), 'partial');
+    messages.length = 0; await close(failedSecond, 2);
+    assert.equal(done(), false); assert.equal(fs.readFileSync(doubleFile, 'utf8'), 'double');
+    messages.length = 0;
+    await batch({}, { ...options, copyMetadata: true }); const batchJob = jobs.at(-1);
+    const batchFile = path.join(destination(batchJob), 'photo.jpg'); fs.writeFileSync(batchFile, 'batch');
+    await close(batchJob); assert.equal(done(), true);
+    assert.deepEqual(metadata.at(-1), [imagePath, batchFile]);
+    for (const handler of [single, double, batch]) {
+      messages.length = 0; await handler({}, options); const cancelledJob = jobs.at(-1);
+      await stop({}, {}); assert.ok(cancelledJob.isCancelled());
+      assert.ok(messages.some(([channel]) => channel === commands.CANCELLED));
+      await single({}, options); const newerJob = jobs.at(-1);
+      const count = jobs.length;
+      const target = handler === batch ? path.join(destination(cancelledJob), 'photo.jpg') : destination(cancelledJob);
+      fs.writeFileSync(target, 'late output');
+      await close(cancelledJob); assert.equal(done(), false); assert.equal(jobs.length, count);
+      assert.ok(config.childProcesses.includes(newerJob));
+      await stop({}, {}); await close(newerJob);
+    }
+    assert.equal(config.childProcesses.length, 0);
+  } finally {
+    assert.equal(path.dirname(path.resolve(fixture)), path.resolve(os.tmpdir()));
+    assert.ok(path.basename(fixture).startsWith('upscayl-workflow-test-'));
+    fs.rmSync(fixture, { recursive: true, force: true });
+  }
+});
+
+test('legacy GPU storage and custom model pairs load correctly', async () => {
+  for (const saved of ['0', '0,1', '"0,1"']) {
+    const values = new Map([['gpuId', saved]]);
+    const window = { localStorage: { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) } };
+    const atoms = load('renderer/atoms/user-settings-atom.ts', { jotai: { atom() {} }, 'jotai/utils': { atomWithStorage: (key, fallback) => JSON.parse(values.get(key) ?? JSON.stringify(fallback)) } }, { window });
+    assert.equal(atoms.gpuIdAtom, saved === '0' ? '0' : '0,1');
+  }
+  const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'upscayl-model-pairs-'));
+  try {
+    for (const name of ['complete.param', 'complete.bin', 'incomplete.param', 'orphan.bin']) fs.writeFileSync(path.join(fixture, name), 'model');
+    const getModels = load('export/electron/utils/get-models.js', { electron: { app: {}, dialog: { showMessageBoxSync() {} } }, 'electron-settings': { get: async () => null }, './logit': () => {} }).default;
+    assert.deepEqual(Array.from(await getModels(fixture)), ['complete']);
+  } finally {
+    assert.equal(path.dirname(path.resolve(fixture)), path.resolve(os.tmpdir()));
+    assert.ok(path.basename(fixture).startsWith('upscayl-model-pairs-'));
+    fs.rmSync(fixture, { recursive: true, force: true });
+  }
+});
+
+test('invalid locale schema sets a failing exit code', () => {
+  const taskProcess = { exitCode: 0 };
+  load('scripts/validate-schema.js', { fs: { readFileSync: () => '{}', readdirSync: () => ['en.json', 'invalid.json'] }, ajv: class { compile() { const validate = () => false; validate.errors = []; return validate; } }, './generate-schema': { generateSchema: () => ({}) } }, { process: taskProcess, console: { log() {}, error() {} }, __dirname: path.join(root, 'scripts') });
+  assert.equal(taskProcess.exitCode, 1);
 });

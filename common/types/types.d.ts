@@ -18,6 +18,7 @@ export type ImageUpscaylPayload = {
 };
 
 export type DoubleUpscaylPayload = {
+  overwrite: boolean;
   model: string;
   /**
    * The path to the image to upscale.

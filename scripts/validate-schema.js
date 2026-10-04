@@ -28,6 +28,7 @@ languageFiles.forEach((file) => {
   const valid = validate(jsonData);
 
   if (!valid) {
+    process.exitCode = 1;
     console.error(`Errors in ${file}:`);
     console.error(validate.errors);
   } else {

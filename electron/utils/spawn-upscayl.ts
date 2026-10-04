@@ -19,8 +19,14 @@ export const spawnUpscayl = (
     },
   );
 
+  let cancelled = false;
   return {
     process: spawnedProcess,
     kill: () => spawnedProcess.kill(),
+    cancel: () => {
+      cancelled = true;
+      spawnedProcess.kill();
+    },
+    isCancelled: () => cancelled,
   };
 };

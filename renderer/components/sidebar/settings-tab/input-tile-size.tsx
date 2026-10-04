@@ -25,7 +25,6 @@ export function InputTileSize() {
           onChange={(e) => {
             if (e.currentTarget.value === "") {
               setTileSize(null);
-              localStorage.removeItem("customWidth");
               return;
             }
             setTileSize(parseInt(e.currentTarget.value));

@@ -39,13 +39,14 @@ const getModels = async (folderPath: string | undefined) => {
   }
 
   // READ CUSTOM MODELS FOLDER
-  fs.readdirSync(folderPath).forEach((file) => {
+  const files = fs.readdirSync(folderPath);
+  files.forEach((file) => {
     // log.log("Files in Folder: ", file);
     if (
-      file.endsWith(".param") ||
-      file.endsWith(".PARAM") ||
-      file.endsWith(".bin") ||
-      file.endsWith(".BIN")
+      file.endsWith(".param") &&
+      files.includes(file.slice(0, -6) + ".bin") &&
+      fs.statSync(folderPath + "/" + file).isFile() &&
+      fs.statSync(folderPath + "/" + file.slice(0, -6) + ".bin").isFile()
     ) {
       isValid = true;
       const modelName = file.substring(0, file.lastIndexOf(".")) || file;

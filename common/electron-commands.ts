@@ -22,6 +22,7 @@ const ELECTRON_COMMANDS = {
   CUSTOM_MODEL_FILES_LIST: "Send custom model files list to renderer",
   LOG: "Log",
   STOP: "Stop the current operation",
+  CANCELLED: "Upscaling Cancelled",
   OS: "Get OS",
   SCALING_AND_CONVERTING: "Adding some finishing touches",
   UPSCAYL_WARNING: "Upscaling Warning",

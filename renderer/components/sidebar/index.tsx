@@ -104,6 +104,7 @@ const Sidebar = ({
       // Double Upscayl
       if (doubleUpscayl) {
         window.electron.upscaleDouble({
+            overwrite,
             imagePath,
             outputPath,
             model: selectedModelId,
@@ -148,7 +149,7 @@ const Sidebar = ({
           ...prev,
           totalUpscayls: prev.totalUpscayls + 1,
           lastUsedAt: new Date().getTime(),
-          batchUpscayls: prev.doubleUpscayls + 1,
+          batchUpscayls: prev.batchUpscayls + 1,
         }));
         logit("🏁 FOLDER_UPSCAYL");
       } else {

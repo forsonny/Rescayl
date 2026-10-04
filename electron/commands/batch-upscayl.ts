@@ -1,10 +1,10 @@
 import fs from "fs";
+import path from "path";
 import { getMainWindow } from "../main-window";
 import {
-  childProcesses,
+  setChildProcesses,
+  removeChildProcess,
   savedCustomModelsPath,
-  setStopped,
-  stopped,
 } from "../utils/config-variables";
 import logit from "../utils/logit";
 import { spawnUpscayl } from "../utils/spawn-upscayl";
@@ -67,14 +67,12 @@ const batchUpscayl = async (event, payload: BatchUpscaylPayload) => {
     logit,
   );
 
-  childProcesses.push(upscayl);
-
-  setStopped(false);
+  setChildProcesses(upscayl);
   let failed = false;
   let encounteredError = false;
 
   const onData = (data: any) => {
-    if (!mainWindow) return;
+    if (failed || upscayl.isCancelled()) return;
     data = data.toString();
     mainWindow.webContents.send(
       ELECTRON_COMMANDS.FOLDER_UPSCAYL_PROGRESS,
@@ -92,7 +90,7 @@ const batchUpscayl = async (event, payload: BatchUpscaylPayload) => {
     }
   };
   const onError = (data: any) => {
-    if (!mainWindow) return;
+    if (failed || upscayl.isCancelled()) return;
     mainWindow.setProgressBar(-1);
     mainWindow.webContents.send(
       ELECTRON_COMMANDS.FOLDER_UPSCAYL_PROGRESS,
@@ -107,49 +105,88 @@ const batchUpscayl = async (event, payload: BatchUpscaylPayload) => {
       );
     return;
   };
-  const onClose = async () => {
-    if (!mainWindow) return;
-    if (!failed && !stopped) {
-      logit("💯 Done upscaling");
-      upscayl.kill();
-      if (payload.copyMetadata) {
-        logit("🏷️ Copying metadata...");
-        try {
-          const files = fs.readdirSync(outputFolderPath);
-          for (const file of files) {
-            const outFile = outputFolderPath + slash + file;
-            const originalFile = inputDir + slash + file;
-            if (fs.existsSync(outFile) && fs.existsSync(originalFile)) {
+  const onClose = async (code: number | null, signal: string | null) => {
+    try {
+      if (!failed && !upscayl.isCancelled()) {
+        const sources = fs
+          .readdirSync(inputDir)
+          .filter(
+            (file) =>
+              /\.(png|jpg|jpeg|jfif|webp)$/i.test(file) &&
+              fs.statSync(path.join(inputDir, file)).isFile(),
+          );
+        const outputs = sources.map((file) =>
+          path.join(
+            outputFolderPath,
+            path.parse(file).name + "." + saveImageAs,
+          ),
+        );
+        if (
+          code !== 0 ||
+          signal ||
+          outputs.length === 0 ||
+          outputs.some(
+            (file) =>
+              !fs.existsSync(file) ||
+              !fs.statSync(file).isFile() ||
+              fs.statSync(file).size === 0,
+          )
+        ) {
+          onError(
+            `Upscaling failed (exit ${code}, signal ${signal ?? "none"}) or did not produce all images.`,
+          );
+          return;
+        }
+        logit("💯 Done upscaling");
+        upscayl.kill();
+        if (payload.copyMetadata) {
+          logit("🏷️ Copying metadata...");
+          try {
+            for (const file of sources) {
+              if (upscayl.isCancelled()) return;
+              const outFile = path.join(
+                outputFolderPath,
+                path.parse(file).name + "." + saveImageAs,
+              );
+              const originalFile = path.join(inputDir, file);
+              if (fs.existsSync(outFile) && fs.existsSync(originalFile)) {
                 try {
-                  await copyMetadata(inputDir, outFile);
+                  await copyMetadata(originalFile, outFile);
                   logit("✅ Metadata copied to: ", outFile);
                 } catch (error) {
                   logit("❌ Error copying metadata: ", error);
                   mainWindow.webContents.send(
                     ELECTRON_COMMANDS.METADATA_ERROR,
-                    error,
+                    String(error),
                   );
-                } 
+                }
+              }
             }
+          } catch (err) {
+            logit("❌ Error in batch metadata copy: ", err);
           }
-        } catch (err) {
-          logit("❌ Error in batch metadata copy: ", err);
         }
-      }
-      mainWindow.webContents.send(
-        ELECTRON_COMMANDS.FOLDER_UPSCAYL_DONE,
-        outputFolderPath,
-      );
-      if (!encounteredError) {
-        showNotification("Upscayled", "Images upscayled successfully!");
-      } else {
-        showNotification(
-          "Upscayled",
-          "Images were upscayled but encountered some errors!",
+        if (upscayl.isCancelled()) return;
+        mainWindow.setProgressBar(-1);
+        mainWindow.webContents.send(
+          ELECTRON_COMMANDS.FOLDER_UPSCAYL_DONE,
+          outputFolderPath,
         );
+        if (!encounteredError) {
+          showNotification("Upscayled", "Images upscayled successfully!");
+        } else {
+          showNotification(
+            "Upscayled",
+            "Images were upscayled but encountered some errors!",
+          );
+        }
+      } else {
+        upscayl.kill();
       }
-    } else {
-      upscayl.kill();
+    } catch (error) {
+      onError(error);
+    } finally {
+      removeChildProcess(upscayl);
     }
   };
   upscayl.process.stderr.on("data", onData);
