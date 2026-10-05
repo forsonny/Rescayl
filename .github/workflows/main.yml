@@ -9,7 +9,7 @@ on:
         description: Require trusted Windows code signing
         type: boolean
         required: true
-        default: true
+        default: false
 
 permissions:
   contents: read
@@ -33,7 +33,7 @@ jobs:
       - name: Build candidates with the requested signing gate
         shell: pwsh
         run: |
-          if ('${{ github.event_name }}' -ne 'workflow_dispatch' -or '${{ inputs.sign_windows }}' -eq 'true') {
+          if (('${{ github.event_name }}' -eq 'workflow_dispatch' -and '${{ inputs.sign_windows }}' -eq 'true') -or ('${{ github.event_name }}' -eq 'push' -and '${{ contains(github.ref_name, '-preview.') }}' -ne 'true')) {
             npm run dist:win:signed
           } else {
             npx --no-install electron-builder --win --x64 --publish never

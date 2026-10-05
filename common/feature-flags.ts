@@ -5,6 +5,6 @@ type FeatureFlags = {
 
 export const FEATURE_FLAGS: FeatureFlags = {
   APP_STORE_BUILD: false,
-  // Enable only after owned signing and update-transaction acceptance.
+  // Unsigned previews use manual installation; automatic updates stay disabled.
   AUTO_UPDATES_ENABLED: false,
 };
