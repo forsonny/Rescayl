@@ -35,7 +35,7 @@
     },
     "GPU_ID_INPUT": {
       "TITLE": "GPU AZONOSÍTÓ",
-      "DESCRIPTION": "További információkért olvasd el az Upscayl dokumentációját.",
+      "DESCRIPTION": "További információkért olvasd el az Rescayl dokumentációját.",
       "ADDITIONAL_DESCRIPTION": "A jobb eredmények érdekében engedélyezd a teljesítmény módot a Windows-on."
     },
     "IMAGE_FORMAT": {
@@ -130,11 +130,11 @@
       "ZOOM": "Nagyítás",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "Upscayl Standard",
+          "NAME": "Rescayl Standard",
           "DESCRIPTION": "A legtöbb képhez alkalmas."
         },
         "upscayl-lite-4x": {
-          "NAME": "Upscayl Lite",
+          "NAME": "Rescayl Lite",
           "DESCRIPTION": "A legtöbb képhez alkalmas. Nagysebességű felnagyítás minimális minőségvesztéssel."
         },
         "remacri-4x": {

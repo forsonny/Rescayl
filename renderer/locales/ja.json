@@ -35,7 +35,7 @@
     },
     "GPU_ID_INPUT": {
       "TITLE": "GPU ID",
-      "DESCRIPTION": "詳細については、Upscaylのドキュメントをお読みください。",
+      "DESCRIPTION": "詳細については、Rescaylのドキュメントをお読みください。",
       "ADDITIONAL_DESCRIPTION": "Windowsでパフォーマンスモードを有効にして、より良い結果を得ることができます。"
     },
     "IMAGE_FORMAT": {
@@ -130,11 +130,11 @@
       "ZOOM": "ズーム",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "Upscaylスタンダード",
+          "NAME": "Rescaylスタンダード",
           "DESCRIPTION": "ほとんどの画像に適しています。"
         },
         "upscayl-lite-4x": {
-          "NAME": "Upscaylライト",
+          "NAME": "Rescaylライト",
           "DESCRIPTION": "ほとんどの画像に適しています。最小限の品質損失で高速アップスケーリング。"
         },
         "remacri-4x": {

@@ -130,11 +130,11 @@
       "ZOOM": "تكبير",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "ابسكيل الاعتيادي",
+          "NAME": "Rescayl الاعتيادي",
           "DESCRIPTION": "يفضل لأغلب الصور"
         },
         "upscayl-lite-4x": {
-          "NAME": "ابسكيل المخفف",
+          "NAME": "Rescayl المخفف",
           "DESCRIPTION": "مناسب لاغلب الصور لاكن اسرع مع بعض خسائر في الجودة"
         },
         "remacri-4x": {

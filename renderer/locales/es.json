@@ -35,7 +35,7 @@
     },
     "GPU_ID_INPUT": {
       "TITLE": "ID de GPU",
-      "DESCRIPTION": "Por favor, lee la documentación de Upscayl para más información.",
+      "DESCRIPTION": "Por favor, lee la documentación de Rescayl para más información.",
       "ADDITIONAL_DESCRIPTION": "Habilita el modo de rendimiento en Windows para obtener mejores resultados."
     },
     "IMAGE_FORMAT": {
@@ -130,11 +130,11 @@
       "ZOOM": "Zoom",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "Upscayl Estándar",
+          "NAME": "Rescayl Estándar",
           "DESCRIPTION": "Adecuado para la mayoría de las imágenes."
         },
         "upscayl-lite-4x": {
-          "NAME": "Upscayl Lite",
+          "NAME": "Rescayl Lite",
           "DESCRIPTION": "Adecuado para la mayoría de las imágenes. Aumento de velocidad alta con mínima pérdida de calidad."
         },
         "remacri-4x": {

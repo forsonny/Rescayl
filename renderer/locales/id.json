@@ -35,7 +35,7 @@
     },
     "GPU_ID_INPUT": {
       "TITLE": "ID GPU",
-      "DESCRIPTION": "Silakan baca Dokumentasi Upscayl untuk informasi lebih lanjut.",
+      "DESCRIPTION": "Silakan baca Dokumentasi Rescayl untuk informasi lebih lanjut.",
       "ADDITIONAL_DESCRIPTION": "Aktifkan mode kinerja tinggi di Windows untuk hasil yang lebih baik."
     },
     "IMAGE_FORMAT": {
@@ -130,11 +130,11 @@
       "ZOOM": "Perbesar",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "Upscayl Standard",
+          "NAME": "Rescayl Standard",
           "DESCRIPTION": "Cocok untuk sebagian besar gambar."
         },
         "upscayl-lite-4x": {
-          "NAME": "Upscayl Lite",
+          "NAME": "Rescayl Lite",
           "DESCRIPTION": "Cocok untuk sebagian besar gambar. Upscaling berkecepatan tinggi dengan kehilangan kualitas minimal."
         },
         "remacri-4x": {

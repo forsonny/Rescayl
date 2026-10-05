@@ -133,7 +133,7 @@ function SettingsTab({
         <p>{t("SETTINGS.SUPPORT.TITLE")}</p>
         <a
           className="btn btn-primary"
-          href="https://docs.upscayl.org/"
+              href="https://github.com/forsonny/Rescayl#readme"
           target="_blank"
         >
           {t("SETTINGS.SUPPORT.DOCS_BUTTON_TITLE")}

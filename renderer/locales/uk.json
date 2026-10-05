@@ -35,7 +35,7 @@
     },
     "GPU_ID_INPUT": {
       "TITLE": "ID відеокарти",
-      "DESCRIPTION": "Будь ласка, прочитайте документацію Upscayl для додаткової інформації.",
+      "DESCRIPTION": "Будь ласка, прочитайте документацію Rescayl для додаткової інформації.",
       "ADDITIONAL_DESCRIPTION": "Увімкніть режим продуктивності у Windows для кращих результатів."
     },
     "IMAGE_FORMAT": {
@@ -130,11 +130,11 @@
       "ZOOM": "Масштаб",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "Upscayl Стандартний",
+          "NAME": "Rescayl Стандартний",
           "DESCRIPTION": "Підходить для більшості зображень."
         },
         "upscayl-lite-4x": {
-          "NAME": "Upscayl Легкий",
+          "NAME": "Rescayl Легкий",
           "DESCRIPTION": "Підходить для більшості зображень. Швидке збільшення з мінімальною втратою якості."
         },
         "remacri-4x": {

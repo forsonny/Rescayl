@@ -35,7 +35,7 @@
     },
     "GPU_ID_INPUT": {
       "TITLE": "ไอดี GPU",
-      "DESCRIPTION": "โปรดอ่านเอกสารประกอบของ Upscayl สำหรับข้อมูลเพิ่มเติม",
+      "DESCRIPTION": "โปรดอ่านเอกสารประกอบของ Rescayl สำหรับข้อมูลเพิ่มเติม",
       "ADDITIONAL_DESCRIPTION": "เปิดใช้โหมดประสิทธิภาพบนวินโดวส์เพื่อผลลัพธ์ที่ดียิ่งขึ้น"
     },
     "IMAGE_FORMAT": {
@@ -130,11 +130,11 @@
       "ZOOM": "ขยาย",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "Upscayl แบบมาตรฐาน",
+          "NAME": "Rescayl แบบมาตรฐาน",
           "DESCRIPTION": "เหมาะกับรูปส่วนใหญ่"
         },
         "upscayl-lite-4x": {
-          "NAME": "Upscayl แบบเล็ก",
+          "NAME": "Rescayl แบบเล็ก",
           "DESCRIPTION": "เหมาะกับรูปส่วนใหญ่ เป็นการเพิ่มขนาดด้วยความเร็วสูงและมีการสูญเสียคุณภาพน้อย"
         },
         "remacri-4x": {

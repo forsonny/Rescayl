@@ -1,6 +1,6 @@
 ---
 title: Rescayl News
-version: 2.16.0-preview.2
+version: 2.16.0-preview.3
 dontShow: true
 ---
 

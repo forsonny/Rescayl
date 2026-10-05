@@ -35,7 +35,7 @@
     },
     "GPU_ID_INPUT": {
       "TITLE": "GPU ID",
-      "DESCRIPTION": "请阅读 Upscayl 文档 Wiki 来了解更多信息。",
+      "DESCRIPTION": "请阅读 Rescayl 文档 Wiki 来了解更多信息。",
       "ADDITIONAL_DESCRIPTION": "在 Windows 上启用性能模式以获得更好的效果。"
     },
     "IMAGE_FORMAT": {
@@ -130,11 +130,11 @@
       "ZOOM": "缩放",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "Upscayl 标准",
+          "NAME": "Rescayl 标准",
           "DESCRIPTION": "适用于大多数图像。"
         },
         "upscayl-lite-4x": {
-          "NAME": "Upscayl 轻量版",
+          "NAME": "Rescayl 轻量版",
           "DESCRIPTION": "适用于大多数图像。高速升图，质量损失最小。"
         },
         "remacri-4x": {

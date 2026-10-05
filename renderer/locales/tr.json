@@ -35,7 +35,7 @@
     },
     "GPU_ID_INPUT": {
       "TITLE": "GPU ID",
-      "DESCRIPTION": "Daha fazla bilgi için lütfen Upscayl Dökümantasyonunu okuyun.",
+      "DESCRIPTION": "Daha fazla bilgi için lütfen Rescayl Dökümantasyonunu okuyun.",
       "ADDITIONAL_DESCRIPTION": "Windows'da daha iyi sonuçlar için performnas modunu etkinleştirin."
     },
     "IMAGE_FORMAT": {
@@ -130,11 +130,11 @@
       "ZOOM": "Yakınlaştır",
       "MODELS": {
         "upscayl-standard-4x": {
-          "NAME": "Upscayl Standard",
+          "NAME": "Rescayl Standard",
           "DESCRIPTION": "Çoğu görsel için ideal."
         },
         "upscayl-lite-4x": {
-          "NAME": "Upscayl Lite",
+          "NAME": "Rescayl Lite",
           "DESCRIPTION": "Çoğu görsel için ideal. Minimal kalite kaybıyla, yüksek hızda ölçeklendirme."
         },
         "remacri-4x": {

@@ -5,7 +5,7 @@ import { themeChange } from "theme-change";
 
 const SelectTheme = ({ hideLabel }: { hideLabel?: boolean }) => {
   const availableThemes = [
-    { label: "upscayl", value: "upscayl" },
+    { label: "rescayl", value: "upscayl" },
     { label: "light", value: "light" },
     { label: "dark", value: "dark" },
     { label: "cupcake", value: "cupcake" },
