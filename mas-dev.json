@@ -1,5 +1,5 @@
 {
-  "appId": "org.upscayl.Upscayl",
+  "appId": "io.github.forsonny.rescayl",
   "afterSign": "./notarize.js",
   "asar": true,
   "artifactName": "${name}-${version}-${os}.${ext}",

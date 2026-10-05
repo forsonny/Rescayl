@@ -22,15 +22,15 @@ function Footer() {
         {t("FOOTER.COPYRIGHT")} {new Date().getFullYear()} -{" "}
         <a
           className="font-bold"
-          href="https://github.com/upscayl/upscayl"
+          href="https://github.com/forsonny/Rescayl"
           target="_blank"
         >
           {t("TITLE")}
         </a>
       </p>
-      <p>Revival maintained by <a href="https://github.com/forsonny/upscayl" target="_blank" className="font-bold">forsonny</a></p>
+      <p>Maintained by <a href="https://github.com/forsonny/Rescayl" target="_blank" className="font-bold">forsonny</a></p>
       <p>
-        {t("FOOTER.TITLE")}
+        Based on Upscayl · {" "}
         <a
           href="https://github.com/upscayl"
           className="font-bold"

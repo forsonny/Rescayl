@@ -1,12 +1,12 @@
 {
-  "TITLE": "Upscayl",
+  "TITLE": "Rescayl",
   "INTRO": "Memperkenalkan Upscayl Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Beri bintang di GitHub 😁",
     "DESCRIPTION": "Peningkat Gambar AI"
   },
   "FOOTER": {
-    "NEWS_TITLE": "BERITA UPSCAYL",
+    "NEWS_TITLE": "BERITA RESCAYL",
     "COPYRIGHT": "Hak Cipta ©",
     "TITLE": "Oleh ",
     "LINK_TITLE": "Tim Upscayl"
@@ -54,7 +54,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Skala Gambar",
-      "DESCRIPTION": "Apa pun di atas 4X (kecuali 16X Double Upscayl) hanya mengubah ukuran gambar dan tidak menggunakan peningkatan AI.",
+      "DESCRIPTION": "Apa pun di atas 4X (kecuali 16X Double Rescayl) hanya mengubah ukuran gambar dan tidak menggunakan peningkatan AI.",
       "WARNING": "Nilai di atas 5X dapat menyebabkan masalah kinerja pada beberapa perangkat!",
       "ADDITIONAL_WARNING": "Hal ini dapat menyebabkan masalah kinerja pada beberapa perangkat!"
     },
@@ -65,18 +65,18 @@
     },
     "OVERWRITE_TOGGLE": {
       "TITLE": "TIMPA UPSCALE SEBELUMNYA",
-      "DESCRIPTION": "Jika diaktifkan, Upscayl akan memproses gambar itu lagi alih-alih memuatnya secara langsung."
+      "DESCRIPTION": "Jika diaktifkan, Rescayl akan memproses gambar itu lagi alih-alih memuatnya secara langsung."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "RESET UPSCAYL",
-      "ALERT": "Upscayl telah direset. Silakan restart aplikasi."
+      "BUTTON_TITLE": "RESET RESCAYL",
+      "ALERT": "Rescayl telah direset. Silakan restart aplikasi."
     },
     "SAVE_OUTPUT_FOLDER": {
       "TITLE": "SIMPAN FOLDER OUTPUT",
       "DESCRIPTION": "Jika diaktifkan, folder output akan diingat antara sesi."
     },
     "AUTO_UPDATE": {
-      "TITLE": "PEMBARUAN OTOMATIS UPSCAYL",
+      "TITLE": "PEMBARUAN OTOMATIS RESCAYL",
       "DESCRIPTION": "Jika diaktifkan, aplikasi akan memeriksa pembaruan baru dan memberi tahu Anda."
     },
     "ENABLE_CONTRIBUTION": {
@@ -84,10 +84,10 @@
       "DESCRIPTION": "Jika diaktifkan, Upscayl akan mengumpulkan data penggunaan anonim untuk meningkatkan antarmuka dan fitur aplikasi."
     },
     "THEME": {
-      "TITLE": "TEMA UPSCAYL"
+      "TITLE": "TEMA RESCAYL"
     },
     "LANGUAGE": {
-      "TITLE": "BAHASA UPSCAYL"
+      "TITLE": "BAHASA RESCAYL"
     },
     "CUSTOM_TILE_SIZE": {
       "TITLE": "UKURAN TILE KUSTOM",
@@ -95,7 +95,7 @@
     },
     "TURN_OFF_NOTIFICATIONS": {
       "TITLE": "MATIKAN NOTIFIKASI",
-      "DESCRIPTION": "Jika diaktifkan, Upscayl tidak akan mengirim pemberitahuan sistem apapun ketika berhasil ataupun gagal."
+      "DESCRIPTION": "Jika diaktifkan, Rescayl tidak akan mengirim pemberitahuan sistem apapun ketika berhasil ataupun gagal."
     },
     "SUPPORT": {
       "TITLE": "Mengalami masalah?",
@@ -111,10 +111,10 @@
     }
   },
   "APP": {
-    "TITLE": "Upscayl",
+    "TITLE": "Rescayl",
     "BATCH_MODE": {
-      "TITLE": "Upscayl Massal",
-      "DESCRIPTION": "Ini akan memungkinkan Anda untuk Upscayl semua file dalam folder sekaligus"
+      "TITLE": "Rescayl Massal",
+      "DESCRIPTION": "Ini akan memungkinkan Anda untuk Rescayl semua file dalam folder sekaligus"
     },
     "FILE_SELECTION": {
       "TITLE": "Langkah 1",
@@ -160,12 +160,12 @@
       }
     },
     "DOUBLE_UPSCAYL": {
-      "TITLE": "Double Upscayl",
-      "DESCRIPTION": "Aktifkan opsi ini untuk menjalankan upscayl dua kali pada gambar. Perlu diingat bahwa ini dapat menyebabkan peningkatan waktu pengolahan yang signifikan dan kemungkinan masalah kinerja untuk skala lebih dari 4X."
+      "TITLE": "Double Rescayl",
+      "DESCRIPTION": "Aktifkan opsi ini untuk menjalankan Rescayl dua kali pada gambar. Perlu diingat bahwa ini dapat menyebabkan peningkatan waktu pengolahan yang signifikan dan kemungkinan masalah kinerja untuk skala lebih dari 4X."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Langkah 3",
-      "MAC_APP_STORE_ALERT": "Karena pembatasan keamanan App Store MacOS, Upscayl mengharuskan Anda untuk memilih folder output setiap kali Anda memulainya.\n\nUntuk menghindari ini, Anda dapat menyimpan folder output default secara permanen di tab 'Pengaturan' Upscayl.",
+      "MAC_APP_STORE_ALERT": "Karena pembatasan keamanan App Store MacOS, Rescayl mengharuskan Anda untuk memilih folder output setiap kali Anda memulainya.\n\nUntuk menghindari ini, Anda dapat menyimpan folder output default secara permanen di tab 'Pengaturan' Rescayl.",
       "NOT_SELECTED": "Tidak Dipilih",
       "DEFAULT_IMG_PATH": "Default ke lokasi Gambar",
       "DEFAULT_FOLDER_PATH": "Default ke lokasi Folder",
@@ -173,28 +173,28 @@
     },
     "SCALE_SELECTION": {
       "TITLE": "Langkah 4",
-      "FROM_TITLE": "Upscayl dari ",
+      "FROM_TITLE": "Rescayl dari ",
       "TO_TITLE": " ke ",
       "NO_OUTPUT_FOLDER_ALERT": "Silakan pilih folder output terlebih dahulu",
-      "START_BUTTON_TITLE": "Upscayl 🚀",
-      "IN_PROGRESS_BUTTON_TITLE": "Upscayling ⏳"
+      "START_BUTTON_TITLE": "Rescayl 🚀",
+      "IN_PROGRESS_BUTTON_TITLE": "Upscaling ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
       "RESET_BUTTON_TITLE": "Reset Gambar",
       "LENS_VIEW_TITLE": "Tampilan Lensa",
       "SLIDER_VIEW_TITLE": "Tampilan Slider",
       "ZOOM_AMOUNT_TITLE": "Jumlah Pembesaran",
-      "TOTAL_UPSCAYLS": "Total Upscayl",
-      "TOTAL_BATCH_UPSCAYLS": "Total Upscayl Massal",
-      "TOTAL_IMAGE_UPSCAYLS": "Total Upscayl Gambar",
-      "TOTAL_DOUBLE_UPSCAYLS": "Total Double Upscayl",
-      "AVERAGE_UPSCAYL_TIME": "Waktu Rata-rata Upscayl",
-      "LAST_UPSCAYL_DURATION": "Durasi Upscayl Terakhir",
+      "TOTAL_UPSCAYLS": "Total Rescayl",
+      "TOTAL_BATCH_UPSCAYLS": "Total Rescayl Massal",
+      "TOTAL_IMAGE_UPSCAYLS": "Total Rescayl Gambar",
+      "TOTAL_DOUBLE_UPSCAYLS": "Total Double Rescayl",
+      "AVERAGE_UPSCAYL_TIME": "Waktu Rata-rata Rescayl",
+      "LAST_UPSCAYL_DURATION": "Durasi Rescayl Terakhir",
       "LAST_USED_AT": "Terakhir Digunakan Pada"
     },
     "PROGRESS_BAR": {
-      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Upscayl Massal Sedang Berlangsung:",
-      "IN_PROGRESS_TITLE": "Melakukan sihir Upscayl...",
+      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Rescayl Massal Sedang Berlangsung:",
+      "IN_PROGRESS_TITLE": "Melakukan sihir Rescayl...",
       "STOP_BUTTON_TITLE": "HENTIKAN"
     },
     "RESET_BUTTON_TITLE": "Reset",
@@ -209,16 +209,16 @@
       "PROCESSING_TITLE": "Memproses gambar...",
       "SCALING_CONVERTING_TITLE": "Memperbesar dan mengonversi gambar...",
       "WAIT_TITLE": "Tunggu sebentar...",
-      "SUCCESS_TITLE": "Upscayl Berhasil!",
+      "SUCCESS_TITLE": "Rescayl Berhasil!",
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Folder yang dipilih:",
         "DONE_TITLE": "Semua selesai!",
-        "OPEN_UPSCAYLED_FOLDER_TITLE": "Buka Folder Upscayl"
+        "OPEN_UPSCAYLED_FOLDER_TITLE": "Buka Folder Rescayl"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Asli",
-      "UPSCAYLED_TITLE": "Upscayl"
+      "UPSCAYLED_TITLE": "Rescayl"
     },
     "DIALOG_BOX": {
       "CLOSE": "Tutup"
@@ -243,7 +243,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Galat Sistem",
-      "DESCRIPTION": "Upscayl mengalami galat. Mungkin, binari upscayl gagal mengeksekusi perintah dengan benar. Coba periksa log untuk melihat apakah Anda mendapatkan informasi. Anda dapat memposting masalah di repositori GitHub Upscayl untuk bantuan lebih lanjut."
+      "DESCRIPTION": "Rescayl mengalami galat. Mungkin, binari Rescayl gagal mengeksekusi perintah dengan benar. Coba periksa log untuk melihat apakah Anda mendapatkan informasi. Anda dapat memposting masalah di repositori GitHub Rescayl untuk bantuan lebih lanjut."
     },
     "GENERIC_ERROR": {
       "TITLE": "Galat"
@@ -294,7 +294,7 @@
     "GET_STARTED_BUTTON_TITLE": "Mulai",
     "SETTINGS_NOTE": "Anda selalu bisa mengubah pengaturan ini nanti.",
     "STEP_1": {
-      "TITLE": "Selamat datang di Upscayl 🎉",
+      "TITLE": "Selamat datang di Rescayl 🎉",
       "DESCRIPTION": "Mari kita mulai dengan beberapa langkah cepat."
     },
     "STEP_2": {
@@ -302,12 +302,12 @@
       "DESCRIPTION": "Konfigurasikan pengaturan awal Anda."
     },
     "STEP_3": {
-      "TITLE": "Bagaimana cara menggunakan Upscayl? 🚀",
+      "TITLE": "Bagaimana cara menggunakan Rescayl? 🚀",
       "DESCRIPTION": "Tonton video singkat ini untuk mempelajari fitur baru."
     },
     "STEP_4": {
       "TITLE": "Anda sudah siap! 🎉",
-      "DESCRIPTION": "Anda siap untuk mulai meningkatkan gambar dengan Upscayl!"
+      "DESCRIPTION": "Anda siap untuk mulai meningkatkan gambar dengan Rescayl!"
     }
   }
 }

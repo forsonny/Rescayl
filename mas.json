@@ -1,6 +1,6 @@
 {
-  "productName": "Upscayl",
-  "appId": "org.upscayl.Upscayl",
+  "productName": "Rescayl",
+  "appId": "io.github.forsonny.rescayl",
   "afterSign": "./notarize.js",
   "buildVersion": "25.12.26",
   "asar": true,

@@ -10,7 +10,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <title>Upscayl</title>
+        <title>Rescayl</title>
       </Head>
       <base href="./" />
 

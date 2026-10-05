@@ -38,7 +38,7 @@ const doubleUpscayl = async (_event, payload: DoubleUpscaylPayload) => {
   const saveImageAs = payload.saveImageAs as ImageFormat;
   const outFile = path.join(
     outputPath,
-    `${path.parse(imagePath).name}_upscayl_double_${customWidth ? `${customWidth}px` : `${scale}x`}_${model}.${saveImageAs}`,
+    `${path.parse(imagePath).name}_rescayl_double_${customWidth ? `${customWidth}px` : `${scale}x`}_${model}.${saveImageAs}`,
   );
   assertOutputAccess(outFile);
   if (
@@ -178,7 +178,7 @@ const doubleUpscayl = async (_event, payload: DoubleUpscaylPayload) => {
             ELECTRON_COMMANDS.DOUBLE_UPSCAYL_DONE,
             outFile,
           );
-          showNotification("Upscayled", "Image upscayled successfully!");
+          showNotification("Rescayl", "Image upscaled successfully!");
         },
       );
     },

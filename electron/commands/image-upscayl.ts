@@ -52,7 +52,7 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
     outputDir +
     slash +
     fileName +
-    "_upscayl_" +
+    "_rescayl_" +
     (useCustomWidth ? `${customWidth}px_` : `${scale}x_`) +
     model +
     "." +
@@ -89,7 +89,7 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
     mainWindow.webContents.send(ELECTRON_COMMANDS.UPSCAYL_DONE, outFile);
   } else {
     logit(
-      "✅ Upscayl Variables: ",
+      "✅ Rescayl Variables: ",
       JSON.stringify({
         model,
         gpuId,
@@ -190,7 +190,7 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
           }
           if (upscayl.isCancelled()) return;
           mainWindow.webContents.send(ELECTRON_COMMANDS.UPSCAYL_DONE, outFile);
-          showNotification("Upscayl", "Image upscayled successfully!");
+          showNotification("Rescayl", "Image upscaled successfully!");
         }
       } finally {
         removeChildProcess(upscayl);

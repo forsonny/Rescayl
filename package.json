@@ -1,13 +1,13 @@
 {
-  "name": "upscayl-revival",
+  "name": "rescayl",
   "private": true,
-  "version": "2.16.0-preview.1",
-  "productName": "Upscayl Revival",
+  "version": "2.16.0-preview.2",
+  "productName": "Rescayl",
   "author": {
     "name": "forsonny",
     "url": "https://github.com/forsonny"
   },
-  "homepage": "https://github.com/forsonny/upscayl",
+  "homepage": "https://github.com/forsonny/Rescayl",
   "contributors": [
     {
       "name": "Nayam Amarshe",
@@ -21,16 +21,15 @@
     }
   ],
   "license": "AGPL-3.0",
-  "description": "Independently maintained revival of the Upscayl desktop image upscaler",
+  "description": "Rescayl — image upscaling for personal photos, artwork, and everyday images",
   "keywords": [
+    "image upscaling",
+    "photos",
+    "artwork",
     "AI",
-    "Upscaler",
-    "Image Upscale",
-    "Linux image upscale",
-    "Topaz Gigapixel",
-    "Linux",
-    "KDE",
-    "Gnome"
+    "desktop",
+    "Windows",
+    "Linux"
   ],
   "main": "export/electron/index.js",
   "scripts": {
@@ -75,8 +74,8 @@
     "dist:win:signed": "npm run build && electron-builder --win --x64 --publish never -c.forceCodeSigning=true"
   },
   "build": {
-    "productName": "Upscayl Revival",
-    "appId": "io.github.forsonny.upscayl",
+    "productName": "Rescayl",
+    "appId": "io.github.forsonny.rescayl",
     "artifactName": "${name}-${version}-${os}.${ext}",
     "afterSign": "./notarize.js",
     "asar": true,
@@ -179,8 +178,8 @@
       ],
       "maintainer": "forsonny",
       "category": "Graphics;2DGraphics;RasterGraphics;ImageProcessing;",
-      "synopsis": "AI Image Upscaler",
-      "description": "Free and Open Source AI Image Upscaler",
+      "synopsis": "Rescayl Image Upscaler",
+      "description": "Image upscaling for personal photos, artwork, and everyday images",
       "icon": "resources/icons/"
     },
     "win": {
@@ -213,7 +212,7 @@
     "publish": {
       "provider": "github",
       "owner": "forsonny",
-      "repo": "upscayl",
+      "repo": "Rescayl",
       "releaseType": "draft"
     }
   },
@@ -279,6 +278,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/forsonny/upscayl.git"
+    "url": "https://github.com/forsonny/Rescayl.git"
   }
 }

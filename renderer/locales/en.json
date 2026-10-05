@@ -1,12 +1,12 @@
 {
-  "TITLE": "Upscayl",
+  "TITLE": "Rescayl",
   "INTRO": "Introducing Upscayl Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Star us on GitHub 😁",
     "DESCRIPTION": "AI Image Upscaler"
   },
   "FOOTER": {
-    "NEWS_TITLE": "UPSCAYL NEWS",
+    "NEWS_TITLE": "RESCAYL NEWS",
     "COPYRIGHT": "Copyright ©",
     "TITLE": "By ",
     "LINK_TITLE": "The Upscayl Team"
@@ -54,7 +54,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Image Scale",
-      "DESCRIPTION": "Anything above 4X (except 16X Double Upscayl) only resizes the image and does not use AI upscaling.",
+      "DESCRIPTION": "Anything above 4X (except 16X Double Rescayl) only resizes the image and does not use AI upscaling.",
       "WARNING": "Anything above 5X may cause performance issues on some devices!",
       "ADDITIONAL_WARNING": "This may cause performance issues on some devices!"
     },
@@ -65,18 +65,18 @@
     },
     "OVERWRITE_TOGGLE": {
       "TITLE": "OVERWRITE PREVIOUS UPSCALE",
-      "DESCRIPTION": "If enabled, Upscayl will process the image again instead of loading it directly."
+      "DESCRIPTION": "If enabled, Rescayl will process the image again instead of loading it directly."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "RESET UPSCAYL",
-      "ALERT": "Upscayl has been reset. Please restart the app."
+      "BUTTON_TITLE": "RESET RESCAYL",
+      "ALERT": "Rescayl has been reset. Please restart the app."
     },
     "SAVE_OUTPUT_FOLDER": {
       "TITLE": "SAVE OUTPUT FOLDER",
       "DESCRIPTION": "If enabled, the output folder will be remembered between sessions."
     },
     "AUTO_UPDATE": {
-      "TITLE": "AUTO UPDATE UPSCAYL",
+      "TITLE": "AUTO UPDATE RESCAYL",
       "DESCRIPTION": "If enabled, the application will check for new updates and notify you."
     },
     "ENABLE_CONTRIBUTION": {
@@ -84,10 +84,10 @@
       "DESCRIPTION": "If enabled, Upscayl will collect anonymous usage data to improve the application interface and features."
     },
     "THEME": {
-      "TITLE": "UPSCAYL THEME"
+      "TITLE": "RESCAYL THEME"
     },
     "LANGUAGE": {
-      "TITLE": "UPSCAYL LANGUAGE"
+      "TITLE": "RESCAYL LANGUAGE"
     },
     "CUSTOM_TILE_SIZE": {
       "TITLE": "CUSTOM TILE SIZE",
@@ -95,7 +95,7 @@
     },
     "TURN_OFF_NOTIFICATIONS": {
       "TITLE": "TURN OFF NOTIFICATIONS",
-      "DESCRIPTION": "If enabled, Upscayl will not send any system notifications on success or failure."
+      "DESCRIPTION": "If enabled, Rescayl will not send any system notifications on success or failure."
     },
     "SUPPORT": {
       "TITLE": "Having issues?",
@@ -111,10 +111,10 @@
     }
   },
   "APP": {
-    "TITLE": "Upscayl",
+    "TITLE": "Rescayl",
     "BATCH_MODE": {
-      "TITLE": "Batch Upscayl",
-      "DESCRIPTION": "This will let you Upscayl all files in a folder at once"
+      "TITLE": "Batch Rescayl",
+      "DESCRIPTION": "This will let you Rescayl all files in a folder at once"
     },
     "FILE_SELECTION": {
       "TITLE": "Step 1",
@@ -160,12 +160,12 @@
       }
     },
     "DOUBLE_UPSCAYL": {
-      "TITLE": "Double Upscayl",
-      "DESCRIPTION": "Enable this option to run upscayl twice on an image. Note that this may cause a significant increase in processing time and possibly performance issues for scales greater than 4X."
+      "TITLE": "Double Rescayl",
+      "DESCRIPTION": "Enable this option to run Rescayl twice on an image. Note that this may cause a significant increase in processing time and possibly performance issues for scales greater than 4X."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Step 3",
-      "MAC_APP_STORE_ALERT": "Due to MacOS App Store security restrictions, Upscayl requires you to select an output folder everytime you start it.\n\nTo avoid this, you can permanently save a default output folder in the Upscayl 'Settings' tab.",
+      "MAC_APP_STORE_ALERT": "Due to MacOS App Store security restrictions, Rescayl requires you to select an output folder everytime you start it.\n\nTo avoid this, you can permanently save a default output folder in the Rescayl 'Settings' tab.",
       "NOT_SELECTED": "Not Selected",
       "DEFAULT_IMG_PATH": "Defaults to Image's path",
       "DEFAULT_FOLDER_PATH": "Defaults to  Folder's path",
@@ -173,11 +173,11 @@
     },
     "SCALE_SELECTION": {
       "TITLE": "Step 4",
-      "FROM_TITLE": "Upscayl from ",
+      "FROM_TITLE": "Rescayl from ",
       "TO_TITLE": " to ",
       "NO_OUTPUT_FOLDER_ALERT": "Please select an output folder first",
-      "START_BUTTON_TITLE": "Upscayl 🚀",
-      "IN_PROGRESS_BUTTON_TITLE": "Upscayling ⏳"
+      "START_BUTTON_TITLE": "Rescayl 🚀",
+      "IN_PROGRESS_BUTTON_TITLE": "Upscaling ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
       "RESET_BUTTON_TITLE": "Reset Image",
@@ -188,13 +188,13 @@
       "TOTAL_BATCH_UPSCAYLS": "Total Batch Upscayls",
       "TOTAL_IMAGE_UPSCAYLS": "Total Image Upscayls",
       "TOTAL_DOUBLE_UPSCAYLS": "Total Double Upscayls",
-      "AVERAGE_UPSCAYL_TIME": "Average Upscayl Time",
-      "LAST_UPSCAYL_DURATION": "Last Upscayl Duration",
+      "AVERAGE_UPSCAYL_TIME": "Average Rescayl Time",
+      "LAST_UPSCAYL_DURATION": "Last Rescayl Duration",
       "LAST_USED_AT": "Last Used At"
     },
     "PROGRESS_BAR": {
-      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Batch Upscayl In Progress:",
-      "IN_PROGRESS_TITLE": "Doing the Upscayl magic...",
+      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Batch Rescayl In Progress:",
+      "IN_PROGRESS_TITLE": "Doing the Rescayl magic...",
       "STOP_BUTTON_TITLE": "STOP"
     },
     "RESET_BUTTON_TITLE": "Reset",
@@ -209,16 +209,16 @@
       "PROCESSING_TITLE": "Processing the image...",
       "SCALING_CONVERTING_TITLE": "Scaling and converting image...",
       "WAIT_TITLE": "Hold on...",
-      "SUCCESS_TITLE": "Upscayl Successful!",
+      "SUCCESS_TITLE": "Rescayl Successful!",
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Selected folder:",
         "DONE_TITLE": "All done!",
-        "OPEN_UPSCAYLED_FOLDER_TITLE": "Open Upscayled Folder"
+        "OPEN_UPSCAYLED_FOLDER_TITLE": "Open Upscaled Folder"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Original",
-      "UPSCAYLED_TITLE": "Upscayled"
+      "UPSCAYLED_TITLE": "Upscaled"
     },
     "DIALOG_BOX": {
       "CLOSE": "Close"
@@ -243,7 +243,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Exception Error",
-      "DESCRIPTION": "Upscayl encountered an error. Possibly, the upscayl binary failed to execute the commands properly. Try checking the logs to see if you get any information. You can post an issue on Upscayl's GitHub repository for more help."
+      "DESCRIPTION": "Rescayl encountered an error. Possibly, the Rescayl binary failed to execute the commands properly. Try checking the logs to see if you get any information. You can post an issue on Rescayl's GitHub repository for more help."
     },
     "GENERIC_ERROR": {
       "TITLE": "Error"
@@ -294,7 +294,7 @@
     "GET_STARTED_BUTTON_TITLE": "Get Started",
     "SETTINGS_NOTE": "You can always change these settings later.",
     "STEP_1": {
-      "TITLE": "Welcome to Upscayl 🎉",
+      "TITLE": "Welcome to Rescayl 🎉",
       "DESCRIPTION": "Let's get you started with a few quick steps."
     },
     "STEP_2": {
@@ -302,12 +302,12 @@
       "DESCRIPTION": "Configure your initial settings."
     },
     "STEP_3": {
-      "TITLE": "How do I use Upscayl? 🚀",
+      "TITLE": "How do I use Rescayl? 🚀",
       "DESCRIPTION": "Watch this short video to learn about the new features."
     },
     "STEP_4": {
       "TITLE": "You're All Set! 🎉",
-      "DESCRIPTION": "You're ready to start upscaling images with Upscayl!"
+      "DESCRIPTION": "You're ready to start upscaling images with Rescayl!"
     }
   }
 }

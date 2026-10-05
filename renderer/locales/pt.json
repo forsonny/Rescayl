@@ -1,12 +1,12 @@
 {
-  "TITLE": "Upscayl",
+  "TITLE": "Rescayl",
   "INTRO": "Apresentamos o Upscayl Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Siga-nos no GitHub 😁",
     "DESCRIPTION": "Aprimorador de imagens com IA "
   },
   "FOOTER": {
-    "NEWS_TITLE": "Notícias UPSCAYL",
+    "NEWS_TITLE": "Notícias RESCAYL",
     "COPYRIGHT": "Direitos de autor ©",
     "TITLE": "Pela ",
     "LINK_TITLE": "Equipa Upscayl"
@@ -54,7 +54,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Escala da imagem",
-      "DESCRIPTION": "Tudo o que seja acima de 4X (exceto 16X Upscayl duplo) apenas redimensiona a imagem e não utiliza aprimoramento de IA.",
+      "DESCRIPTION": "Tudo o que seja acima de 4X (exceto 16X Rescayl duplo) apenas redimensiona a imagem e não utiliza aprimoramento de IA.",
       "WARNING": "Tudo o que seja acima de 5X pode causar problemas de desempenho em alguns dispositivos!",
       "ADDITIONAL_WARNING": "Isto pode causar problemas de desempenho em alguns dispositivos!"
     },
@@ -65,18 +65,18 @@
     },
     "OVERWRITE_TOGGLE": {
       "TITLE": "SOBREPOR À IMAGEM ANTERIOR",
-      "DESCRIPTION": "Se estiver ativado, o Upscayl processará a imagem novamente em vez de a carregar diretamente."
+      "DESCRIPTION": "Se estiver ativado, o Rescayl processará a imagem novamente em vez de a carregar diretamente."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "REPOR UPSCAYL",
-      "ALERT": "Upscayl foi restaurado. Por favor, reinicie a aplicação."
+      "BUTTON_TITLE": "REPOR RESCAYL",
+      "ALERT": "Rescayl foi restaurado. Por favor, reinicie a aplicação."
     },
     "SAVE_OUTPUT_FOLDER": {
       "TITLE": "GUARDAR PASTA DE SAÍDA",
       "DESCRIPTION": "Se estiver ativado, a pasta de saída será memorizada entre as sessões."
     },
     "AUTO_UPDATE": {
-      "TITLE": "ATUALIZAR AUTOMATICAMENTE UPSCAYL",
+      "TITLE": "ATUALIZAR AUTOMATICAMENTE RESCAYL",
       "DESCRIPTION": "Se estiver ativado, a aplicação verificará se existem novas atualizações e notificá-lo-á."
     },
     "ENABLE_CONTRIBUTION": {
@@ -84,10 +84,10 @@
       "DESCRIPTION": "Se ativado, o Upscayl irá recolher dados anónimos de utilização para melhorar a interface e as funcionalidades da aplicação."
     },
     "THEME": {
-      "TITLE": "TEMA UPSCAYL"
+      "TITLE": "TEMA RESCAYL"
     },
     "LANGUAGE": {
-      "TITLE": "IDIOMA UPSCAYL"
+      "TITLE": "IDIOMA RESCAYL"
     },
     "CUSTOM_TILE_SIZE": {
       "TITLE": "TAMANHO DE BLOCO PERSONALIZADO",
@@ -95,7 +95,7 @@
     },
     "TURN_OFF_NOTIFICATIONS": {
       "TITLE": "DESLIGAR NOTIFICAÇÕES",
-      "DESCRIPTION": "Se estiver ativado, o Upscayl não enviará qualquer notificação de sistema em caso de sucesso ou falha."
+      "DESCRIPTION": "Se estiver ativado, o Rescayl não enviará qualquer notificação de sistema em caso de sucesso ou falha."
     },
     "SUPPORT": {
       "TITLE": "Encontrou problemas?",
@@ -111,10 +111,10 @@
     }
   },
   "APP": {
-    "TITLE": "Upscayl",
+    "TITLE": "Rescayl",
     "BATCH_MODE": {
-      "TITLE": "Upscayl em lote",
-      "DESCRIPTION": "Isto permitirá que faça Upscayl de todos os ficheiros numa pasta e de uma só vez"
+      "TITLE": "Rescayl em lote",
+      "DESCRIPTION": "Isto permitirá que faça Rescayl de todos os ficheiros numa pasta e de uma só vez"
     },
     "FILE_SELECTION": {
       "TITLE": "Passo 1",
@@ -160,12 +160,12 @@
       }
     },
     "DOUBLE_UPSCAYL": {
-      "TITLE": "Upscayl duplo",
-      "DESCRIPTION": "Active esta opção para executar o Upscayl duas vezes numa imagem. Note que isto pode causar um aumento significativo no tempo de processamento e possivelmente problemas de desempenho para escalas superiores a 4X."
+      "TITLE": "Rescayl duplo",
+      "DESCRIPTION": "Active esta opção para executar o Rescayl duas vezes numa imagem. Note que isto pode causar um aumento significativo no tempo de processamento e possivelmente problemas de desempenho para escalas superiores a 4X."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Passo 3",
-      "MAC_APP_STORE_ALERT": "Devido às restrições de segurança da loja de aplicações MacOS, o Upscayl exige que selecione uma pasta de saída sempre que o iniciar. \n\nPara evitar isto, pode guardar permanentemente uma pasta de saída predefinida na aba 'Configurações' do Upscayl.",
+      "MAC_APP_STORE_ALERT": "Devido às restrições de segurança da loja de aplicações MacOS, o Rescayl exige que selecione uma pasta de saída sempre que o iniciar. \n\nPara evitar isto, pode guardar permanentemente uma pasta de saída predefinida na aba 'Configurações' do Rescayl.",
       "NOT_SELECTED": "Não selecionado",
       "DEFAULT_IMG_PATH": "Predefinido para local da imagem",
       "DEFAULT_FOLDER_PATH": "Predefinido para local da pasta",
@@ -173,10 +173,10 @@
     },
     "SCALE_SELECTION": {
       "TITLE": "Passo 4",
-      "FROM_TITLE": "Upscayl de ",
+      "FROM_TITLE": "Rescayl de ",
       "TO_TITLE": " para ",
       "NO_OUTPUT_FOLDER_ALERT": "Por favor, primeiro selecione uma pasta de saída",
-      "START_BUTTON_TITLE": "Upscayl 🚀",
+      "START_BUTTON_TITLE": "Rescayl 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "A aprimorar ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -194,8 +194,8 @@
       "LAST_USED_AT": "Última utilização em"
     },
     "PROGRESS_BAR": {
-      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Upscayl em lote em execução:",
-      "IN_PROGRESS_TITLE": "A aplicar a magia de Upscayl...",
+      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Rescayl em lote em execução:",
+      "IN_PROGRESS_TITLE": "A aplicar a magia de Rescayl...",
       "STOP_BUTTON_TITLE": "PARAR"
     },
     "RESET_BUTTON_TITLE": "Repor",
@@ -214,7 +214,7 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Selecionar pasta:",
         "DONE_TITLE": "Tudo concluído!",
-        "OPEN_UPSCAYLED_FOLDER_TITLE": "Abrir pasta do Upscayl"
+        "OPEN_UPSCAYLED_FOLDER_TITLE": "Abrir pasta do Rescayl"
       }
     },
     "SLIDER": {
@@ -244,7 +244,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Erro de exceção",
-      "DESCRIPTION": "Upscayl encontrou um erro. Possivelmente, o binário Upscayl não conseguiu executar os comandos corretamente. Tente verificar os historiais para ver se consegue obter alguma informação. Pode publicar um problema no repositório GitHub da Upscayl para obter mais ajuda."
+      "DESCRIPTION": "Rescayl encontrou um erro. Possivelmente, o binário Rescayl não conseguiu executar os comandos corretamente. Tente verificar os historiais para ver se consegue obter alguma informação. Pode publicar um problema no repositório GitHub da Rescayl para obter mais ajuda."
     },
     "GENERIC_ERROR": {
       "TITLE": "Erro"
@@ -295,7 +295,7 @@
     "GET_STARTED_BUTTON_TITLE": "Começar",
     "SETTINGS_NOTE": "Pode sempre alterar estas configurações mais tarde.",
     "STEP_1": {
-      "TITLE": "Bem-vindo ao Upscayl 🎉",
+      "TITLE": "Bem-vindo ao Rescayl 🎉",
       "DESCRIPTION": "Vamos iniciá-lo com alguns passos rápidos."
     },
     "STEP_2": {
@@ -303,12 +303,12 @@
       "DESCRIPTION": "Defina as suas configurações iniciais."
     },
     "STEP_3": {
-      "TITLE": "Como usar o Upscayl? 🚀",
+      "TITLE": "Como usar o Rescayl? 🚀",
       "DESCRIPTION": "Veja este pequeno vídeo para saber mais sobre as novas funcionalidades."
     },
     "STEP_4": {
       "TITLE": "Está tudo pronto! 🎉",
-      "DESCRIPTION": "Está pronto para começar a aumentar a escala de imagens com o Upscayl!"
+      "DESCRIPTION": "Está pronto para começar a aumentar a escala de imagens com o Rescayl!"
     }
   }
 }

@@ -1,12 +1,12 @@
 {
-  "TITLE": "Upscayl",
+  "TITLE": "Rescayl",
   "INTRO": "Presentazione di Upscayl Cloud !",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Metti una stella su GitHub 😁",
     "DESCRIPTION": "Campionatore di immagini AI"
   },
   "FOOTER": {
-    "NEWS_TITLE": "NOTIZIE su UPSCAYL",
+    "NEWS_TITLE": "NOTIZIE su RESCAYL",
     "COPYRIGHT": "Copyright ©",
     "TITLE": "di",
     "LINK_TITLE": "Il team di Upscayl"
@@ -54,7 +54,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Scala dell'immagine",
-      "DESCRIPTION": "Qualsiasi valore superiore a 4X (eccetto 16X Double Upscayl) ridimensiona solo l'immagine e non utilizza l'upsampling AI.",
+      "DESCRIPTION": "Qualsiasi valore superiore a 4X (eccetto 16X Double Rescayl) ridimensiona solo l'immagine e non utilizza l'upsampling AI.",
       "WARNING": "Qualsiasi valore superiore a 5X può causare problemi di prestazioni su alcuni dispositivi !",
       "ADDITIONAL_WARNING": "Ciò potrebbe causare problemi di prestazioni su alcuni dispositivi !"
     },
@@ -65,18 +65,18 @@
     },
     "OVERWRITE_TOGGLE": {
       "TITLE": "SOVRASCRIVERE IL SOVRACAMPIONAMENTO PRECEDENTE",
-      "DESCRIPTION": "Se abilitato, Upscayl rielaborerà l'immagine invece di caricarla direttamente."
+      "DESCRIPTION": "Se abilitato, Rescayl rielaborerà l'immagine invece di caricarla direttamente."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "RIPRISTINA UPSCAYL",
-      "ALERT": "Upscayl è stato ripristinato. Riavviare l'applicazione."
+      "BUTTON_TITLE": "RIPRISTINA RESCAYL",
+      "ALERT": "Rescayl è stato ripristinato. Riavviare l'applicazione."
     },
     "SAVE_OUTPUT_FOLDER": {
       "TITLE": "SALVA FILE DI USCITA",
       "DESCRIPTION": "Se abilitata, la cartella di output verrà memorizzata tra una sessione e l'altra."
     },
     "AUTO_UPDATE": {
-      "TITLE": "AGGIORNAMENTO AUTOMATICO DI UPSCAYL",
+      "TITLE": "AGGIORNAMENTO AUTOMATICO DI RESCAYL",
       "DESCRIPTION": "Se abilitato, l'app controllerà la presenza di nuovi aggiornamenti e ti avviserà."
     },
     "ENABLE_CONTRIBUTION": {
@@ -84,10 +84,10 @@
       "DESCRIPTION": "Se abilitato, Upscayl raccoglierà dati di utilizzo anonimi per migliorare l'interfaccia e la funzionalità dell'app."
     },
     "THEME": {
-      "TITLE": "TEMA DI UPSCAYL"
+      "TITLE": "TEMA DI RESCAYL"
     },
     "LANGUAGE": {
-      "TITLE": "LINGUA DI UPSCAYL"
+      "TITLE": "LINGUA DI RESCAYL"
     },
     "CUSTOM_TILE_SIZE": {
       "TITLE": "DIMENSIONE PERSONALIZZATA DEL RIQUADRO",
@@ -95,7 +95,7 @@
     },
     "TURN_OFF_NOTIFICATIONS": {
       "TITLE": "DISATTIVARE LE NOTIFICHE",
-      "DESCRIPTION": "Se abilitato, Upscayl non invierà alcuna notifica di sistema in caso di successo o errore."
+      "DESCRIPTION": "Se abilitato, Rescayl non invierà alcuna notifica di sistema in caso di successo o errore."
     },
     "SUPPORT": {
       "TITLE": "Hai problemi ?",
@@ -111,7 +111,7 @@
     }
   },
   "APP": {
-    "TITLE": "Upscayl",
+    "TITLE": "Rescayl",
     "BATCH_MODE": {
       "TITLE": "Sovracampionamento batch",
       "DESCRIPTION": "Ciò ti consentirà di sovracampionare tutti i file in una cartella contemporaneamente"
@@ -160,12 +160,12 @@
       }
     },
     "DOUBLE_UPSCAYL": {
-      "TITLE": "Doppio Upscayl",
+      "TITLE": "Doppio Rescayl",
       "DESCRIPTION": "Abilita questa opzione per eseguire il supercampionamento due volte su un'immagine. Tieni presente che ciò potrebbe causare un aumento significativo del tempo di elaborazione e possibili problemi di prestazioni per scale superiori a 4X."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Fase 3",
-      "MAC_APP_STORE_ALERT": "A causa delle restrizioni di sicurezza dell'App Store di MacOS, Upscayl richiede di selezionare una cartella di output ogni volta che lo avvii.\n\nPer evitare ciò, puoi salvare in modo permanente una cartella di output predefinita nella \"scheda\" Impostazioni Upscayl.",
+      "MAC_APP_STORE_ALERT": "A causa delle restrizioni di sicurezza dell'App Store di MacOS, Rescayl richiede di selezionare una cartella di output ogni volta che lo avvii.\n\nPer evitare ciò, puoi salvare in modo permanente una cartella di output predefinita nella \"scheda\" Impostazioni Rescayl.",
       "NOT_SELECTED": "Non selezionato",
       "DEFAULT_IMG_PATH": "Per impostazione predefinita è il percorso dell'immagine",
       "DEFAULT_FOLDER_PATH": "Per impostazione predefinita è il percorso della cartella",
@@ -243,7 +243,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Errore di eccezione",
-      "DESCRIPTION": "Upscayl ha riscontrato un errore. È possibile che il binario Upscayl non sia riuscito a eseguire correttamente i comandi. Prova a controllare i log per vedere se ottieni qualche informazione. Puoi pubblicare un problema sul repository GitHub di Upscayl per ulteriore assistenza."
+      "DESCRIPTION": "Rescayl ha riscontrato un errore. È possibile che il binario Rescayl non sia riuscito a eseguire correttamente i comandi. Prova a controllare i log per vedere se ottieni qualche informazione. Puoi pubblicare un problema sul repository GitHub di Rescayl per ulteriore assistenza."
     },
     "GENERIC_ERROR": {
       "TITLE": "Errore"
@@ -294,7 +294,7 @@
     "GET_STARTED_BUTTON_TITLE": "Inizia",
     "SETTINGS_NOTE": "Puoi sempre modificare queste impostazioni in un secondo momento.",
     "STEP_1": {
-      "TITLE": "Benvenuto su Upscayl 🎉",
+      "TITLE": "Benvenuto su Rescayl 🎉",
       "DESCRIPTION": "Iniziamo con alcuni rapidi passaggi."
     },
     "STEP_2": {
@@ -302,12 +302,12 @@
       "DESCRIPTION": "Configura le tue impostazioni iniziali."
     },
     "STEP_3": {
-      "TITLE": "Come usare Upscayl ? 🚀",
+      "TITLE": "Come usare Rescayl ? 🚀",
       "DESCRIPTION": "Guarda questo breve video per conoscere le nuove funzionalità."
     },
     "STEP_4": {
       "TITLE": "Sei pronto ! 🎉",
-      "DESCRIPTION": "Sei pronto per iniziare a sovracampionare le immagini con Upscayl !"
+      "DESCRIPTION": "Sei pronto per iniziare a sovracampionare le immagini con Rescayl !"
     }
   }
 }

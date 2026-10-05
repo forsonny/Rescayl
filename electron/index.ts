@@ -46,7 +46,7 @@ app.on("ready", async () => {
   createMainWindow();
 
   log.info(
-    "🆙 Upscayl version:",
+    "🆙 Rescayl version:",
     app.getVersion(),
     FEATURE_FLAGS.APP_STORE_BUILD ? "MAC-APP-STORE" : "FOSS",
   );

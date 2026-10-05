@@ -1,12 +1,12 @@
 {
-  "TITLE": "Upscayl",
+  "TITLE": "Rescayl",
   "INTRO": "Presentem Upscayl Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Doneu-nos una estrela en GitHub 😁",
     "DESCRIPTION": "Augmentador d'imatges amb IA"
   },
   "FOOTER": {
-    "NEWS_TITLE": "NOTÍCIES D'UPSCAYL",
+    "NEWS_TITLE": "NOTÍCIES D'RESCAYL",
     "COPYRIGHT": "Copyright ©",
     "TITLE": "Per ",
     "LINK_TITLE": "L'equip d'Upscayl"
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Escala d'imatge",
-      "DESCRIPTION": "Qualsevol cosa per damunt de 4x (excepte 16x Double Upscayl) només redimensiona la imatge i no usa augment amb IA.",
+      "DESCRIPTION": "Qualsevol cosa per damunt de 4x (excepte 16x Double Rescayl) només redimensiona la imatge i no usa augment amb IA.",
       "WARNING": "Qualsevol cosa per damunt de 5x pot causar problemes de rendiment en alguns dispositius!",
       "ADDITIONAL_WARNING": "Això pot causar problemes de rendiment en alguns dispositius!"
     },
@@ -67,18 +67,18 @@
     },
     "OVERWRITE_TOGGLE": {
       "TITLE": "SOBREESCRIU L'AUGMENT ANTERIOR",
-      "DESCRIPTION": "Si està habilitat, Upscayl processarà la imatge de nou en lloc de carregar-la directament."
+      "DESCRIPTION": "Si està habilitat, Rescayl processarà la imatge de nou en lloc de carregar-la directament."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "REINICIA UPSCAYL",
-      "ALERT": "Upscayl s'ha reiniciat. Reinicia l'aplicació."
+      "BUTTON_TITLE": "REINICIA RESCAYL",
+      "ALERT": "Rescayl s'ha reiniciat. Reinicia l'aplicació."
     },
     "SAVE_OUTPUT_FOLDER": {
       "TITLE": "GUARDA CARPETA D'EIXIDA",
       "DESCRIPTION": "Si està habilitat, la carpeta d'eixida es recordarà entre sessions."
     },
     "AUTO_UPDATE": {
-      "TITLE": "ACTUALITZACIÓ AUTOMÀTICA D'UPSCAYL",
+      "TITLE": "ACTUALITZACIÓ AUTOMÀTICA D'RESCAYL",
       "DESCRIPTION": "Si està habilitat, l'aplicació buscarà noves actualitzacions i vos notificarà."
     },
     "ENABLE_CONTRIBUTION": {
@@ -86,10 +86,10 @@
       "DESCRIPTION": "Si està habilitat, Upscayl recopilarà dades d'ús anònimes per a millorar la interfície i les característiques de l'aplicació."
     },
     "THEME": {
-      "TITLE": "TEMA D'UPSCAYL"
+      "TITLE": "TEMA D'RESCAYL"
     },
     "LANGUAGE": {
-      "TITLE": "IDIOMA D'UPSCAYL"
+      "TITLE": "IDIOMA D'RESCAYL"
     },
     "CUSTOM_TILE_SIZE": {
       "TITLE": "GRANDÀRIA DE MOSAIC PERSONALITZADA",
@@ -97,7 +97,7 @@
     },
     "TURN_OFF_NOTIFICATIONS": {
       "TITLE": "DESACTIVA LES NOTIFICACIONS",
-      "DESCRIPTION": "Si està habilitat, Upscayl no enviarà notificacions del sistema quan funcione bé o quan falle."
+      "DESCRIPTION": "Si està habilitat, Rescayl no enviarà notificacions del sistema quan funcione bé o quan falle."
     },
     "SUPPORT": {
       "TITLE": "Teniu problemes?",
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Upscayl",
+    "TITLE": "Rescayl",
     "BATCH_MODE": {
       "TITLE": "Augment per lots",
       "DESCRIPTION": "Això vos permetrà augmentar totes les imatges d'una carpeta alhora"
@@ -163,12 +163,12 @@
       }
     },
     "DOUBLE_UPSCAYL": {
-      "TITLE": "Doble Upscayl",
+      "TITLE": "Doble Rescayl",
       "DESCRIPTION": "Habilita esta opció per a realitzar dos augments en una imatge. Tingueu en compte que això pot causar un augment significatiu en el temps de processament i possiblement problemes de rendiment per a escales superiors a 4x."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Pas 3",
-      "MAC_APP_STORE_ALERT": "A causa de les restriccions de seguretat de la MacOS App Store, Upscayl requerix que seleccioneu una carpeta d'eixida cada vegada que l'inicieu.\n\nPer a evitar-ho, podeu guardar permanentment una carpeta d'eixida predeterminada en la pestanya 'Configuració' d'Upscayl.",
+      "MAC_APP_STORE_ALERT": "A causa de les restriccions de seguretat de la MacOS App Store, Rescayl requerix que seleccioneu una carpeta d'eixida cada vegada que l'inicieu.\n\nPer a evitar-ho, podeu guardar permanentment una carpeta d'eixida predeterminada en la pestanya 'Configuració' d'Rescayl.",
       "NOT_SELECTED": "No seleccionat",
       "DEFAULT_IMG_PATH": "Ruta predeterminada de la imatge",
       "DEFAULT_FOLDER_PATH": "Ruta predeterminada de la carpeta",
@@ -179,7 +179,7 @@
       "FROM_TITLE": "Augmentar des de ",
       "TO_TITLE": " a ",
       "NO_OUTPUT_FOLDER_ALERT": "Seleccioneu primer una carpeta d'eixida",
-      "START_BUTTON_TITLE": "Upscayl 🚀",
+      "START_BUTTON_TITLE": "Rescayl 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "S'està augmentant ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -197,7 +197,7 @@
     },
     "PROGRESS_BAR": {
       "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Augment per lots en progrés:",
-      "IN_PROGRESS_TITLE": "S'està fent la màgia d'Upscayl...",
+      "IN_PROGRESS_TITLE": "S'està fent la màgia d'Rescayl...",
       "STOP_BUTTON_TITLE": "DETÍN"
     },
     "RESET_BUTTON_TITLE": "Restablix",
@@ -246,7 +246,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Error d'excepció",
-      "DESCRIPTION": "Upscayl ha trobat un error. És possible que el binari d'Upscayl no haja executat les ordes correctament. Intenteu revisar els registres per a veure si obteniu alguna informació. Podeu publicar un problema en el repositori de GitHub d'Upscayl per a obtindre més ajuda."
+      "DESCRIPTION": "Rescayl ha trobat un error. És possible que el binari d'Rescayl no haja executat les ordes correctament. Intenteu revisar els registres per a veure si obteniu alguna informació. Podeu publicar un problema en el repositori de GitHub d'Rescayl per a obtindre més ajuda."
     },
     "GENERIC_ERROR": {
       "TITLE": "Error"
@@ -297,7 +297,7 @@
     "GET_STARTED_BUTTON_TITLE": "Comença",
     "SETTINGS_NOTE": "Sempre podeu canviar estos ajustaments més tard.",
     "STEP_1": {
-      "TITLE": "Benvinguts a Upscayl 🎉",
+      "TITLE": "Benvinguts a Rescayl 🎉",
       "DESCRIPTION": "Començarem amb uns pocs passos ràpids."
     },
     "STEP_2": {
@@ -305,12 +305,12 @@
       "DESCRIPTION": "Configureu els vostres ajustaments inicials."
     },
     "STEP_3": {
-      "TITLE": "Com use Upscayl? 🚀",
+      "TITLE": "Com use Rescayl? 🚀",
       "DESCRIPTION": "Mireu este vídeo breu per a aprendre sobre les noves característiques."
     },
     "STEP_4": {
       "TITLE": "Tot llest! 🎉",
-      "DESCRIPTION": "Esteu llestos per a començar a augmentar imatges amb Upscayl!"
+      "DESCRIPTION": "Esteu llestos per a començar a augmentar imatges amb Rescayl!"
     }
   }
 }

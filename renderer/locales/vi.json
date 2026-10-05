@@ -1,12 +1,12 @@
 {
-  "TITLE": "Upscayl",
+  "TITLE": "Rescayl",
   "INTRO": "Giới thiệu Upscayl Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Star chúng tôi trên GitHub 😁",
     "DESCRIPTION": "Tăng cường hình ảnh AI"
   },
   "FOOTER": {
-    "NEWS_TITLE": "TIN TỨC UPSCAYL",
+    "NEWS_TITLE": "TIN TỨC RESCAYL",
     "COPYRIGHT": "Bản quyền ©",
     "TITLE": "Bởi ",
     "LINK_TITLE": "Đội ngũ Upscayl"
@@ -54,7 +54,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Tỷ lệ Hình ảnh",
-      "DESCRIPTION": "Bất kỳ tỷ lệ nào trên 4X (ngoại trừ 16X Double Upscayl) chỉ thay đổi kích thước hình ảnh mà không sử dụng tăng cường AI.",
+      "DESCRIPTION": "Bất kỳ tỷ lệ nào trên 4X (ngoại trừ 16X Double Rescayl) chỉ thay đổi kích thước hình ảnh mà không sử dụng tăng cường AI.",
       "WARNING": "Bất kỳ tỷ lệ nào trên 5X có thể gây ra vấn đề về hiệu suất trên một số thiết bị!",
       "ADDITIONAL_WARNING": "Điều này có thể gây ra vấn đề về hiệu suất trên một số thiết bị!"
     },
@@ -65,18 +65,18 @@
     },
     "OVERWRITE_TOGGLE": {
       "TITLE": "GHI ĐÈ UPSCALE TRƯỚC ĐÓ",
-      "DESCRIPTION": "Nếu được kích hoạt, Upscayl sẽ xử lý lại hình ảnh thay vì tải nó trực tiếp."
+      "DESCRIPTION": "Nếu được kích hoạt, Rescayl sẽ xử lý lại hình ảnh thay vì tải nó trực tiếp."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "ĐẶT LẠI UPSCAYL",
-      "ALERT": "Upscayl đã được đặt lại. Vui lòng khởi động lại ứng dụng."
+      "BUTTON_TITLE": "ĐẶT LẠI RESCAYL",
+      "ALERT": "Rescayl đã được đặt lại. Vui lòng khởi động lại ứng dụng."
     },
     "SAVE_OUTPUT_FOLDER": {
       "TITLE": "LƯU THƯ MỤC ĐẦU RA",
       "DESCRIPTION": "Nếu được kích hoạt, thư mục đầu ra sẽ được ghi nhớ giữa các phiên làm việc."
     },
     "AUTO_UPDATE": {
-      "TITLE": "CẬP NHẬT TỰ ĐỘNG UPSCAYL",
+      "TITLE": "CẬP NHẬT TỰ ĐỘNG RESCAYL",
       "DESCRIPTION": "Nếu được kích hoạt, ứng dụng sẽ kiểm tra các bản cập nhật mới và thông báo cho bạn."
     },
     "ENABLE_CONTRIBUTION": {
@@ -84,10 +84,10 @@
       "DESCRIPTION": "Nếu được kích hoạt, Upscayl sẽ thu thập dữ liệu sử dụng ẩn danh để cải thiện giao diện và các tính năng của ứng dụng."
     },
     "THEME": {
-      "TITLE": "CHỦ ĐỀ UPSCAYL"
+      "TITLE": "CHỦ ĐỀ RESCAYL"
     },
     "LANGUAGE": {
-      "TITLE": "NGÔN NGỮ UPSCAYL"
+      "TITLE": "NGÔN NGỮ RESCAYL"
     },
     "CUSTOM_TILE_SIZE": {
       "TITLE": "KÍCH THƯỚC GẠCH TÙY CHỈNH",
@@ -95,7 +95,7 @@
     },
     "TURN_OFF_NOTIFICATIONS": {
       "TITLE": "TẮT THÔNG BÁO",
-      "DESCRIPTION": "Nếu được kích hoạt, Upscayl sẽ không gửi bất kỳ thông báo hệ thống nào về sự thành công hoặc thất bại."
+      "DESCRIPTION": "Nếu được kích hoạt, Rescayl sẽ không gửi bất kỳ thông báo hệ thống nào về sự thành công hoặc thất bại."
     },
     "SUPPORT": {
       "TITLE": "Có gặp vấn đề?",
@@ -111,10 +111,10 @@
     }
   },
   "APP": {
-    "TITLE": "Upscayl",
+    "TITLE": "Rescayl",
     "BATCH_MODE": {
-      "TITLE": "Batch Upscayl",
-      "DESCRIPTION": "Điều này sẽ cho phép bạn Upscayl tất cả các tệp trong một thư mục cùng một lúc"
+      "TITLE": "Batch Rescayl",
+      "DESCRIPTION": "Điều này sẽ cho phép bạn Rescayl tất cả các tệp trong một thư mục cùng một lúc"
     },
     "FILE_SELECTION": {
       "TITLE": "Bước 1",
@@ -160,12 +160,12 @@
       }
     },
     "DOUBLE_UPSCAYL": {
-      "TITLE": "Double Upscayl",
-      "DESCRIPTION": "Kích hoạt tùy chọn này để chạy Upscayl hai lần trên một hình ảnh. Lưu ý rằng điều này có thể làm tăng đáng kể thời gian xử lý và có thể gây ra vấn đề hiệu suất cho các tỷ lệ lớn hơn 4X."
+      "TITLE": "Double Rescayl",
+      "DESCRIPTION": "Kích hoạt tùy chọn này để chạy Rescayl hai lần trên một hình ảnh. Lưu ý rằng điều này có thể làm tăng đáng kể thời gian xử lý và có thể gây ra vấn đề hiệu suất cho các tỷ lệ lớn hơn 4X."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Bước 3",
-      "MAC_APP_STORE_ALERT": "Do các hạn chế bảo mật của MacOS App Store, Upscayl yêu cầu bạn chọn một thư mục đầu ra mỗi lần bạn khởi động nó.\n\nĐể tránh điều này, bạn có thể lưu một thư mục đầu ra mặc định một cách vĩnh viễn trong tab 'Cài đặt' của Upscayl.",
+      "MAC_APP_STORE_ALERT": "Do các hạn chế bảo mật của MacOS App Store, Rescayl yêu cầu bạn chọn một thư mục đầu ra mỗi lần bạn khởi động nó.\n\nĐể tránh điều này, bạn có thể lưu một thư mục đầu ra mặc định một cách vĩnh viễn trong tab 'Cài đặt' của Rescayl.",
       "NOT_SELECTED": "Chưa chọn",
       "DEFAULT_IMG_PATH": "Mặc định là Đường dẫn của Hình ảnh",
       "DEFAULT_FOLDER_PATH": "Mặc định là Đường dẫn của Thư mục",
@@ -173,11 +173,11 @@
     },
     "SCALE_SELECTION": {
       "TITLE": "Bước 4",
-      "FROM_TITLE": "Upscayl từ ",
+      "FROM_TITLE": "Rescayl từ ",
       "TO_TITLE": " đến ",
       "NO_OUTPUT_FOLDER_ALERT": "Vui lòng chọn một thư mục đầu ra trước",
-      "START_BUTTON_TITLE": "Upscayl 🚀",
-      "IN_PROGRESS_BUTTON_TITLE": "Đang tiến hành Upscayl ⏳"
+      "START_BUTTON_TITLE": "Rescayl 🚀",
+      "IN_PROGRESS_BUTTON_TITLE": "Đang tiến hành Rescayl ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
       "RESET_BUTTON_TITLE": "Đặt Lại Hình Ảnh",
@@ -188,13 +188,13 @@
       "TOTAL_BATCH_UPSCAYLS": "Tổng số Batch Upscayls",
       "TOTAL_IMAGE_UPSCAYLS": "Tổng số Upscayls Hình Ảnh",
       "TOTAL_DOUBLE_UPSCAYLS": "Tổng số Double Upscayls",
-      "AVERAGE_UPSCAYL_TIME": "Thời gian Upscayl Trung Bình",
-      "LAST_UPSCAYL_DURATION": "Thời gian Upscayl Cuối Cùng",
+      "AVERAGE_UPSCAYL_TIME": "Thời gian Rescayl Trung Bình",
+      "LAST_UPSCAYL_DURATION": "Thời gian Rescayl Cuối Cùng",
       "LAST_USED_AT": "Lần Cuối Sử Dụng Tại"
     },
     "PROGRESS_BAR": {
-      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Batch Upscayl Đang Tiến Hành:",
-      "IN_PROGRESS_TITLE": "Đang thực hiện phép màu Upscayl...",
+      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Batch Rescayl Đang Tiến Hành:",
+      "IN_PROGRESS_TITLE": "Đang thực hiện phép màu Rescayl...",
       "STOP_BUTTON_TITLE": "DỪNG"
     },
     "RESET_BUTTON_TITLE": "Đặt Lại",
@@ -209,16 +209,16 @@
       "PROCESSING_TITLE": "Đang xử lý hình ảnh...",
       "SCALING_CONVERTING_TITLE": "Đang thay đổi kích thước và chuyển đổi hình ảnh...",
       "WAIT_TITLE": "Chờ một chút...",
-      "SUCCESS_TITLE": "Upscayl Thành Công!",
+      "SUCCESS_TITLE": "Rescayl Thành Công!",
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Thư mục đã chọn:",
         "DONE_TITLE": "Tất cả đã xong!",
-        "OPEN_UPSCAYLED_FOLDER_TITLE": "Mở Thư mục Upscayled"
+        "OPEN_UPSCAYLED_FOLDER_TITLE": "Mở Thư mục Upscaled"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Gốc",
-      "UPSCAYLED_TITLE": "Đã Upscayl"
+      "UPSCAYLED_TITLE": "Đã Rescayl"
     },
     "DIALOG_BOX": {
       "CLOSE": "Đóng"
@@ -243,7 +243,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Lỗi Ngoại lệ",
-      "DESCRIPTION": "Upscayl gặp lỗi. Có thể, nhị phân Upscayl không thực hiện các lệnh đúng cách. Hãy kiểm tra nhật ký để xem bạn có thông tin gì không. Bạn có thể đăng vấn đề trên kho lưu trữ GitHub của Upscayl để được giúp đỡ thêm."
+      "DESCRIPTION": "Rescayl gặp lỗi. Có thể, nhị phân Rescayl không thực hiện các lệnh đúng cách. Hãy kiểm tra nhật ký để xem bạn có thông tin gì không. Bạn có thể đăng vấn đề trên kho lưu trữ GitHub của Rescayl để được giúp đỡ thêm."
     },
     "GENERIC_ERROR": {
       "TITLE": "Lỗi"
@@ -294,7 +294,7 @@
     "GET_STARTED_BUTTON_TITLE": "Bắt đầu",
     "SETTINGS_NOTE": "Bạn luôn có thể thay đổi các cài đặt này sau.",
     "STEP_1": {
-      "TITLE": "Chào mừng đến với Upscayl 🎉",
+      "TITLE": "Chào mừng đến với Rescayl 🎉",
       "DESCRIPTION": "Hãy để chúng tôi giúp bạn bắt đầu với một vài bước nhanh chóng."
     },
     "STEP_2": {
@@ -302,12 +302,12 @@
       "DESCRIPTION": "Cấu hình cài đặt ban đầu của bạn."
     },
     "STEP_3": {
-      "TITLE": "Làm thế nào để sử dụng Upscayl? 🚀",
+      "TITLE": "Làm thế nào để sử dụng Rescayl? 🚀",
       "DESCRIPTION": "Xem video ngắn này để tìm hiểu về các tính năng mới."
     },
     "STEP_4": {
       "TITLE": "Bạn đã sẵn sàng! 🎉",
-      "DESCRIPTION": "Bạn đã sẵn sàng để bắt đầu tăng cường hình ảnh với Upscayl!"
+      "DESCRIPTION": "Bạn đã sẵn sàng để bắt đầu tăng cường hình ảnh với Rescayl!"
     }
   }
 }

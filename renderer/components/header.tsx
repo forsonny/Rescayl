@@ -9,7 +9,7 @@ export default function Header({ version }: { version: string }) {
 
   return (
     <a
-      href="https://github.com/forsonny/upscayl"
+      href="https://github.com/forsonny/Rescayl"
       target="_blank"
       className={`outline-none focus-visible:ring-2`}
       data-tooltip-id="tooltip"

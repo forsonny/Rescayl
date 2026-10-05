@@ -384,12 +384,12 @@ test('fork version uses the desktop API with a renamed application user agent', 
   const useVersion = load('renderer/components/hooks/use-upscayl-version.ts', {
     react: { useState: initial => [initial, value => { displayed = value; }], useEffect: effect => effects.push(effect) },
   }, {
-    navigator: { userAgent: 'UpscaylRevival/2.16.0-preview.1' },
-    window: { electron: { getAppVersion: async () => { calls++; return '2.16.0-preview.1 FOSS'; } } },
+    navigator: { userAgent: 'Rescayl/2.16.0-preview.2' },
+    window: { electron: { getAppVersion: async () => { calls++; return '2.16.0-preview.2 FOSS'; } } },
   }).default;
   assert.equal(useVersion(), null);
   effects[0]();
   await new Promise(resolve => setImmediate(resolve));
   assert.equal(calls, 1);
-  assert.equal(displayed, '2.16.0-preview.1 FOSS');
+  assert.equal(displayed, '2.16.0-preview.2 FOSS');
 });

@@ -1,12 +1,12 @@
 {
-  "TITLE": "Upscayl",
+  "TITLE": "Rescayl",
   "INTRO": "Upscayl Cloud ile tanışın!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Bize GitHub'da yıldız verin! 🌟",
     "DESCRIPTION": "AI Görsel İyileştirici"
   },
   "FOOTER": {
-    "NEWS_TITLE": "UPSCAYL HABERLERİ",
+    "NEWS_TITLE": "RESCAYL HABERLERİ",
     "COPYRIGHT": "Telif Hakkı ©",
     "TITLE": "Geliştiren: ",
     "LINK_TITLE": "The Upscayl Ekibi"
@@ -54,7 +54,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Görsel Ölçeği",
-      "DESCRIPTION": "4X'ten büyük herhangi bir ayar (16X Çifte Upscayl dışında) yalnızca görüntüyü yeniden boyutlandırır ve AI ile iyileştirme yapmaz.",
+      "DESCRIPTION": "4X'ten büyük herhangi bir ayar (16X Çifte Rescayl dışında) yalnızca görüntüyü yeniden boyutlandırır ve AI ile iyileştirme yapmaz.",
       "WARNING": "5X üzerinde herhangi bir ayar bazı aygıtlarda performans sorunlarına neden olabilir!",
       "ADDITIONAL_WARNING": "Bu bazı cihazlarda performans sorunlarına neden olabilir!"
     },
@@ -65,18 +65,18 @@
     },
     "OVERWRITE_TOGGLE": {
       "TITLE": "ÖNCEKİ GELİŞTİRME AYARLARININ ÜZERİNE YAZ",
-      "DESCRIPTION": "Etkinleştirilirdiği takdirde, Upscayl görüntüyü doğrudan yüklemek yerine tekrardan işleyecektir."
+      "DESCRIPTION": "Etkinleştirilirdiği takdirde, Rescayl görüntüyü doğrudan yüklemek yerine tekrardan işleyecektir."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "UPSCAYL'I SIFIRLA",
-      "ALERT": "Upscayl sıfırlandı. Lütfen uygulamayı yeniden başlatın."
+      "BUTTON_TITLE": "RESCAYL'I SIFIRLA",
+      "ALERT": "Rescayl sıfırlandı. Lütfen uygulamayı yeniden başlatın."
     },
     "SAVE_OUTPUT_FOLDER": {
       "TITLE": "ÇIKTI KLASÖRÜNÜ KAYDET",
-      "DESCRIPTION": "Etkinleştirildiği takdirde, Upscayl oturumlar arası çıktı klasörünü hatırlayacaktır."
+      "DESCRIPTION": "Etkinleştirildiği takdirde, Rescayl oturumlar arası çıktı klasörünü hatırlayacaktır."
     },
     "AUTO_UPDATE": {
-      "TITLE": "UPSCAYL'I OTOMATİK GÜNCELLE",
+      "TITLE": "RESCAYL'I OTOMATİK GÜNCELLE",
       "DESCRIPTION": "Etkinleştirildiği takdirde, uygulama yeni güncellemeleri kendiliğinden kontrol edecek ve sizi de bilgilendirecektir."
     },
     "ENABLE_CONTRIBUTION": {
@@ -84,10 +84,10 @@
       "DESCRIPTION": "Etkinleştirildiği takdirde; Upscayl, uygulama arayüzünü ve özelliklerini geliştirmek için anonim kullanım verileri toplayacaktır."
     },
     "THEME": {
-      "TITLE": "UPSCAYL'IN TEMASI"
+      "TITLE": "RESCAYL'IN TEMASI"
     },
     "LANGUAGE": {
-      "TITLE": "UPSCAYL'IN DİLİ"
+      "TITLE": "RESCAYL'IN DİLİ"
     },
     "CUSTOM_TILE_SIZE": {
       "TITLE": "ÖZEL KARO BOYUTU",
@@ -95,7 +95,7 @@
     },
     "TURN_OFF_NOTIFICATIONS": {
       "TITLE": "BİLDİRİMLERİ KAPAT",
-      "DESCRIPTION": "Etkinleştirildiği takdirde, Upscayl başarı veya başarısızlık durumunda herhangi bir sistem bildirimi göndermeyecektir."
+      "DESCRIPTION": "Etkinleştirildiği takdirde, Rescayl başarı veya başarısızlık durumunda herhangi bir sistem bildirimi göndermeyecektir."
     },
     "SUPPORT": {
       "TITLE": "Sorun mu var?",
@@ -111,10 +111,10 @@
     }
   },
   "APP": {
-    "TITLE": "Upscayl",
+    "TITLE": "Rescayl",
     "BATCH_MODE": {
-      "TITLE": "Topyekün Upscayl",
-      "DESCRIPTION": "Bununla birlikte tek seferde bir bütün klasörü Upscayl edebilirsiniz."
+      "TITLE": "Topyekün Rescayl",
+      "DESCRIPTION": "Bununla birlikte tek seferde bir bütün klasörü Rescayl edebilirsiniz."
     },
     "FILE_SELECTION": {
       "TITLE": "1. Adım",
@@ -160,12 +160,12 @@
       }
     },
     "DOUBLE_UPSCAYL": {
-      "TITLE": "Çifte Upscayl",
-      "DESCRIPTION": "Bu seçeneği etkinleştirerek, bir görüntü üzerinde Upscayl'ı iki kez çalıştırabilirsiniz. Lakin, bu işlem süresinde önemli bir uzamaya ve 4X'ten büyük ölçeklerde performans sorunlarına yol açabilir."
+      "TITLE": "Çifte Rescayl",
+      "DESCRIPTION": "Bu seçeneği etkinleştirerek, bir görüntü üzerinde Rescayl'ı iki kez çalıştırabilirsiniz. Lakin, bu işlem süresinde önemli bir uzamaya ve 4X'ten büyük ölçeklerde performans sorunlarına yol açabilir."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "3. Adım",
-      "MAC_APP_STORE_ALERT": "MacOS App Store güvenlik kısıtlamaları nedeniyle, Upscayl her başlatıldığında bir çıktı klasörü seçmenizi isteyecektir.\n\nBunu engellemek için, Upscayl'ın 'Ayarlar' sekmesinde varsayılan bir çıktı klasörü kalıcı olarak kaydedebilirsiniz.",
+      "MAC_APP_STORE_ALERT": "MacOS App Store güvenlik kısıtlamaları nedeniyle, Rescayl her başlatıldığında bir çıktı klasörü seçmenizi isteyecektir.\n\nBunu engellemek için, Rescayl'ın 'Ayarlar' sekmesinde varsayılan bir çıktı klasörü kalıcı olarak kaydedebilirsiniz.",
       "NOT_SELECTED": "Seçilmemiş",
       "DEFAULT_IMG_PATH": "Çıktı resim, girdi resmin dizinine",
       "DEFAULT_FOLDER_PATH": "Çıktı klasör, girdi klasörün dizine",
@@ -176,8 +176,8 @@
       "FROM_TITLE": "",
       "TO_TITLE": "'dan ->",
       "NO_OUTPUT_FOLDER_ALERT": "Lütfen önce bir çıktı klasörü seçin.",
-      "START_BUTTON_TITLE": "Upscayl'la 🚀",
-      "IN_PROGRESS_BUTTON_TITLE": "Upscayl'lanıyor ⏳"
+      "START_BUTTON_TITLE": "Rescayl'la 🚀",
+      "IN_PROGRESS_BUTTON_TITLE": "Rescayl'lanıyor ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
       "RESET_BUTTON_TITLE": "Resmi Sıfırla",
@@ -188,13 +188,13 @@
       "TOTAL_BATCH_UPSCAYLS": "Toplam Topyekün Upscayllar",
       "TOTAL_IMAGE_UPSCAYLS": "Toplam Görsel Upscaylları",
       "TOTAL_DOUBLE_UPSCAYLS": "Toplam Çifte Upscayllar",
-      "AVERAGE_UPSCAYL_TIME": "Ortalama Upscayl Süresi",
-      "LAST_UPSCAYL_DURATION": "Son Upscayl Süresi",
+      "AVERAGE_UPSCAYL_TIME": "Ortalama Rescayl Süresi",
+      "LAST_UPSCAYL_DURATION": "Son Rescayl Süresi",
       "LAST_USED_AT": "En son şu tarihte kullanıldı"
     },
     "PROGRESS_BAR": {
-      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Topyekün Upscayl ediliyor...",
-      "IN_PROGRESS_TITLE": "Upscayl sihrini konuşturuyor...",
+      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "Topyekün Rescayl ediliyor...",
+      "IN_PROGRESS_TITLE": "Rescayl sihrini konuşturuyor...",
       "STOP_BUTTON_TITLE": "DURDUR"
     },
     "RESET_BUTTON_TITLE": "Sıfırla",
@@ -209,7 +209,7 @@
       "PROCESSING_TITLE": "Görsel işleniyor...",
       "SCALING_CONVERTING_TITLE": "Görsel ölçeklendirilip dönüştürülüyor...",
       "WAIT_TITLE": "Bekleyin...",
-      "SUCCESS_TITLE": "Upscayl Başarılı!",
+      "SUCCESS_TITLE": "Rescayl Başarılı!",
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Seçili klasör:",
         "DONE_TITLE": "Hepsi tamamlandı!",
@@ -243,7 +243,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "İstinai Hata",
-      "DESCRIPTION": "Upscayl bir hata ile karşılaştı. Muhtemelen, upscayl ikili dosyası komutları düzgün şekilde çalıştırmayı başaramadı. Bilgi almak için log dosyalarını kontrol etmeyi deneyin. Daha fazla yardım için Upscayl'ın GitHub deposunda bir sorun bildirisi oluşturabilirsiniz."
+      "DESCRIPTION": "Rescayl bir hata ile karşılaştı. Muhtemelen, Rescayl ikili dosyası komutları düzgün şekilde çalıştırmayı başaramadı. Bilgi almak için log dosyalarını kontrol etmeyi deneyin. Daha fazla yardım için Rescayl'ın GitHub deposunda bir sorun bildirisi oluşturabilirsiniz."
     },
     "GENERIC_ERROR": {
       "TITLE": "Hata"
@@ -294,7 +294,7 @@
     "GET_STARTED_BUTTON_TITLE": "Başlayın",
     "SETTINGS_NOTE": "Tüm bu ayarları istersen sonra değiştirebilirsin.",
     "STEP_1": {
-      "TITLE": "Upscayl'e hoş geldiniz! 🎉",
+      "TITLE": "Rescayl'e hoş geldiniz! 🎉",
       "DESCRIPTION": "Hadi sizi bir kaç adımda hazır edelim."
     },
     "STEP_2": {
@@ -302,12 +302,12 @@
       "DESCRIPTION": "Ön ayarlarınızı yapılandırın."
     },
     "STEP_3": {
-      "TITLE": "Upscayl'ı nasıl kullanacağım? 🚀",
+      "TITLE": "Rescayl'ı nasıl kullanacağım? 🚀",
       "DESCRIPTION": "Bu kısa videoyu izleyerek en yeni özellikleri öğrenin"
     },
     "STEP_4": {
       "TITLE": "Hazır ve nazırsınız! 🎉",
-      "DESCRIPTION": "Upscayl ile görsellerinizi iyileştirmeye hazırsınız!"
+      "DESCRIPTION": "Rescayl ile görsellerinizi iyileştirmeye hazırsınız!"
     }
   }
 }

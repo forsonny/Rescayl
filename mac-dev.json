@@ -1,6 +1,6 @@
 {
-  "productName": "Upscayl",
-  "appId": "org.upscayl.Upscayl",
+  "productName": "Rescayl",
+  "appId": "io.github.forsonny.rescayl",
   "buildVersion": "25.06.01",
   "asar": true,
   "asarUnpack": ["**/node_modules/sharp/**/*", "**/node_modules/@img/**/*"],

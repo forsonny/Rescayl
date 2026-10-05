@@ -29,7 +29,7 @@ function ProgressBar({
 
   const stopHandler = () => {
     window.electron.stop();
-    logit("🛑 Stopping Upscayl");
+    logit("🛑 Stopping Rescayl");
   };
 
   // const progressStyle = useMemo(() => {

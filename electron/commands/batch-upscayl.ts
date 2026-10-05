@@ -35,7 +35,7 @@ const batchUpscayl = async (event, payload: BatchUpscaylPayload) => {
   let inputDir = payload.batchFolderPath;
   // GET THE OUTPUT DIRECTORY
   let outputFolderPath = payload.outputPath;
-  const outputFolderName = `upscayl_${saveImageAs}_${model}_${
+  const outputFolderName = `rescayl_${saveImageAs}_${model}_${
     useCustomWidth ? `${customWidth}px` : `${scale}x`
   }`;
   outputFolderPath += slash + outputFolderName;
@@ -173,11 +173,11 @@ const batchUpscayl = async (event, payload: BatchUpscaylPayload) => {
           outputFolderPath,
         );
         if (!encounteredError) {
-          showNotification("Upscayled", "Images upscayled successfully!");
+          showNotification("Rescayl", "Images upscaled successfully!");
         } else {
           showNotification(
-            "Upscayled",
-            "Images were upscayled but encountered some errors!",
+            "Rescayl",
+            "Images were upscaled but encountered some errors!",
           );
         }
       } else {
