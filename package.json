@@ -1,7 +1,7 @@
 {
   "name": "rescayl",
   "private": true,
-  "version": "2.16.0-preview.3",
+  "version": "2.16.0-preview.4",
   "productName": "Rescayl",
   "author": {
     "name": "forsonny",
@@ -207,7 +207,9 @@
     },
     "files": [
       "export",
-      "renderer/out"
+      "renderer/out",
+      "renderer/fonts/asap/OFL.txt",
+      "renderer/fonts/lato/OFL.txt"
     ],
     "publish": {
       "provider": "github",

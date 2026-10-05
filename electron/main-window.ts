@@ -15,7 +15,7 @@ const createMainWindow = () => {
   console.log("🚃 App Path: ", app.getAppPath());
 
   mainWindow = new BrowserWindow({
-    icon: join(__dirname, "build", "icon.png"),
+    icon: join(app.getAppPath(), "renderer", electronIsDev ? "public" : "out", "icon.png"),
     width: 1300,
     height: 940,
     minHeight: 500,

@@ -107,15 +107,31 @@ module.exports = {
     themes: [
       {
         upscayl: {
-          primary: "#334155",
-          secondary: "#4f46e5",
-          accent: "#6d28d9",
-          neutral: "#475569",
-          "base-100": "#1e293b",
-          "base-200": "#0f172a",
-          "base-300": "#020617",
-          "--rounded-btn": "2rem", // border radius rounded-btn utility class, used in buttons and similar element
-          "--rounded-badge": "2rem", // border radius rounded-badge utility class, used in badges and similar
+          // Crimson Frame: the approved angular R, neutral photo workspace,
+          // crimson actions, Asap headings and Lato body text.
+          primary: "#444444",
+          "primary-content": "#EDEDED",
+          secondary: "#DA0037",
+          "secondary-content": "#EDEDED",
+          accent: "#DA0037",
+          "accent-content": "#EDEDED",
+          neutral: "#444444",
+          "neutral-content": "#EDEDED",
+          "base-100": "#171717",
+          "base-200": "#171717",
+          "base-300": "#171717",
+          "base-content": "#EDEDED",
+          info: "#444444",
+          "info-content": "#EDEDED",
+          success: "#EDEDED",
+          "success-content": "#171717",
+          warning: "#EDEDED",
+          "warning-content": "#171717",
+          error: "#DA0037",
+          "error-content": "#EDEDED",
+          "--rounded-box": "0.75rem",
+          "--rounded-btn": "0.5rem",
+          "--rounded-badge": "0.375rem",
           "--animation-btn": "0.5s", // duration of animation when you click on button
           "--animation-input": "0.5s", // duration of animation for inputs like checkbox, toggle, radio, etc
           "--btn-text-case": "uppercase", // set default text transform for buttons
