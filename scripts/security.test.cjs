@@ -376,3 +376,20 @@ test('invalid locale schema sets a failing exit code', () => {
   load('scripts/validate-schema.js', { fs: { readFileSync: () => '{}', readdirSync: () => ['en.json', 'invalid.json'] }, ajv: class { compile() { const validate = () => false; validate.errors = []; return validate; } }, './generate-schema': { generateSchema: () => ({}) } }, { process: taskProcess, console: { log() {}, error() {} }, __dirname: path.join(root, 'scripts') });
   assert.equal(taskProcess.exitCode, 1);
 });
+
+test('fork version uses the desktop API with a renamed application user agent', async () => {
+  const effects = [];
+  let displayed;
+  let calls = 0;
+  const useVersion = load('renderer/components/hooks/use-upscayl-version.ts', {
+    react: { useState: initial => [initial, value => { displayed = value; }], useEffect: effect => effects.push(effect) },
+  }, {
+    navigator: { userAgent: 'UpscaylRevival/2.16.0-preview.1' },
+    window: { electron: { getAppVersion: async () => { calls++; return '2.16.0-preview.1 FOSS'; } } },
+  }).default;
+  assert.equal(useVersion(), null);
+  effects[0]();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(calls, 1);
+  assert.equal(displayed, '2.16.0-preview.1 FOSS');
+});

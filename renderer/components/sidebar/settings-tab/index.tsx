@@ -23,6 +23,7 @@ import AutoUpdateToggle from "./auto-update-toggle";
 import TTAModeToggle from "./tta-mode-toggle";
 import SystemInfo from "./system-info";
 import CopyMetadataToggle from "./copy-metadata-toggle";
+import useUpscaylVersion from "@/components/hooks/use-upscayl-version";
 
 interface IProps {
   batchMode: boolean;
@@ -93,9 +94,7 @@ function SettingsTab({
     }
   };
 
-  const upscaylVersion = navigator?.userAgent?.match(
-    /Upscayl\/([\d\.]+\d+)/,
-  )[1];
+  const upscaylVersion = useUpscaylVersion();
 
   function disableScrolling() {
     if (timeoutId !== null) {
