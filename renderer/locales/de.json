@@ -114,7 +114,7 @@
     "TITLE": "Rescayl",
     "BATCH_MODE": {
       "TITLE": "Batch-Rescayl",
-      "DESCRIPTION": "Hiermit kannst du alle Dateien in einem Ordner auf einmal upscaylen"
+      "DESCRIPTION": "Hiermit kannst du alle Dateien in einem Ordner auf einmal Rescaylen"
     },
     "FILE_SELECTION": {
       "TITLE": "Schritt 1",
@@ -161,7 +161,7 @@
     },
     "DOUBLE_UPSCAYL": {
       "TITLE": "Doppel-Rescayl",
-      "DESCRIPTION": "Aktiviere diese Option, um ein Bild zweimal zu upscaylen. Beachte, dass dies die Verarbeitungszeit deutlich erhöhen und möglicherweise Leistungsprobleme bei Skalierungen über 4X verursachen kann."
+      "DESCRIPTION": "Aktiviere diese Option, um ein Bild zweimal zu Rescaylen. Beachte, dass dies die Verarbeitungszeit deutlich erhöhen und möglicherweise Leistungsprobleme bei Skalierungen über 4X verursachen kann."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Schritt 3",
@@ -177,17 +177,17 @@
       "TO_TITLE": " zu ",
       "NO_OUTPUT_FOLDER_ALERT": "Bitte wähle zuerst einen Ausgabeordner",
       "START_BUTTON_TITLE": "Rescayl 🚀",
-      "IN_PROGRESS_BUTTON_TITLE": "Upscaylen ⏳"
+      "IN_PROGRESS_BUTTON_TITLE": "Rescaylen ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
       "RESET_BUTTON_TITLE": "Bild zurücksetzen",
       "LENS_VIEW_TITLE": "Linsenansicht",
       "SLIDER_VIEW_TITLE": "Schiebeansicht",
       "ZOOM_AMOUNT_TITLE": "Zoomstärke",
-      "TOTAL_UPSCAYLS": "Gesamte Upscayls",
-      "TOTAL_BATCH_UPSCAYLS": "Gesamte Batch-Upscayls",
-      "TOTAL_IMAGE_UPSCAYLS": "Gesamte Bild-Upscayls",
-      "TOTAL_DOUBLE_UPSCAYLS": "Gesamte Doppel-Upscayls",
+      "TOTAL_UPSCAYLS": "Gesamte Upscales",
+      "TOTAL_BATCH_UPSCAYLS": "Gesamte Batch-Upscales",
+      "TOTAL_IMAGE_UPSCAYLS": "Gesamte Bild-Upscales",
+      "TOTAL_DOUBLE_UPSCAYLS": "Gesamte Doppel-Upscales",
       "AVERAGE_UPSCAYL_TIME": "Durchschnittliche Rescayl-Zeit",
       "LAST_UPSCAYL_DURATION": "Letzte Rescayl-Dauer",
       "LAST_USED_AT": "Zuletzt verwendet"
@@ -260,7 +260,7 @@
     },
     "NO_IMAGE_ERROR": {
       "TITLE": "Kein Bild ausgewählt",
-      "DESCRIPTION": "Bitte wähle ein Bild zum Upscaylen"
+      "DESCRIPTION": "Bitte wähle ein Bild zum Rescaylen"
     },
     "METADATA_ERROR": {
       "TITLE": "Metadaten-Kopierfehler",
@@ -307,7 +307,7 @@
     },
     "STEP_4": {
       "TITLE": "Du bist startklar! 🎉",
-      "DESCRIPTION": "Jetzt kannst du Bilder mit Rescayl upscaylen!"
+      "DESCRIPTION": "Jetzt kannst du Bilder mit Rescayl Rescaylen!"
     }
   }
 }

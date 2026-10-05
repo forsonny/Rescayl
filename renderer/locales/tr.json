@@ -184,10 +184,10 @@
       "LENS_VIEW_TITLE": "Lensli Büyüteç",
       "SLIDER_VIEW_TITLE": "Kaydırmalı Büyüteç",
       "ZOOM_AMOUNT_TITLE": "Yakınlaştırma Miktarı",
-      "TOTAL_UPSCAYLS": "Toplam Upscayllar",
-      "TOTAL_BATCH_UPSCAYLS": "Toplam Topyekün Upscayllar",
-      "TOTAL_IMAGE_UPSCAYLS": "Toplam Görsel Upscaylları",
-      "TOTAL_DOUBLE_UPSCAYLS": "Toplam Çifte Upscayllar",
+      "TOTAL_UPSCAYLS": "Toplam Rescayllar",
+      "TOTAL_BATCH_UPSCAYLS": "Toplam Topyekün Rescayllar",
+      "TOTAL_IMAGE_UPSCAYLS": "Toplam Görsel Rescaylları",
+      "TOTAL_DOUBLE_UPSCAYLS": "Toplam Çifte Rescayllar",
       "AVERAGE_UPSCAYL_TIME": "Ortalama Rescayl Süresi",
       "LAST_UPSCAYL_DURATION": "Son Rescayl Süresi",
       "LAST_USED_AT": "En son şu tarihte kullanıldı"
@@ -213,12 +213,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Seçili klasör:",
         "DONE_TITLE": "Hepsi tamamlandı!",
-        "OPEN_UPSCAYLED_FOLDER_TITLE": "Upscayllenmiş klasörü açın"
+        "OPEN_UPSCAYLED_FOLDER_TITLE": "Rescayllenmiş klasörü açın"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Orjinali",
-      "UPSCAYLED_TITLE": "Upscayllanmışı"
+      "UPSCAYLED_TITLE": "Rescayllanmışı"
     },
     "DIALOG_BOX": {
       "CLOSE": "Kapat"

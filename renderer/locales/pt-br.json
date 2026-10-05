@@ -177,17 +177,17 @@
       "TO_TITLE": " para ",
       "NO_OUTPUT_FOLDER_ALERT": "Favor selecionar uma pasta de saída primeiro",
       "START_BUTTON_TITLE": "Rescayl 🚀",
-      "IN_PROGRESS_BUTTON_TITLE": "Upscaylizando ⏳"
+      "IN_PROGRESS_BUTTON_TITLE": "Rescaylizando ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
       "RESET_BUTTON_TITLE": "Resetar Imagem",
       "LENS_VIEW_TITLE": "Visualização de Lente",
       "SLIDER_VIEW_TITLE": "Visualização de Slide",
       "ZOOM_AMOUNT_TITLE": "Níve de Zoom",
-      "TOTAL_UPSCAYLS": "Upscayls Totais",
-      "TOTAL_BATCH_UPSCAYLS": "Upscayls em Lote Totais",
-      "TOTAL_IMAGE_UPSCAYLS": "Upscayls de Imagem Totais",
-      "TOTAL_DOUBLE_UPSCAYLS": "Upscayls Duplos Totais",
+      "TOTAL_UPSCAYLS": "Upscales Totais",
+      "TOTAL_BATCH_UPSCAYLS": "Upscales em Lote Totais",
+      "TOTAL_IMAGE_UPSCAYLS": "Upscales de Imagem Totais",
+      "TOTAL_DOUBLE_UPSCAYLS": "Upscales Duplos Totais",
       "AVERAGE_UPSCAYL_TIME": "Tempo Médio por Rescayl",
       "LAST_UPSCAYL_DURATION": "Duração do Último Rescayl",
       "LAST_USED_AT": "Usado por último em"
@@ -213,12 +213,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Pasta selecionada:",
         "DONE_TITLE": "Tudo pronto!",
-        "OPEN_UPSCAYLED_FOLDER_TITLE": "Abrir Pasta Upscaylizada"
+        "OPEN_UPSCAYLED_FOLDER_TITLE": "Abrir Pasta Rescaylizada"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Original",
-      "UPSCAYLED_TITLE": "Upscaylizado"
+      "UPSCAYLED_TITLE": "Rescaylizado"
     },
     "DIALOG_BOX": {
       "CLOSE": "Fechar"

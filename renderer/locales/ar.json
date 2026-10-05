@@ -6,7 +6,7 @@
     "DESCRIPTION": "ذكاء اصطناعي لزيادة دقة الصور"
   },
   "FOOTER": {
-    "NEWS_TITLE": "اخبار ابسكيل",
+    "NEWS_TITLE": "اخبار Rescayl",
     "COPYRIGHT": "حقوق النشر ©",
     "TITLE": "بواسطة ",
     "LINK_TITLE": "فريق ابسكيل"
@@ -65,18 +65,18 @@
     },
     "OVERWRITE_TOGGLE": {
       "TITLE": "تبديل التحجيم الدقة السابق",
-      "DESCRIPTION": "ابسكيل سيعالج الصور مرة اخرى بدل من تحميلها مباشرا, اذا فعلت هذا"
+      "DESCRIPTION": "Rescayl سيعالج الصور مرة اخرى بدل من تحميلها مباشرا, اذا فعلت هذا"
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "اعادة ضبط ابسكيل",
-      "ALERT": "لقد تم اعادة ضبط ابسكيل , يرجى اعادة تشغيل البرنامج"
+      "BUTTON_TITLE": "اعادة ضبط Rescayl",
+      "ALERT": "لقد تم اعادة ضبط Rescayl , يرجى اعادة تشغيل البرنامج"
     },
     "SAVE_OUTPUT_FOLDER": {
       "TITLE": "مجلد حفظ النتائج",
       "DESCRIPTION": "سيتم تذكر هذا المجلد في كل مرة , اذا فعلت هذا الخيار"
     },
     "AUTO_UPDATE": {
-      "TITLE": "تحديث تلقائي لابسكيل",
+      "TITLE": "تحديث تلقائي لRescayl",
       "DESCRIPTION": "سيتمم التحقق بشكل تلقائي للتحديثات , اذا فعلت هذا الخيار"
     },
     "ENABLE_CONTRIBUTION": {
@@ -84,10 +84,10 @@
       "DESCRIPTION": "اذا فعلت هذا الخير يستم تجميع معلومات بشكل صامت لغرض تحسين الجودة"
     },
     "THEME": {
-      "TITLE": "مظهر ابسكيل"
+      "TITLE": "مظهر Rescayl"
     },
     "LANGUAGE": {
-      "TITLE": "لغة ابسكيل"
+      "TITLE": "لغة Rescayl"
     },
     "CUSTOM_TILE_SIZE": {
       "TITLE": "حجم مناطق مخصص",
@@ -111,9 +111,9 @@
     }
   },
   "APP": {
-    "TITLE": "ابسكيل",
+    "TITLE": "Rescayl",
     "BATCH_MODE": {
-      "TITLE": "ابسكيل متعدد",
+      "TITLE": "Rescayl متعدد",
       "DESCRIPTION": "يمكنك هذا الخيار ان تقوم بعملية تحجيم لعدد من الصور في وقت واحد"
     },
     "FILE_SELECTION": {
@@ -165,7 +165,7 @@
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "الخطوة الثالثة",
-      "MAC_APP_STORE_ALERT": " نظرا لنظام حماية apple ابسكيل يتطلب ان تحدد موقع الخزن في كل مرة\n\nلتخطي هذا يمكنك تحديده من الاعدادات",
+      "MAC_APP_STORE_ALERT": " نظرا لنظام حماية apple Rescayl يتطلب ان تحدد موقع الخزن في كل مرة\n\nلتخطي هذا يمكنك تحديده من الاعدادات",
       "NOT_SELECTED": "غير محدد",
       "DEFAULT_IMG_PATH": "حفظ في مكان الصورة المحددة",
       "DEFAULT_FOLDER_PATH": "حفظ في نفس مكان المجلد",
@@ -176,7 +176,7 @@
       "FROM_TITLE": "حجم من ",
       "TO_TITLE": " الى ",
       "NO_OUTPUT_FOLDER_ALERT": "اختر مجلد الاخراج اولا",
-      "START_BUTTON_TITLE": "ابسكيل 🚀",
+      "START_BUTTON_TITLE": "Rescayl 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "تحجيم ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -213,7 +213,7 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "اختر مجلد:",
         "DONE_TITLE": "تم!",
-        "OPEN_UPSCAYLED_FOLDER_TITLE": "افتح مجلد ابسكيل"
+        "OPEN_UPSCAYLED_FOLDER_TITLE": "افتح مجلد Rescayl"
       }
     },
     "SLIDER": {
@@ -243,7 +243,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "خطأ استثتائي",
-      "DESCRIPTION": "ابسيكيل يواجه مشكلة, ابسكيل فشل في تنفيذ اوامر ثنائية بشكل صحيح, حاول قرائه السجلات قد تحصل على معلومات لحل المشكلة, توجه الى github خاصتنا اذا لم تستطع حلها"
+      "DESCRIPTION": "ابسيكيل يواجه مشكلة, Rescayl فشل في تنفيذ اوامر ثنائية بشكل صحيح, حاول قرائه السجلات قد تحصل على معلومات لحل المشكلة, توجه الى github خاصتنا اذا لم تستطع حلها"
     },
     "GENERIC_ERROR": {
       "TITLE": "خطأ"
@@ -294,7 +294,7 @@
     "GET_STARTED_BUTTON_TITLE": "أبداء",
     "SETTINGS_NOTE": "يمكنك تغيير هذه الاعدادات في اي وقت",
     "STEP_1": {
-      "TITLE": "مرحبا بك في ابسكيل🎉",
+      "TITLE": "مرحبا بك في Rescayl🎉",
       "DESCRIPTION": "لنبدأ بخطوات بسيطة"
     },
     "STEP_2": {
@@ -302,12 +302,12 @@
       "DESCRIPTION": "اضبط اعداداتك."
     },
     "STEP_3": {
-      "TITLE": "كيف استعمل ابسكيل ؟ 🚀",
+      "TITLE": "كيف استعمل Rescayl ؟ 🚀",
       "DESCRIPTION": "شاهد هذا الفديو القصير لتتعلم بعض الميزات."
     },
     "STEP_4": {
       "TITLE": "انت جاهز! 🎉",
-      "DESCRIPTION": "انت مستعد لاستخدام ابسكيل!"
+      "DESCRIPTION": "انت مستعد لاستخدام Rescayl!"
     }
   }
 }
