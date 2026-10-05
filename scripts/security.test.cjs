@@ -296,6 +296,12 @@ test('job completion, two-pass outputs, converted metadata, and cancellation use
     fs.writeFileSync(destination(singleJob), 'single');
     await close(singleJob); assert.equal(done(), true);
     const singleFile = destination(singleJob);
+    fs.writeFileSync(singleFile, '');
+    messages.length = 0;
+    await single({}, { ...options, overwrite: false }); const retrySingle = jobs.at(-1);
+    assert.notEqual(retrySingle, singleJob); assert.equal(done(), false);
+    fs.writeFileSync(destination(retrySingle), 'single'); await close(retrySingle);
+    assert.equal(done(), true);
     messages.length = 0;
     await double({}, { ...options, overwrite: false }); const first = jobs.at(-1);
     fs.writeFileSync(destination(first), 'first');
@@ -310,6 +316,12 @@ test('job completion, two-pass outputs, converted metadata, and cancellation use
     assert.equal(fs.readFileSync(doubleFile, 'utf8'), 'double');
     messages.length = 0; const count = jobs.length;
     await double({}, { ...options, overwrite: false }); assert.equal(jobs.length, count); assert.equal(done(), true);
+    fs.writeFileSync(doubleFile, ''); messages.length = 0;
+    await double({}, { ...options, overwrite: false }); const retryFirst = jobs.at(-1);
+    assert.equal(jobs.length, count + 1); assert.equal(done(), false);
+    fs.writeFileSync(destination(retryFirst), 'first'); await close(retryFirst);
+    const retrySecond = jobs.at(-1); fs.writeFileSync(destination(retrySecond), 'double'); await close(retrySecond);
+    assert.equal(fs.readFileSync(doubleFile, 'utf8'), 'double'); assert.equal(done(), true);
     await double({}, options); const failedFirst = jobs.at(-1);
     fs.writeFileSync(destination(failedFirst), 'first'); await close(failedFirst);
     const failedSecond = jobs.at(-1); fs.writeFileSync(destination(failedSecond), 'partial');

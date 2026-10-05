@@ -78,7 +78,12 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
   }
 
   // UPSCALE
-  if (fs.existsSync(outFile) && !overwrite) {
+  if (
+    fs.existsSync(outFile) &&
+    fs.statSync(outFile).isFile() &&
+    fs.statSync(outFile).size > 0 &&
+    !overwrite
+  ) {
     // If already upscayled, just output that file
     logit("✅ Already upscayled at: ", outFile);
     mainWindow.webContents.send(ELECTRON_COMMANDS.UPSCAYL_DONE, outFile);

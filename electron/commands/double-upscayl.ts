@@ -41,7 +41,12 @@ const doubleUpscayl = async (_event, payload: DoubleUpscaylPayload) => {
     `${path.parse(imagePath).name}_upscayl_double_${customWidth ? `${customWidth}px` : `${scale}x`}_${model}.${saveImageAs}`,
   );
   assertOutputAccess(outFile);
-  if (fs.existsSync(outFile) && !payload.overwrite) {
+  if (
+    fs.existsSync(outFile) &&
+    fs.statSync(outFile).isFile() &&
+    fs.statSync(outFile).size > 0 &&
+    !payload.overwrite
+  ) {
     mainWindow.webContents.send(ELECTRON_COMMANDS.DOUBLE_UPSCAYL_DONE, outFile);
     return;
   }
