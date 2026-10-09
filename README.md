@@ -36,38 +36,40 @@ Rescayl accepts PNG, JPG, JPEG, JFIF, and WebP input images. Results depend on t
 
 Windows x64 is the primary release target. Check the [Rescayl releases page](https://github.com/forsonny/Rescayl/releases) for available builds.
 
-**Current status:** `2.16.0-preview.4` is a draft release. Its installer and ZIP are not public downloads yet. You can [run Rescayl from source](#develop-rescayl) while public downloads are pending.
+**Current status:** `2.16.0-preview.5` is being prepared as a draft prerelease. Its Windows installer is not a public download yet. You can [run Rescayl from source](#develop-rescayl) while public downloads are pending.
 
 When a Windows preview is available to you, choose one format:
 
 - **Installer:** download `rescayl-<version>-win.exe` and follow its installation steps
-- **ZIP:** extract `rescayl-<version>-win.zip` and launch `Rescayl.exe`
+- **ZIP, when offered:** extract `rescayl-<version>-win.zip` and launch `Rescayl.exe`
 
 Windows previews are unsigned and use manual updates. Automatic updates are disabled during this preview stage.
 
 | Platform | Status |
 | --- | --- |
-| Windows x64 | Primary target; installer and ZIP preview builds prepared |
+| Windows x64 | Primary target; installer preview prepared |
 | Linux | Docker build and software Vulkan validation available; desktop testing pending |
 | macOS | Inherited packaging configuration; no validated Rescayl release |
 
 ### Hardware requirements
 
-The [native upscaler](https://github.com/upscayl/upscayl-ncnn) uses Vulkan. Desktop upscaling requires compatible Vulkan support and graphics drivers; compatibility depends on your hardware. A CPU-only desktop workflow has not been validated.
+The [regular upscaler](https://github.com/upscayl/upscayl-ncnn) requires compatible Vulkan support and graphics drivers. The optional Windows Detail preview uses DirectML with DirectX 12 graphics support. Compatibility depends on your hardware; a CPU-only desktop workflow has not been validated.
 
 ## Use Rescayl
 
 Once the app is running, follow the image workflow:
 
 1. Click **Select Image**, drag an image into the workspace, or paste an image with **Ctrl+V**.
-2. Choose an AI model. **Rescayl Standard** is the default starting point.
+2. Choose an enhancement. **Rescayl Standard** is the default starting point.
 3. Set the scale and output folder. Choose your saved image format in **Settings**.
-4. Click **Rescayl 🚀** in Step 4 to process the image.
+4. Click **Upscale** in Step 4 to process the image.
 5. Review the before/after view and find the saved result in the output folder.
 
-Turn on **Batch Rescayl** to process a folder of images. Additional output and model controls are in **Settings**.
+Turn on **Process a folder** to upscale a folder of images. Additional output controls are in **Settings**, with specialist controls under **Advanced processing**.
 
-For help with a Rescayl problem, [open an issue in this fork](https://github.com/forsonny/Rescayl/issues). Include your app version, operating system, GPU, model, and relevant logs from **Settings**.
+For small, clear photos and artwork, **Detail preview** offers an alternative 4× PNG result. **Preview options** contains the image limits and graphics processor choice. Standard remains the default enhancement.
+
+For help with a Rescayl problem, [open an issue in this fork](https://github.com/forsonny/Rescayl/issues). Find the app version in **About Rescayl**, and system information and logs in **Settings → Troubleshooting**.
 
 ## Roadmap
 
