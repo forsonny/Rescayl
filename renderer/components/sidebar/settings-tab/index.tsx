@@ -129,36 +129,6 @@ function SettingsTab({
         enableScrolling();
       }}
     >
-      <div className="flex flex-col gap-2 text-sm font-medium uppercase">
-        <p>{t("SETTINGS.SUPPORT.TITLE")}</p>
-        <a
-          className="btn btn-primary"
-              href="https://github.com/forsonny/Rescayl#readme"
-          target="_blank"
-        >
-          {t("SETTINGS.SUPPORT.DOCS_BUTTON_TITLE")}
-        </a>
-        {FEATURE_FLAGS.APP_STORE_BUILD && (
-          <button
-            className="btn btn-primary"
-            onClick={async () => {
-              const systemInfo = await window.electron.getSystemInfo();
-              const appVersion = await window.electron.getAppVersion();
-              const mailToUrl = `mailto:support@upscayl.org?subject=Upscayl%20Issue%3A%20%3CWRITE%20HERE%3E&body=Hi%20Nayam!%0AI'm%20having%20an%20issue%20with%20Upscayl%20${appVersion}%0A%0A%3CPLEASE%20DESCRIBE%20ISSUE%20HERE%3E%0A%0A---%0ALOGS%3A%0A${logData.join("\n")}%0A%0ADEVICE%20DETAILS%3A%20${JSON.stringify(systemInfo)}`;
-              window.open(mailToUrl, "_blank");
-            }}
-          >
-            {t("SETTINGS.SUPPORT.EMAIL_BUTTON_TITLE")}
-          </button>
-        )}
-      </div>
-
-      <LogArea
-        copyOnClickHandler={copyOnClickHandler}
-        isCopied={isCopied}
-        logData={logData}
-      />
-
       {/* THEME SELECTOR */}
       <SelectTheme />
 
@@ -179,18 +149,19 @@ function SettingsTab({
 
       <InputCustomResolution />
 
-      <InputCompression
-        compression={compression}
-        handleCompressionChange={handleCompressionChange}
-      />
-
       <SaveOutputFolderToggle />
 
       <OverwriteToggle />
       <TurnOffNotificationsToggle />
       {FEATURE_FLAGS.AUTO_UPDATES_ENABLED && <AutoUpdateToggle />}
 
-      {/* GPU ID INPUT */}
+      <details>
+        <summary className="cursor-pointer text-sm font-medium">Advanced processing</summary>
+        <div className="mt-4 flex flex-col gap-6">
+      <InputCompression
+        compression={compression}
+        handleCompressionChange={handleCompressionChange}
+      />
       <InputGpuId gpuId={gpuId} handleGpuIdChange={handleGpuIdChange} />
 
       <InputTileSize />
@@ -202,11 +173,47 @@ function SettingsTab({
       />
 
       <TTAModeToggle />
+        </div>
+      </details>
+
+      <div className="flex flex-col gap-2 text-sm font-medium">
+        <a
+          className="btn btn-primary"
+          href="https://github.com/forsonny/Rescayl#readme"
+          target="_blank"
+        >
+          {t("SETTINGS.SUPPORT.DOCS_BUTTON_TITLE")}
+        </a>
+        {FEATURE_FLAGS.APP_STORE_BUILD && (
+          <button
+            className="btn btn-primary"
+            onClick={async () => {
+              const systemInfo = await window.electron.getSystemInfo();
+              const appVersion = await window.electron.getAppVersion();
+              const mailToUrl = `mailto:support@upscayl.org?subject=Upscayl%20Issue%3A%20%3CWRITE%20HERE%3E&body=Hi%20Nayam!%0AI'm%20having%20an%20issue%20with%20Upscayl%20${appVersion}%0A%0A%3CPLEASE%20DESCRIBE%20ISSUE%20HERE%3E%0A%0A---%0ALOGS%3A%0A${logData.join("\n")}%0A%0ADEVICE%20DETAILS%3A%20${JSON.stringify(systemInfo)}`;
+              window.open(mailToUrl, "_blank");
+            }}
+          >
+            {t("SETTINGS.SUPPORT.EMAIL_BUTTON_TITLE")}
+          </button>
+        )}
+      </div>
+
+      <details>
+        <summary className="cursor-pointer text-sm font-medium">Troubleshooting</summary>
+        <div className="mt-4 flex flex-col gap-6">
+          <LogArea
+            copyOnClickHandler={copyOnClickHandler}
+            isCopied={isCopied}
+            logData={logData}
+          />
+          <SystemInfo />
+        </div>
+      </details>
 
       {/* RESET SETTINGS */}
       <ResetSettingsButton />
 
-      <SystemInfo />
     </div>
   );
 }

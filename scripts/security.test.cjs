@@ -19,6 +19,89 @@ function load(file, mocks = {}, globals = {}) {
   return module.exports;
 }
 
+test('MoSR admits rectangular images within both its pixel budget and edge limit', () => {
+  const { fitsMosrPreview } = require('../export/common/mosr-preview.js');
+  for (const [width, height] of [[512, 512], [1024, 256], [256, 1024], [513, 511], [1024, 1]]) {
+    assert.equal(fitsMosrPreview(width, height), true, `${width}x${height}`);
+  }
+  for (const [width, height] of [[1024, 257], [257, 1024], [513, 512], [512, 513], [768, 384], [1025, 1], [1, 1025], [0, 512], [null, null], [undefined, 512]]) {
+    assert.equal(fitsMosrPreview(width, height), false, `${width}x${height}`);
+  }
+});
+
+test('MoSR GPU discovery uses a fixed hidden query and reports unavailable discovery', async () => {
+  const { promisify } = require('node:util');
+  let captured, failure = false;
+  const execute = () => {};
+  execute[promisify.custom] = async (...args) => {
+    captured = args;
+    if (failure) throw Error('PowerShell unavailable');
+    return { stdout: JSON.stringify([{ id: 7, name: 'Example GPU™', luid: '00000000:0001AA57' }]) };
+  };
+  const { getMosrGpus } = load('export/electron/utils/get-mosr-gpus.js', {
+    'node:child_process': { execFile: execute },
+  }, { process: { ...process, platform: 'win32' } });
+  const gpus = await getMosrGpus();
+  assert.equal(gpus[0].id, 7);
+  assert.equal(gpus[0].name, 'Example GPU™');
+  assert.equal(gpus[0].luid, '00000000:0001aa57');
+  assert.equal(path.basename(captured[0]), 'powershell.exe');
+  assert.equal(captured[2].windowsHide, true);
+  assert.equal(captured[2].timeout, 15000);
+  assert.match(Buffer.from(captured[1].at(-1), 'base64').toString('utf16le'), /CreateDXGIFactory1/);
+  failure = true;
+  await assert.rejects(getMosrGpus(), /Choose Default/);
+});
+
+test('a removed MoSR adapter fails before decoding or loading the model', async () => {
+  const { upscale } = load('export/electron/mosr-worker.js', {
+    sharp: () => ({ metadata: async () => ({ width: 128, height: 128, format: 'png' }) }),
+    'onnxruntime-node': {},
+    './utils/get-mosr-gpus': { getMosrGpus: async () => [{ id: 0, name: 'Replacement GPU', luid: '00000000:00000001' }] },
+  }, { process: { ...process, platform: 'win32' } });
+  await assert.rejects(upscale('input.png', 'output.png', 'cache', '00000000:00000002'), /no longer available/);
+});
+
+test('MoSR publishes only completed, uncancelled output and preserves existing files on failure', () => {
+  const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'rescayl-mosr-'));
+  const output = path.join(fixture, 'output.png');
+  try {
+    for (const outcome of ['success', 'cancel', 'exit-failure', 'worker-error', 'missing-output']) {
+      fs.writeFileSync(output, 'previous image');
+      const child = new EventEmitter();
+      let kills = 0, spawnArgs;
+      child.kill = () => { kills++; return true; };
+      const errors = [];
+      const { spawnMosr } = load('export/electron/utils/spawn-mosr.js', {
+        child_process: { spawn: (...args) => { spawnArgs = args; return child; } },
+        electron: { app: { getAppPath: () => root, getPath: () => fixture } },
+        '../path-access': { assertOutputAccess: file => assert.equal(path.dirname(file), fixture) },
+      });
+      const gpu = outcome === 'success' ? '00000000:0001aa57' : '';
+      const job = spawnMosr(['-i', path.join(fixture, 'input.png'), '-o', output, ...(gpu ? ['-g', gpu] : [])]);
+      child.on('error', error => errors.push(error.message));
+      const staged = spawnArgs[1][2];
+      assert.equal(spawnArgs[0], process.execPath);
+      assert.equal(spawnArgs[2].env.ELECTRON_RUN_AS_NODE, '1');
+      assert.equal(spawnArgs[2].windowsHide, true);
+      assert.equal(spawnArgs[1][4], gpu);
+      assert.notEqual(staged, output);
+      if (outcome !== 'missing-output') fs.writeFileSync(staged, 'new image');
+      if (outcome === 'cancel') job.cancel();
+      if (outcome === 'worker-error') child.emit('error', Error('worker failed'));
+      child.emit('close', outcome === 'exit-failure' ? 1 : 0, null);
+      assert.equal(fs.readFileSync(output, 'utf8'), outcome === 'success' ? 'new image' : 'previous image');
+      assert.equal(fs.existsSync(staged), false);
+      assert.equal(job.isCancelled(), outcome === 'cancel');
+      assert.equal(kills, outcome === 'cancel' ? 1 : 0);
+      assert.equal(errors.length, ['worker-error', 'missing-output'].includes(outcome) ? 1 : 0);
+    }
+  } finally {
+    for (const file of fs.readdirSync(fixture)) fs.unlinkSync(path.join(fixture, file));
+    fs.rmdirSync(fixture);
+  }
+});
+
 test('news is data only, including executable-language and YAML-tag fixtures', () => {
   const { parseNews } = load('renderer/lib/parse-news.ts');
   const benign = parseNews('---\ntitle: News\nversion: "2026.10.04"\ndontShow: false\n---\nHello');
@@ -44,6 +127,8 @@ test('bundled sandbox preload exposes specific operations and strips IPC events'
   assert.equal(api.send, undefined);
   assert.equal(api.invoke, undefined);
   assert.equal(api.on, undefined);
+  api.getMosrGpus();
+  assert.equal(calls.pop()[0], 'get-mosr-gpus');
   api.pasteImage('encoded');
   assert.equal(calls[0][1].encodedBuffer, 'encoded');
   assert.deepEqual(Object.keys(calls[0][1]), ['encodedBuffer']);
@@ -85,6 +170,15 @@ test('selected paths, job options, protocol assets and clipboard destinations st
     assert.equal(access.hasDirectoryAccess(outside), false);
     const payload = { imagePath: input, outputPath: selected, model: 'upscayl-standard-4x', scale: '4', gpuId: null, compression: '0', tileSize: null, saveImageAs: 'png', ttaMode: false, copyMetadata: false, noImageProcessing: false, useCustomWidth: false, overwrite: false };
     security.validateJobPayload(payload);
+    const preview = { ...payload, model: 'mosr-clean-preview-4x' };
+    if (process.platform === 'win32') {
+      security.validateJobPayload(preview);
+      security.validateJobPayload({ ...preview, mosrGpu: '00000000:0001aa57' });
+    }
+    else assert.throws(() => security.validateJobPayload(preview));
+    assert.throws(() => security.validateJobPayload({ ...preview, batchFolderPath: selected }, true));
+    for (const mosrGpu of ['1', '', '../gpu', '00000000:0001aa57; command', 1, {}]) assert.throws(() => security.validateJobPayload({ ...preview, mosrGpu }));
+    for (const invalid of [{ scale: '2' }, { saveImageAs: 'jpg' }, { gpuId: '1' }, { ttaMode: true }, { tileSize: 32 }, { useCustomWidth: true }, { noImageProcessing: true }, { compression: '10' }]) assert.throws(() => security.validateJobPayload({ ...preview, ...invalid }));
     security.validateJobPayload({ ...payload, batchFolderPath: selected }, true);
     for (const invalid of [{ imagePath: other }, { outputPath: outside }, { model: '../other' }, { saveImageAs: 'exe' }, { scale: '4 --other' }, { gpuId: '--other' }, { compression: '101' }, { tileSize: 16 }, { copyMetadata: 'true' }]) assert.throws(() => security.validateJobPayload({ ...payload, ...invalid }));
     assert.equal(security.isTrustedRendererURL('upscayl://app/index.html', false), true);

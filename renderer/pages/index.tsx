@@ -106,11 +106,28 @@ const Home = () => {
       setProgress("");
       setDoubleUpscaylCounter(0);
     }));
+    const errorDetails = (message: string, data: string) => (
+      <div className="space-y-2">
+        <p>{message}</p>
+        <details>
+          <summary className="cursor-pointer text-xs">Technical details</summary>
+          <pre className="mt-2 max-h-40 overflow-auto whitespace-pre-wrap break-all text-xs">{data}</pre>
+        </details>
+      </div>
+    );
+    const describeError = (data: string) => {
+      if (/model download|integrity check/i.test(data)) return "The preview download couldn't finish. Check your connection or try again later.";
+      if (/invalid GPU|selected MoSR GPU|could not list MoSR GPUs/i.test(data)) return t("ERRORS.GPU_ERROR.DESCRIPTION", { data: "" });
+      if (/preview accepts|exceeds pixel limit/i.test(data)) return "This image is too large for the detail preview. Use the regular upscale button or choose a smaller image.";
+      if (/tile size/i.test(data)) return t("ERRORS.TILE_SIZE_ERROR.DESCRIPTION", { data: "" });
+      if (/filename.*(?:long|length)|path.*length/i.test(data)) return "Use a shorter file name or choose another output folder.";
+      return t("ERRORS.EXCEPTION_ERROR.DESCRIPTION");
+    };
     const handleErrors = (data: string) => {
       if (data.includes("Invalid GPU")) {
         toast({
           title: t("ERRORS.GPU_ERROR.TITLE"),
-          description: t("ERRORS.GPU_ERROR.DESCRIPTION", { data }),
+          description: errorDetails(t("ERRORS.GPU_ERROR.DESCRIPTION", { data: "" }), data),
           action: (
             <div className="flex flex-col gap-2">
               <ToastAction
@@ -134,7 +151,7 @@ const Home = () => {
         if (batchMode) return;
         toast({
           title: t("ERRORS.READ_WRITE_ERROR.TITLE"),
-          description: t("ERRORS.READ_WRITE_ERROR.DESCRIPTION", { data }),
+          description: errorDetails(t("ERRORS.READ_WRITE_ERROR.DESCRIPTION", { data: "" }), data),
           action: (
             <div className="flex flex-col gap-2">
               <ToastAction
@@ -157,13 +174,13 @@ const Home = () => {
       } else if (data.includes("tile size")) {
         toast({
           title: t("ERRORS.TILE_SIZE_ERROR.TITLE"),
-          description: t("ERRORS.TILE_SIZE_ERROR.DESCRIPTION", { data }),
+          description: errorDetails(t("ERRORS.TILE_SIZE_ERROR.DESCRIPTION", { data: "" }), data),
         });
         resetImagePaths();
       } else if (data.includes("uncaughtException")) {
         toast({
           title: t("ERRORS.EXCEPTION_ERROR.TITLE"),
-          description: t("ERRORS.EXCEPTION_ERROR.DESCRIPTION"),
+          description: errorDetails(t("ERRORS.EXCEPTION_ERROR.DESCRIPTION"), data),
         });
         resetImagePaths();
       }
@@ -187,14 +204,14 @@ const Home = () => {
     subscriptions.push(window.electron.onMetadataError((data: string) => {
       toast({
         title: t("ERRORS.METADATA_ERROR.TITLE"),
-        description: data,
+        description: errorDetails(t("ERRORS.METADATA_ERROR.DESCRIPTION", { data: "" }), data),
       });
     }));
     // UPSCAYL ERROR
     subscriptions.push(window.electron.onError((data: string) => {
       toast({
         title: t("ERRORS.GENERIC_ERROR.TITLE"),
-        description: data,
+        description: errorDetails(describeError(data), data),
       });
       resetImagePaths();
     }));

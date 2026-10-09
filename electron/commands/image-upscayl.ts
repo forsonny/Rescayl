@@ -19,6 +19,7 @@ import getFilenameFromPath from "../../common/get-file-name";
 import decodePath from "../../common/decode-path";
 import getDirectoryFromPath from "../../common/get-directory-from-path";
 import { MODELS } from "../../common/models-list";
+import { MOSR_PREVIEW_MODEL } from "../../common/mosr-preview";
 import { getPlatform } from "../utils/get-device-specs";
 import { copyMetadata } from "../utils/copy-metadata";
 import { assertOutputAccess } from "../path-access";
@@ -39,7 +40,7 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
   const useCustomWidth = payload.useCustomWidth;
   const customWidth = useCustomWidth ? payload.customWidth : "";
   const model = payload.model as string;
-  const gpuId = payload.gpuId as string;
+  const gpuId = model === MOSR_PREVIEW_MODEL ? payload.mosrGpu?.toLowerCase() ?? "" : payload.gpuId as string;
   const saveImageAs = payload.saveImageAs as ImageFormat;
   const overwrite = payload.overwrite as boolean;
   const imagePath = decodePath(payload.imagePath);
@@ -55,6 +56,8 @@ const imageUpscayl = async (event, payload: ImageUpscaylPayload) => {
     "_rescayl_" +
     (useCustomWidth ? `${customWidth}px_` : `${scale}x_`) +
     model +
+    // An explicit GPU choice must not reuse a different adapter's cached preview.
+    (model === MOSR_PREVIEW_MODEL && gpuId ? `_gpu-${gpuId.replace(":", "-")}` : "") +
     "." +
     saveImageAs;
 

@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue } from "jotai";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import { themeChange } from "theme-change";
 import useLogger from "../../hooks/use-logger";
@@ -17,11 +17,15 @@ import { translationAtom } from "@/atoms/translations-atom";
 import { SelectImageScale } from "../settings-tab/select-image-scale";
 import SelectModelDialog from "./select-model-dialog";
 import { ImageFormat } from "@/lib/valid-formats";
+import { fitsMosrPreview, MOSR_PREVIEW_MAX_EDGE, MOSR_PREVIEW_MAX_PIXELS } from "@common/mosr-preview";
+import type { MosrGpu } from "@common/mosr-preview";
 
 interface IProps {
   selectImageHandler: () => Promise<void>;
   selectFolderHandler: () => Promise<void>;
-  upscaylHandler: () => Promise<void>;
+  upscaylHandler: (preview?: boolean) => Promise<void>;
+  mosrGpu: string;
+  setMosrGpu: React.Dispatch<React.SetStateAction<string>>;
   batchMode: boolean;
   setBatchMode: React.Dispatch<React.SetStateAction<boolean>>;
   imagePath: string;
@@ -39,6 +43,8 @@ function UpscaylSteps({
   selectImageHandler,
   selectFolderHandler,
   upscaylHandler,
+  mosrGpu,
+  setMosrGpu,
   batchMode,
   setBatchMode,
   imagePath,
@@ -52,6 +58,30 @@ function UpscaylSteps({
   const rememberOutputFolder = useAtomValue(rememberOutputFolderAtom);
   const customWidth = useAtomValue(customWidthAtom);
   const useCustomWidth = useAtomValue(useCustomWidthAtom);
+  const [mosrGpus, setMosrGpus] = useState<MosrGpu[]>([]);
+  const [gpuLoading, setGpuLoading] = useState(true);
+  const [gpuError, setGpuError] = useState("");
+
+  useEffect(() => {
+    if (window.electron.platform !== "win") return;
+    let active = true;
+    window.electron.getMosrGpus()
+      .then(gpus => {
+        if (!active) return;
+        setMosrGpus(gpus);
+        if (mosrGpu && !gpus.some(gpu => gpu.luid === mosrGpu)) {
+          setMosrGpu("");
+          setGpuError("Selected graphics processor unavailable. Using Default.");
+        }
+      })
+      .catch(() => {
+        if (!active) return;
+        setMosrGpu("");
+        setGpuError("Graphics processors couldn't be listed. You can still use Default.");
+      })
+      .finally(() => { if (active) setGpuLoading(false); });
+    return () => { active = false; };
+  }, []);
 
   const logit = useLogger();
   const { toast } = useToast();
@@ -261,7 +291,7 @@ function UpscaylSteps({
                       "APP.SCALE_SELECTION.NO_OUTPUT_FOLDER_ALERT",
                     ),
                   })
-              : upscaylHandler
+              : () => upscaylHandler()
           }
         >
           {progress.length > 0
@@ -269,6 +299,51 @@ function UpscaylSteps({
             : t("APP.SCALE_SELECTION.START_BUTTON_TITLE")}
         </button>
       </div>
+      {window.electron.platform === "win" && !batchMode && (
+        <div className="border-t border-base-content/20 pt-4">
+          <p className="step-heading">Detail preview</p>
+          <p className="mb-3 text-sm">
+            Try a different enhancement for clear photos and artwork.
+            Saves a separate 4× PNG.
+          </p>
+          <p className="mb-3 text-xs text-base-content/80">For small images. First use needs a one-time download.</p>
+          <details className="mb-3">
+            <summary className="cursor-pointer text-sm">Preview options</summary>
+            <div className="mt-3 space-y-2">
+          <label htmlFor="mosr-gpu" className="mb-1 block text-sm">Graphics processor</label>
+          <select
+            id="mosr-gpu"
+            className="select select-bordered mb-2 w-full max-w-full"
+            value={mosrGpu}
+            disabled={gpuLoading || !!progress}
+            onChange={event => setMosrGpu(event.target.value)}
+          >
+            <option value="">{mosrGpus.find(gpu => gpu.id === 0) ? `Default — ${mosrGpus.find(gpu => gpu.id === 0).name}` : "Default"}</option>
+            {mosrGpus.map(gpu => <option key={gpu.luid} value={gpu.luid}>{gpu.name}</option>)}
+          </select>
+          <p className="mb-3 text-sm">
+            {gpuLoading ? "Finding graphics processors…" : gpuError || "Used for previews until you close the app."}
+          </p>
+          <p className="text-xs text-base-content/80">
+            Size limit: {MOSR_PREVIEW_MAX_PIXELS.toLocaleString()} pixels total,
+            with neither side over {MOSR_PREVIEW_MAX_EDGE} pixels. Examples:
+            512×512 or 1024×256.
+          </p>
+          <p className="text-xs text-base-content/80">Enhancement: MoSR. Initial download: 17 MB.</p>
+            </div>
+          </details>
+          <button
+            className="btn btn-primary"
+            disabled={!!progress || !outputPath || !imagePath || !fitsMosrPreview(dimensions.width, dimensions.height)}
+            onClick={() => upscaylHandler(true)}
+          >
+            Try detail preview
+          </button>
+          {imagePath && dimensions.width && dimensions.height && !fitsMosrPreview(dimensions.width, dimensions.height) && (
+            <p className="mt-2 text-sm">This image is too large for the preview. Use the regular upscale button above, or choose a smaller image.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

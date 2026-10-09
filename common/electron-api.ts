@@ -1,4 +1,5 @@
 import type { BatchUpscaylPayload, DoubleUpscaylPayload, ImageUpscaylPayload } from "./types/types";
+import type { MosrGpu } from "./mosr-preview";
 
 type Subscription<T> = (listener: (data: T) => void) => () => void;
 
@@ -18,6 +19,7 @@ export interface DesktopAPI {
   writeLog(message: string): void;
   getSystemInfo(): Promise<{ platform: string; release: string; arch: string; model: string; cpuCount: number; gpu?: Record<string, any> }>;
   getAppVersion(): Promise<string>;
+  getMosrGpus(): Promise<MosrGpu[]>;
   onLog: Subscription<string>;
   onFinishing: Subscription<string>;
   onWarning: Subscription<string>;

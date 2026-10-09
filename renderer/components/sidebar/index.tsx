@@ -40,6 +40,7 @@ import useUpscaylVersion from "../hooks/use-upscayl-version";
 import useTranslation from "../hooks/use-translation";
 import UpscaylLogo from "./upscayl-logo";
 import SidebarToggleButton from "./sidebar-button";
+import { MOSR_PREVIEW_MODEL } from "@common/mosr-preview";
 
 const Sidebar = ({
   setUpscaledImagePath,
@@ -74,6 +75,7 @@ const Sidebar = ({
   const [saveImageAs, setSaveImageAs] = useAtom(saveImageAsAtom);
 
   const [selectedTab, setSelectedTab] = useState(0);
+  const [mosrGpu, setMosrGpu] = useState("");
 
   // ATOMIC STATES
   const overwrite = useAtomValue(overwriteAtom);
@@ -92,14 +94,14 @@ const Sidebar = ({
   const ttaMode = useAtomValue(ttaModeAtom);
   const [copyMetadata] = useAtom(copyMetadataAtom);
 
-  const upscaylHandler = async () => {
+  const upscaylHandler = async (preview = false) => {
     logit("🔄 Resetting Upscaled Image Path");
     setUpscaledImagePath("");
     setUpscaledBatchFolderPath("");
-    if (imagePath !== "" || batchFolderPath !== "") {
+    if (imagePath !== "" || (!preview && batchFolderPath !== "")) {
       setProgress(t("APP.PROGRESS.WAIT_TITLE"));
       // Double Upscayl
-      if (doubleUpscayl) {
+      if (doubleUpscayl && !preview) {
         window.electron.upscaleDouble({
             overwrite,
             imagePath,
@@ -124,7 +126,7 @@ const Sidebar = ({
           imageUpscayls: prev.imageUpscayls + 1,
         }));
         logit("🏁 DOUBLE_UPSCAYL");
-      } else if (batchMode) {
+      } else if (batchMode && !preview) {
         // Batch Upscayl
         setDoubleUpscayl(false);
         window.electron.upscaleBatch({
@@ -166,6 +168,19 @@ const Sidebar = ({
           tileSize,
           ttaMode,
           copyMetadata,
+          ...(preview ? {
+            model: MOSR_PREVIEW_MODEL,
+            scale: "4",
+            saveImageAs: "png" as const,
+            gpuId: null,
+            mosrGpu: mosrGpu || undefined,
+            ttaMode: false,
+            tileSize: 0,
+            useCustomWidth: false,
+            customWidth: null,
+            compression: "0",
+            noImageProcessing: false,
+          } : {}),
         });
         setUserStats((prev) => ({
           ...prev,
@@ -208,7 +223,7 @@ const Sidebar = ({
           <div className="mac-titlebar pt-8"></div>
         )}
 
-        <Header version={version} />
+        <Header />
 
         <NewsModal />
 
@@ -219,6 +234,8 @@ const Sidebar = ({
             selectImageHandler={selectImageHandler}
             selectFolderHandler={selectFolderHandler}
             upscaylHandler={upscaylHandler}
+            mosrGpu={mosrGpu}
+            setMosrGpu={setMosrGpu}
             batchMode={batchMode}
             setBatchMode={setBatchMode}
             imagePath={imagePath}
@@ -242,7 +259,7 @@ const Sidebar = ({
             logData={logData}
           />
         )}
-        <Footer />
+        <Footer version={version} />
       </div>
     </>
   );

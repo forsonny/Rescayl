@@ -2,7 +2,7 @@ import { translationAtom } from "@/atoms/translations-atom";
 import { useAtomValue } from "jotai";
 import React from "react";
 
-function InstructionsCard({ version, batchMode }) {
+function InstructionsCard({ batchMode }) {
   const t = useAtomValue(translationAtom);
 
   return (
@@ -19,10 +19,9 @@ function InstructionsCard({ version, batchMode }) {
       ) : (
         <div className="flex flex-col gap-1 text-center text-sm text-base-content/70">
           <p>{t("APP.RIGHT_PANE_INFO.SELECT_IMAGES_DESCRIPTION")}</p>
-          <p>{t("APP.RIGHT_PANE_INFO.PASTE_IMAGE_DESCRIPTION")}</p>
+          <p>{t("APP.RIGHT_PANE_INFO.PASTE_IMAGE_DESCRIPTION", { shortcut: window.electron.platform === "mac" ? "⌘V" : "Ctrl+V" })}</p>
         </div>
       )}
-      <p className="badge badge-primary text-sm">{t("TITLE")} v{version}</p>
     </div>
   );
 }

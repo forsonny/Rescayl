@@ -3,7 +3,7 @@ import { translationAtom } from "@/atoms/translations-atom";
 import { useAtomValue, useSetAtom } from "jotai";
 import React from "react";
 
-function Footer() {
+function Footer({ version }: { version: string | null }) {
   const setShowNewsModal = useSetAtom(showNewsModalAtom);
   const news = useAtomValue(newsAtom);
   const t = useAtomValue(translationAtom);
@@ -18,6 +18,10 @@ function Footer() {
           {t("FOOTER.NEWS_TITLE")}
         </button>
       )}
+      <details>
+        <summary className="cursor-pointer py-1 text-base-content/80">About Rescayl</summary>
+        <div className="space-y-1 py-2">
+      {version && <p>Version {version}</p>}
       <p>
         {t("FOOTER.COPYRIGHT")} {new Date().getFullYear()} -{" "}
         <a
@@ -39,6 +43,8 @@ function Footer() {
           {t("FOOTER.LINK_TITLE")}
         </a>
       </p>
+        </div>
+      </details>
     </div>
   );
 }

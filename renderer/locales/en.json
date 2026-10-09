@@ -3,7 +3,7 @@
   "INTRO": "Introducing Upscayl Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Star us on GitHub 😁",
-    "DESCRIPTION": "AI Image Upscaler"
+    "DESCRIPTION": "Image upscaler"
   },
   "FOOTER": {
     "NEWS_TITLE": "RESCAYL NEWS",
@@ -45,8 +45,8 @@
       "WEBP": "WEBP"
     },
     "COPY_METADATA": {
-      "TITLE": "COPY IMAGE METADATA",
-      "DESCRIPTION": "Keep original image metadata (EXIF) in the upscaled image.",
+      "TITLE": "KEEP IMAGE INFORMATION",
+      "DESCRIPTION": "Keep information such as the camera, date and location in the saved image.",
       "SUGGEST_JPG_TITLE": "Recommended Format Change",
       "SUGGEST_JPG_DESCRIPTION": "For better metadata compatibility across different systems, we recommend using JPG format. Would you like to change?",
       "CHANGE_TO_JPG": "Change to JPG",
@@ -98,8 +98,8 @@
       "DESCRIPTION": "If enabled, Rescayl will not send any system notifications on success or failure."
     },
     "SUPPORT": {
-      "TITLE": "Having issues?",
-      "DOCS_BUTTON_TITLE": "🙏 GET HELP",
+      "TITLE": "Need help?",
+      "DOCS_BUTTON_TITLE": "Help",
       "EMAIL_BUTTON_TITLE": "📧 EMAIL DEVELOPER"
     },
     "TTA_MODE": {
@@ -113,8 +113,8 @@
   "APP": {
     "TITLE": "Rescayl",
     "BATCH_MODE": {
-      "TITLE": "Batch Rescayl",
-      "DESCRIPTION": "This will let you Rescayl all files in a folder at once"
+      "TITLE": "Process a folder",
+      "DESCRIPTION": "Upscale the supported images in a folder."
     },
     "FILE_SELECTION": {
       "TITLE": "Step 1",
@@ -123,7 +123,7 @@
     },
     "MODEL_SELECTION": {
       "TITLE": "Step 2",
-      "DESCRIPTION": "Select AI Model",
+      "DESCRIPTION": "Choose an enhancement",
       "IMPORTED_CUSTOM_MODELS": "Imported Custom Models",
       "BEFORE": "Before",
       "AFTER": "After",
@@ -167,8 +167,8 @@
       "TITLE": "Step 3",
       "MAC_APP_STORE_ALERT": "Due to MacOS App Store security restrictions, Rescayl requires you to select an output folder everytime you start it.\n\nTo avoid this, you can permanently save a default output folder in the Rescayl 'Settings' tab.",
       "NOT_SELECTED": "Not Selected",
-      "DEFAULT_IMG_PATH": "Defaults to Image's path",
-      "DEFAULT_FOLDER_PATH": "Defaults to  Folder's path",
+      "DEFAULT_IMG_PATH": "Saves beside the original image unless you choose another folder",
+      "DEFAULT_FOLDER_PATH": "Uses the selected folder by default",
       "BUTTON_TITLE": "Set Output Folder"
     },
     "SCALE_SELECTION": {
@@ -176,7 +176,7 @@
       "FROM_TITLE": "Rescayl from ",
       "TO_TITLE": " to ",
       "NO_OUTPUT_FOLDER_ALERT": "Please select an output folder first",
-      "START_BUTTON_TITLE": "Rescayl 🚀",
+      "START_BUTTON_TITLE": "Upscale",
       "IN_PROGRESS_BUTTON_TITLE": "Upscaling ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -202,8 +202,8 @@
       "SELECT_FOLDER": "Select a Folder",
       "SELECT_IMAGE": "Select an Image",
       "SELECT_FOLDER_DESCRIPTION": "Make sure that the folder doesn't contain anything except PNG, JPG, JPEG & WEBP images.",
-      "SELECT_IMAGES_DESCRIPTION": "Select or drag and drop a PNG, JPG, JPEG or WEBP image.",
-      "PASTE_IMAGE_DESCRIPTION": "Hit Ctrl+V or ⌘+V to Paste image from Clipboard"
+      "SELECT_IMAGES_DESCRIPTION": "Choose a PNG, JPG or WebP image, or drag it here.",
+      "PASTE_IMAGE_DESCRIPTION": "Paste an image with {shortcut}."
     },
     "PROGRESS": {
       "PROCESSING_TITLE": "Processing the image...",
@@ -226,8 +226,8 @@
   },
   "ERRORS": {
     "GPU_ERROR": {
-      "TITLE": "GPU Error",
-      "DESCRIPTION": "Ran into an issue with the GPU. Please read the docs for troubleshooting! ({data})"
+      "TITLE": "Graphics processor problem",
+      "DESCRIPTION": "Try the default graphics processor or choose another in the processing options."
     },
     "COPY_ERROR": {
       "TITLE": "Copy Error",
@@ -235,15 +235,15 @@
     },
     "READ_WRITE_ERROR": {
       "TITLE": "Read/Write Error",
-      "DESCRIPTION": "Make sure that the path is correct and you have proper read/write permissions \n({data})"
+      "DESCRIPTION": "Choose a file you can open and an output folder you can save to."
     },
     "TILE_SIZE_ERROR": {
       "TITLE": "Error",
-      "DESCRIPTION": "The tile size is wrong. Please change the tile size in the settings or set to 0 ({data})"
+      "DESCRIPTION": "Set the tile size to 0 in Advanced processing, then try again."
     },
     "EXCEPTION_ERROR": {
-      "TITLE": "Exception Error",
-      "DESCRIPTION": "Rescayl encountered an error. Possibly, the Rescayl binary failed to execute the commands properly. Try checking the logs to see if you get any information. You can post an issue on Rescayl's GitHub repository for more help."
+      "TITLE": "Could not finish",
+      "DESCRIPTION": "We couldn't finish this image. Try again, or open Help in Settings."
     },
     "GENERIC_ERROR": {
       "TITLE": "Error"
@@ -263,8 +263,8 @@
       "DESCRIPTION": "Please select an image to upscale"
     },
     "METADATA_ERROR": {
-      "TITLE": "Metadata Copy Error",
-      "DESCRIPTION": "Could not copy metadata from the original image to the generated image. ({data})"
+      "TITLE": "Image information not copied",
+      "DESCRIPTION": "The image was saved, but its extra information could not be copied."
     },
     "OPEN_DOCS_TITLE": "Open Docs",
     "OPEN_DOCS_BUTTON_TITLE": "Troubleshoot"

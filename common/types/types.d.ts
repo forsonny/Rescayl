@@ -1,6 +1,7 @@
 import { ImageFormat } from "@electron/types/types";
 
 export type ImageUpscaylPayload = {
+  mosrGpu?: string;
   imagePath: string;
   outputPath: string;
   scale: string;

@@ -24,7 +24,9 @@ import { registerProtocols } from "./protocols";
 import { handleIPC, onIPC } from "./ipc";
 import { allowFile, hasDirectoryAccess, hasModelAccess } from "./path-access";
 import { validateJobPayload } from "./security";
+import { MOSR_PREVIEW_MODEL } from "../common/mosr-preview";
 import { getAppVersion, getDeviceSpecs } from "./utils/get-device-specs";
+import { getMosrGpus } from "./utils/get-mosr-gpus";
 import path from "path";
 
 // INITIALIZATION
@@ -116,6 +118,7 @@ onIPC(ELECTRON_COMMANDS.FOLDER_UPSCAYL, (event, payload) => {
 
 onIPC(ELECTRON_COMMANDS.DOUBLE_UPSCAYL, (event, payload) => {
   validateJobPayload(payload);
+  if (payload.model === MOSR_PREVIEW_MODEL) throw new Error("MoSR preview supports a single pass only.");
   return doubleUpscayl(event, payload);
 });
 
@@ -129,6 +132,7 @@ handleIPC("use-dropped-file", (_event, value) => {
 
 handleIPC("get-system-info", getDeviceSpecs);
 handleIPC("get-app-version", getAppVersion);
+handleIPC("get-mosr-gpus", () => getMosrGpus());
 
 if (!FEATURE_FLAGS.APP_STORE_BUILD && FEATURE_FLAGS.AUTO_UPDATES_ENABLED) {
   autoUpdater.on("update-downloaded", autoUpdate);

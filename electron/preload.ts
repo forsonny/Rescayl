@@ -24,6 +24,7 @@ const api: DesktopAPI = {
   writeLog: (message) => ipcRenderer.send("renderer-log", message),
   getSystemInfo: () => ipcRenderer.invoke("get-system-info"),
   getAppVersion: () => ipcRenderer.invoke("get-app-version"),
+  getMosrGpus: () => ipcRenderer.invoke("get-mosr-gpus"),
   onLog: (listener) => subscribe(commands.LOG, listener),
   onFinishing: (listener) => subscribe(commands.SCALING_AND_CONVERTING, listener),
   onWarning: (listener) => subscribe(commands.UPSCAYL_WARNING, listener),

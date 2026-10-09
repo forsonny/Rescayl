@@ -19,7 +19,6 @@ import { ImageFormat, VALID_IMAGE_FORMATS } from "@/lib/valid-formats";
 import ProgressBar from "./progress-bar";
 import InstructionsCard from "./instructions-card";
 import MoreOptionsDrawer from "./more-options-drawer";
-import useUpscaylVersion from "../hooks/use-upscayl-version";
 import MacTitlebarDragRegion from "./mac-titlebar-drag-region";
 import LensViewer from "./lens-view";
 import ImageViewer from "./image-viewer";
@@ -61,7 +60,6 @@ const MainContent = ({
   const t = useTranslation();
   const logit = useLogger();
   const { toast } = useToast();
-  const version = useUpscaylVersion();
 
   const [outputPath, setOutputPath] = useAtom(savedOutputPathAtom);
   const progress = useAtomValue(progressAtom);
@@ -283,7 +281,7 @@ const MainContent = ({
 
       {/* DEFAULT PANE INFO */}
       {showInformationCard && (
-        <InstructionsCard version={version} batchMode={batchMode} />
+        <InstructionsCard batchMode={batchMode} />
       )}
 
       <MoreOptionsDrawer

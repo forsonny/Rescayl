@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { MODELS } from "../common/models-list";
+import { MOSR_PREVIEW_MODEL } from "../common/mosr-preview";
 import { hasDirectoryAccess, hasImageAccess, hasModelAccess, isWithin } from "./path-access";
 import { savedCustomModelsPath } from "./utils/config-variables";
 
@@ -41,7 +42,12 @@ export const validateJobPayload = (payload: any, batch = false) => {
   if (!(batch ? hasDirectoryAccess(input) : hasImageAccess(input))) throw new Error("Select the input using the file or folder picker first.");
   if (!hasDirectoryAccess(payload.outputPath)) throw new Error("Select the output folder first.");
   if (typeof payload.model !== "string" || !payload.model || [".", ".."].includes(payload.model) || /[\\/\0:]/.test(payload.model)) throw new Error("Invalid model name.");
-  if (!Object.prototype.hasOwnProperty.call(MODELS, payload.model)) {
+  if (payload.model === MOSR_PREVIEW_MODEL) {
+    if (process.platform !== "win32" || batch || payload.scale !== "4" || payload.saveImageAs !== "png" || payload.gpuId != null || payload.ttaMode || payload.tileSize || payload.useCustomWidth || payload.noImageProcessing || payload.compression !== "0") {
+      throw new Error("MoSR preview supports a single 4× PNG on Windows.");
+    }
+    if (payload.mosrGpu != null && (typeof payload.mosrGpu !== "string" || !/^[0-9a-f]{8}:[0-9a-f]{8}$/i.test(payload.mosrGpu))) throw new Error("Invalid MoSR GPU selection.");
+  } else if (!Object.prototype.hasOwnProperty.call(MODELS, payload.model)) {
     if (!savedCustomModelsPath || !hasModelAccess(savedCustomModelsPath)) throw new Error("Select a custom models folder first.");
     for (const extension of [".bin", ".param"]) {
       const file = path.join(savedCustomModelsPath, payload.model + extension);
