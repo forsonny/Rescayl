@@ -36,18 +36,15 @@ Rescayl accepts PNG, JPG, JPEG, JFIF, and WebP input images. Results depend on t
 
 Windows x64 is the primary release target. Check the [Rescayl releases page](https://github.com/forsonny/Rescayl/releases) for available builds.
 
-**Current status:** `2.16.0-preview.5` is being prepared as a draft prerelease. Its Windows installer is not a public download yet. You can [run Rescayl from source](#develop-rescayl) while public downloads are pending.
+**Current status:** [Rescayl 2.16.0 Preview 5](https://github.com/forsonny/Rescayl/releases/tag/v2.16.0-preview.5) is available as a public prerelease for Windows x64.
 
-When a Windows preview is available to you, choose one format:
-
-- **Installer:** download `rescayl-<version>-win.exe` and follow its installation steps
-- **ZIP, when offered:** extract `rescayl-<version>-win.zip` and launch `Rescayl.exe`
+Download the [Windows installer](https://github.com/forsonny/Rescayl/releases/download/v2.16.0-preview.5/rescayl-2.16.0-preview.5-win.exe), run it, and follow the installation steps. The release page also includes the installer checksum.
 
 Windows previews are unsigned and use manual updates. Automatic updates are disabled during this preview stage.
 
 | Platform | Status |
 | --- | --- |
-| Windows x64 | Primary target; installer preview prepared |
+| Windows x64 | Preview 5 installer available |
 | Linux | Docker build and software Vulkan validation available; desktop testing pending |
 | macOS | Inherited packaging configuration; no validated Rescayl release |
 
